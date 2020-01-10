@@ -21,6 +21,8 @@ module.exports = {
         crossOrigin: `use-credentials`
       }
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
+    `gatsby-transformer-json`
   ]
 };

@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "vegogo-gatsby-website",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Vegan",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,15 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby": "^2.18.21",
     "gatsby-plugin-manifest": "^2.2.37",
     "gatsby-plugin-react-helmet": "^3.1.21",
+    "gatsby-plugin-sass": "^2.1.27",
+    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-transformer-json": "^2.2.25",
+    "node-sass": "^4.13.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1"
