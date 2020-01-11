@@ -32,6 +32,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-places`,
+        path: `${__dirname}/src/places`
+      }
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         // CommonMark mode (default: true)
