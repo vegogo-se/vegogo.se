@@ -4,8 +4,8 @@ title: "Stay tuned!"
 ---
 
 Love vegan as much as we do?
-  
- <a
+
+<a
     href="https://vegogo.us18.list-manage.com/subscribe/post?u=ba9f0358f5c621215aca582dc&id=fab6881f8a"
     target="_blank"
     rel="noopener noreferrer"
