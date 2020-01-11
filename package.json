@@ -25,7 +25,10 @@
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-pose": "^4.0.10",
+    "react-static-google-map": "^0.5.4",
+    "react-swipeable": "^5.5.0"
   },
   "devDependencies": {
     "husky": "^1.0",

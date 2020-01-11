@@ -47,4 +47,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {} // additional data can be passed via context
     });
   });
+
+  /**
+   * Get places
+   */
+
+   
 };
