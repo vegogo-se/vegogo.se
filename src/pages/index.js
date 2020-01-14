@@ -1,6 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
-import Home from "../components/home";
+import Home from "../components/Home";
 import "../styles/app.scss";
 
 export default () => <Home />;

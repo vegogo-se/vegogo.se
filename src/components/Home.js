@@ -38,8 +38,6 @@ class Home extends Component {
   }
 
   render() {
-    window.scrollTo(0, 0);
-
     let { isLoading, places } = this.state;
 
     return (

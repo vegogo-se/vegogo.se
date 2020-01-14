@@ -1,7 +1,7 @@
 import React from "react";
 import posed from "react-pose";
 import "./PlaceImagesStacked.scss";
-import Swipeable from "react-swipeable";
+import { Swipeable } from "react-swipeable";
 
 const Box = posed.div({
   draggable: false,
@@ -173,9 +173,8 @@ class PlaceImagesStacked extends React.Component {
     );
 
     // Find image at bottom = image with lowest zIndex.
-    let bottomImage = galleryImages.reduce(
-      (prev, current) =>
-        prev.styles.zIndex < current.styles.zIndex ? prev : current
+    let bottomImage = galleryImages.reduce((prev, current) =>
+      prev.styles.zIndex < current.styles.zIndex ? prev : current
     );
 
     // Move moved image to bottom of stack and make visible again.
@@ -203,9 +202,8 @@ class PlaceImagesStacked extends React.Component {
     }
 
     // Topmost image = image with highest zIndex.
-    let topmostImage = galleryImages.reduce(
-      (prev, current) =>
-        prev.styles.zIndex > current.styles.zIndex ? prev : current
+    let topmostImage = galleryImages.reduce((prev, current) =>
+      prev.styles.zIndex > current.styles.zIndex ? prev : current
     );
 
     //let topmostImage = galleryImages.filter
