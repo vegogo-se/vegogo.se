@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import { API_URL } from "../api-config";
+// import { API_URL } from "../api-config";
 // import closeImg from "../images/icon-close.svg";
 import classnames from "classnames";
-import { getPlacePermalink } from "../helpers.js";
+// import { getPlacePermalink } from "../helpers.js";
 import { Helmet } from "react-helmet";
 // import ImageGallery from "react-image-gallery";
 import "./PlacesListing.scss";
 // import PlaceImages from "./PlaceImages";
 // import PlaceImagesNew from "./PlaceImagesNew";
 import PlaceImagesStacked from "./PlaceImagesStacked";
-import PlaceTypes from "./PlaceTypes";
-import PlaceDetails from "./PlaceDetails";
+//import PlaceTypes from "./PlaceTypes";
+// import PlaceDetails from "./PlaceDetails";
 import { getPlaceDetailsFromGoogle } from "../helpers.js";
-import Loading from "./Loading";
 import { cleanupHomepage } from "../helpers.js";
 import posed from "react-pose";
 
@@ -38,9 +37,7 @@ class Place extends Component {
     super(props);
 
     this.state = {
-      place: {},
       detailsOpen: false,
-      isLoading: false,
       isLoadingOpeningHours: false,
       isLoadingContactDetails: false,
       isContactDetailsOpened: false,
@@ -131,106 +128,90 @@ class Place extends Component {
   componentDidMount() {
     // If match exists then we are coming here via url.
     // Other way to get here is just through a component added on another page.
-    let { match, slug, isSingleView } = this.props;
-
-    this.placeSlug = null;
-
-    if (slug) {
-      this.placeSlug = slug;
-    } else if (match && match.params.place) {
-      this.placeSlug = match.params.place;
-    }
-
-    if (!this.placeSlug) {
-      console.log("no place found :(");
-    }
-
-    if (isSingleView) {
-      this.setState({
-        detailsOpen: true
-      });
-    }
-
-    // Check if data needs to be loaded.
-    if (
-      this.props.name &&
-      this.props.slug &&
-      this.props.state &&
-      this.props.location
-    ) {
-      // Seems like the place has some place props, so set state with that.
-      this.setState({ place: this.props, isLoading: false });
-    } else {
-      // Needed data not found in props, so load from API.
-      this.loadPlaceFromApi();
-    }
+    // let { match, slug, isSingleView } = this.props;
+    // this.placeSlug = null;
+    // if (slug) {
+    //   this.placeSlug = slug;
+    // } else if (match && match.params.place) {
+    //   this.placeSlug = match.params.place;
+    // }
+    // if (!this.placeSlug) {
+    //   console.log("no place found :(");
+    // }
+    // if (isSingleView) {
+    //   this.setState({
+    //     detailsOpen: true
+    //   });
+    // }
+    // // Check if data needs to be loaded.
+    // if (
+    //   this.props.name &&
+    //   this.props.slug &&
+    //   this.props.state &&
+    //   this.props.location
+    // ) {
+    //   // Seems like the place has some place props, so set state with that.
+    //   this.setState({ place: this.props });
+    // } else {
+    //   // Needed data not found in props, so load from API.
+    //   //this.loadPlaceFromApi();
+    // }
   }
 
-  loadPlaceFromApi() {
-    let placesApiUrl = `${API_URL}/place/slug/${this.placeSlug}`;
-    this.setState({ isLoading: true });
+  // loadPlaceFromApi() {
+  //   let placesApiUrl = `${API_URL}/place/slug/${this.placeSlug}`;
+  //   this.setState({ isLoading: true });
 
-    fetch(placesApiUrl)
-      .then(data => {
-        if (data.ok) {
-          return data.json();
-        } else {
-          throw new Error("Error getting place from API");
-        }
-      })
-      .then(data => {
-        this.setState({ place: data.place, isLoading: false, isError: false });
-      })
-      .catch(err => {
-        this.setState({ place: {}, isLoading: false, isError: true });
-      });
-  }
+  //   fetch(placesApiUrl)
+  //     .then(data => {
+  //       if (data.ok) {
+  //         return data.json();
+  //       } else {
+  //         throw new Error("Error getting place from API");
+  //       }
+  //     })
+  //     .then(data => {
+  //       this.setState({ place: data.place, isLoading: false, isError: false });
+  //     })
+  //     .catch(err => {
+  //       this.setState({ place: {}, isLoading: false, isError: true });
+  //     });
+  // }
 
   render() {
-    const { isLoading, isError } = this.state;
-
-    if (isLoading) {
-      return <Loading />;
-    }
-
-    if (isError) {
-      return <p>Error loading place...</p>;
-    }
-
     let {
-      name,
-      slug,
-      location,
-      content,
-      phone,
-      homepage,
-      foodTypes = []
-    } = this.state.place;
+      title,
+      path,
+      excerpt,
+      content
+      // html,
+      // phone,
+      // homepage,
+      // foodTypes = []
+    } = this.props;
 
     // Distance is in meters and be like 213.79645204214572
     // so we round it a bit because it's not a really safe number to use.
-    let { distance: locationDistance } = { ...location };
-    if (locationDistance) {
-      // Round to closest nn meters.
-      locationDistance = Math.round(locationDistance / 50) * 50;
-    }
+    // let { distance: locationDistance } = { ...location };
+    // if (locationDistance) {
+    //   // Round to closest nn meters.
+    //   locationDistance = Math.round(locationDistance / 50) * 50;
+    // }
 
     let {
-      openingHours,
-      openNow,
-      phoneNumber,
-      website,
-      isLoadingOpeningHours,
-      isLoadingContactDetails,
-      isContactDetailsOpened,
-      isOpeningHoursOpened,
-      websitePresentation,
+      // openingHours,
+      // openNow,
+      // phoneNumber,
+      // website,
+      // isLoadingOpeningHours,
+      // isLoadingContactDetails,
+      // isContactDetailsOpened,
+      // isOpeningHoursOpened,
+      // websitePresentation,
       detailsOpen
     } = this.state;
 
     let { isSingleView } = this.props;
-
-    let permalink = getPlacePermalink(this.state.place);
 
     let placeClassNames = classnames({
       PlaceItem: true,
@@ -242,29 +223,27 @@ class Place extends Component {
     /**
      * Tease is the title and some sneak peek of the contents, like food types.
      */
-
     let contentBriefOut = (
       <>
-        {content &&
-          content.brief && (
-            <div className="PlaceItem-textcontent PlaceItem-textcontent--brief">
-              <div dangerouslySetInnerHTML={{ __html: content.brief }} />
-              {!isSingleView && (
-                <button href="/" className="PlaceItem-more">
-                  {"+"}
-                </button>
-              )}
-            </div>
-          )}
+        {excerpt && excerpt && (
+          <div className="PlaceItem-textcontent PlaceItem-textcontent--brief">
+            <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+            {!isSingleView && (
+              <button href="/" className="PlaceItem-more">
+                {"+"}
+              </button>
+            )}
+          </div>
+        )}
       </>
     );
 
     let tease = (
       <div className="PlaceItem-head">
-        <h1 className="PlaceItem-name">{name}</h1>
-        {locationDistance && <p>{locationDistance} meters away</p>}
+        <h1 className="PlaceItem-name">{title}</h1>
+        {/* {locationDistance && <p>{locationDistance} meters away</p>} */}
 
-        <PlaceTypes foodTypes={foodTypes} />
+        {/* <PlaceTypes foodTypes={foodTypes} /> */}
 
         {contentBriefOut}
       </div>
@@ -272,13 +251,12 @@ class Place extends Component {
 
     let contentExtendedOut = (
       <>
-        {content &&
-          content.extended && (
-            <div
-              className="PlaceItem-textcontent PlaceItem-textcontent--extended"
-              dangerouslySetInnerHTML={{ __html: content.extended }}
-            />
-          )}
+        {content && content.extended && (
+          <div
+            className="PlaceItem-textcontent PlaceItem-textcontent--extended"
+            dangerouslySetInnerHTML={{ __html: content.extended }}
+          />
+        )}
       </>
     );
 
@@ -289,7 +267,7 @@ class Place extends Component {
         <a
           className="PlaceItem-teaser"
           onClick={this.handleMoreClick}
-          href={permalink}
+          href={path}
         >
           {tease}
         </a>
@@ -301,10 +279,10 @@ class Place extends Component {
     let imagesMarkupStack = <PlaceImagesStacked {...this.state.place} />;
 
     return (
-      <article key={slug} className={placeClassNames}>
+      <article key={path} className={placeClassNames}>
         {isSingleView && (
           <Helmet>
-            <title>{`${name}`} – Vegogo</title>
+            <title>{`${title}`} – Vegogo</title>
           </Helmet>
         )}
 
@@ -323,7 +301,7 @@ class Place extends Component {
             pose={detailsOpen ? "open" : "closed"}
           >
             {contentExtendedOut}
-            <PlaceDetails
+            {/* <PlaceDetails
               {...{
                 location,
                 phone,
@@ -341,7 +319,7 @@ class Place extends Component {
               }}
               handleOpeningHoursClick={this.handleOpeningHoursClick}
               handleContactDetailsClick={this.handleContactDetailsClick}
-            />
+            /> */}
           </Content>
         </div>
       </article>

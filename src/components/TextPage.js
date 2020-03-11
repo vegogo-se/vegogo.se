@@ -4,7 +4,7 @@ import PageContainer from "./PageContainer";
 import "./TextPage.scss";
 
 const TextPage = props => {
-  const { title, preTitle, heroImg, heroImgWidth, heroImgHeight, html } = props;
+  const { title, pretitle, heroImg, heroImgWidth, heroImgHeight, html } = props;
 
   return (
     <PageContainer>
@@ -23,7 +23,7 @@ const TextPage = props => {
             />
           </p>
         )}
-        {preTitle && <div className="TextPage-preHeadline">{preTitle}</div>}
+        {pretitle && <div className="TextPage-preHeadline">{pretitle}</div>}
         <h1 className="TextPage-Headline">{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: html }}></div>
       </div>

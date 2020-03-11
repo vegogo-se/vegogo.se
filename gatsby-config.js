@@ -35,14 +35,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `markdown-places`,
-        path: `${__dirname}/src/places`
+        path: `${__dirname}/src/markdown-places`
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `markdown-areas`,
-        path: `${__dirname}/src/areas`
+        path: `${__dirname}/src/markdown-areas`
       }
     },
     {

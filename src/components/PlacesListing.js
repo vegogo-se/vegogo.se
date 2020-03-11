@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import Place from "./Place";
-import Loading from "./Loading";
+//import Loading from "./Loading";
 import "./PlacesListing.scss";
 
 /**
@@ -9,21 +9,17 @@ import "./PlacesListing.scss";
  */
 class PlacesListing extends Component {
   render() {
-    let {
-      headline,
-      teaser,
-      places,
-      isLoading,
-      showDivider = true
-    } = this.props;
+    let { title, excerpt, places, showDivider = true } = this.props;
+
     let placesItems;
 
     if (places) {
       let prevPlaceFirstChar;
+
       placesItems = places.map(place => {
-        let { slug } = place;
+        let { path } = place;
         let charDivider;
-        let placeFirstChar = place.name.charAt(0);
+        let placeFirstChar = place.title.charAt(0);
 
         if (!prevPlaceFirstChar || prevPlaceFirstChar !== placeFirstChar) {
           charDivider = (
@@ -34,12 +30,12 @@ class PlacesListing extends Component {
           prevPlaceFirstChar = placeFirstChar;
         }
 
-        let fragmentKey = `${placeFirstChar}/${slug}`;
+        let fragmentKey = `${placeFirstChar}/${path}`;
 
         return (
           <React.Fragment key={fragmentKey}>
             {showDivider && charDivider}
-            <li key={slug} className="PlacesListing-placeItem">
+            <li key={path} className="PlacesListing-placeItem">
               <Place {...place} />
             </li>
           </React.Fragment>
@@ -70,10 +66,8 @@ class PlacesListing extends Component {
 
     return (
       <div className="PlacesListing">
-        {headline && <h2>{headline}</h2>}
-        {teaser && <div>{teaser}</div>}
-        {/* {navbar} */}
-        {isLoading && <Loading />}
+        {title && <h2>{title}</h2>}
+        {excerpt && <div>{excerpt}</div>}
         {placesItems}
       </div>
     );
