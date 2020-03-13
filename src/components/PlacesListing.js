@@ -12,11 +12,9 @@ import { useAllPlaces } from "../helpers";
 function PlacesListing(props) {
   let { title, excerpt, placeSlugs, showDivider = true } = props;
 
-  // Get names of each place from their slugs.
-  console.log("placeSlugs", placeSlugs);
-
   const allPlaces = useAllPlaces();
 
+  // Get names of each place from their slugs.
   const selectedPlaces = allPlaces.filter(place => {
     return placeSlugs.includes(place.slug);
   });
@@ -27,7 +25,7 @@ function PlacesListing(props) {
   if (selectedPlaces) {
     let prevPlaceFirstChar;
 
-    placesItems = selectedPlaces.map((place) => {
+    placesItems = selectedPlaces.map(place => {
       let { slug, title } = place;
       let charDivider;
       let placeFirstChar = title.charAt(0);

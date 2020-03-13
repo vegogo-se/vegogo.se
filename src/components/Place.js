@@ -41,6 +41,8 @@ function Place(props) {
     return place.slug === slug;
   });
 
+  const { title, excerpt, html } = place;
+
   // this.state = {
   //   detailsOpen: false,
   //   isLoadingOpeningHours: false,
@@ -182,8 +184,6 @@ function Place(props) {
   //       this.setState({ place: {}, isLoading: false, isError: true });
   //     });
   // }
-
-  const { title, excerpt, html } = place;
 
   // Distance is in meters and be like 213.79645204214572
   // so we round it a bit because it's not a really safe number to use.
