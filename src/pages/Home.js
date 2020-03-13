@@ -13,8 +13,8 @@ import "./Home.scss";
 function Home() {
   const allPlaces = useAllPlaces();
 
-  const placeSlugs = allPlaces.allFile.edges.map(({ node }) => {
-    return node.childMarkdownRemark.frontmatter.slug;
+  const placeSlugs = allPlaces.map(place => {
+    return place.slug;
   });
 
   return (

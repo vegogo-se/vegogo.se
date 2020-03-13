@@ -96,11 +96,39 @@ export function useAllPlaces() {
               excerpt(format: PLAIN, pruneLength: 100)
               html
             }
+            dir
           }
         }
       }
     }
   `);
 
-  return allPlaces;
+  // Flatten result.
+  const flattenedPlaces = allPlaces.allFile.edges.map(({ node }) => {
+    const {
+      title,
+      slug,
+      coordinates,
+      areas,
+      address
+    } = node.childMarkdownRemark.frontmatter;
+
+    const { html, excerpt } = node.childMarkdownRemark;
+    const { dir } = node;
+
+    return {
+      title,
+      slug,
+      excerpt,
+      html,
+      coordinates,
+      areas,
+      address,
+      dir
+    };
+  });
+
+  // console.log("flattenedPlaces", flattenedPlaces);
+
+  return flattenedPlaces;
 }

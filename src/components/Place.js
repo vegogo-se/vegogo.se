@@ -37,8 +37,8 @@ function Place(props) {
   const { slug } = props;
   const allPlaces = useAllPlaces();
 
-  const place = allPlaces.allFile.edges.find(({ node }) => {
-    return node.childMarkdownRemark.frontmatter.slug === slug;
+  const place = allPlaces.find(place => {
+    return place.slug === slug;
   });
 
   // this.state = {
@@ -183,9 +183,7 @@ function Place(props) {
   //     });
   // }
 
-  const { title } = place.node.childMarkdownRemark.frontmatter;
-
-  const { excerpt, html } = place.node.childMarkdownRemark;
+  const { title, excerpt, html } = place;
 
   // Distance is in meters and be like 213.79645204214572
   // so we round it a bit because it's not a really safe number to use.

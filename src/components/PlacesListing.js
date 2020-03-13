@@ -17,8 +17,8 @@ function PlacesListing(props) {
 
   const allPlaces = useAllPlaces();
 
-  const selectedPlaces = allPlaces.allFile.edges.filter(({ node }) => {
-    return placeSlugs.includes(node.childMarkdownRemark.frontmatter.slug);
+  const selectedPlaces = allPlaces.filter(place => {
+    return placeSlugs.includes(place.slug);
   });
 
   let placesItems;
@@ -27,8 +27,8 @@ function PlacesListing(props) {
   if (selectedPlaces) {
     let prevPlaceFirstChar;
 
-    placesItems = selectedPlaces.map(({ node }) => {
-      let { slug, title } = node.childMarkdownRemark.frontmatter;
+    placesItems = selectedPlaces.map((place) => {
+      let { slug, title } = place;
       let charDivider;
       let placeFirstChar = title.charAt(0);
 
