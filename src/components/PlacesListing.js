@@ -1,51 +1,62 @@
-import React, { Component } from "react";
+import React from "react";
 // import { Link } from "react-router-dom";
 import Place from "./Place";
 //import Loading from "./Loading";
 import "./PlacesListing.scss";
+//import { useStaticQuery, graphql } from "gatsby";
+import { useAllPlaces } from "../helpers";
 
 /**
  * Renders places with passed places.
  */
-class PlacesListing extends Component {
-  render() {
-    let { title, excerpt, places, showDivider = true } = this.props;
+function PlacesListing(props) {
+  let { title, excerpt, placeSlugs, showDivider = true } = props;
 
-    let placesItems;
+  // Get names of each place from their slugs.
+  console.log("placeSlugs", placeSlugs);
 
-    if (places) {
-      let prevPlaceFirstChar;
+  const allPlaces = useAllPlaces();
 
-      placesItems = places.map(place => {
-        let { path } = place;
-        let charDivider;
-        let placeFirstChar = place.title.charAt(0);
+  const selectedPlaces = allPlaces.allFile.edges.filter(({ node }) => {
+    return placeSlugs.includes(node.childMarkdownRemark.frontmatter.slug);
+  });
 
-        if (!prevPlaceFirstChar || prevPlaceFirstChar !== placeFirstChar) {
-          charDivider = (
-            <li className="PlacesListing-charDivider" key={placeFirstChar}>
-              {placeFirstChar}
-            </li>
-          );
-          prevPlaceFirstChar = placeFirstChar;
-        }
+  let placesItems;
 
-        let fragmentKey = `${placeFirstChar}/${path}`;
+  // Create alphanum char listing.
+  if (selectedPlaces) {
+    let prevPlaceFirstChar;
 
-        return (
-          <React.Fragment key={fragmentKey}>
-            {showDivider && charDivider}
-            <li key={path} className="PlacesListing-placeItem">
-              <Place {...place} />
-            </li>
-          </React.Fragment>
+    placesItems = selectedPlaces.map(({ node }) => {
+      let { slug, title } = node.childMarkdownRemark.frontmatter;
+      let charDivider;
+      let placeFirstChar = title.charAt(0);
+
+      if (!prevPlaceFirstChar || prevPlaceFirstChar !== placeFirstChar) {
+        charDivider = (
+          <li className="PlacesListing-charDivider" key={placeFirstChar}>
+            {placeFirstChar}
+          </li>
         );
-      });
+        prevPlaceFirstChar = placeFirstChar;
+      }
 
-      placesItems = <ul className="PlacesListing-placeItems">{placesItems}</ul>;
-    }
+      let fragmentKey = `${placeFirstChar}/${slug}`;
 
-    /*
+      return (
+        <React.Fragment key={fragmentKey}>
+          {showDivider && charDivider}
+          <li key={slug} className="PlacesListing-placeItem">
+            <Place slug={slug} />
+          </li>
+        </React.Fragment>
+      );
+    });
+
+    placesItems = <ul className="PlacesListing-placeItems">{placesItems}</ul>;
+  }
+
+  /*
     let navbar = (
       <div className="PlacesListing-NavBar">
         <ul className="PlacesListing-NavBar-items">
@@ -64,14 +75,13 @@ class PlacesListing extends Component {
     );
     */
 
-    return (
-      <div className="PlacesListing">
-        {title && <h2>{title}</h2>}
-        {excerpt && <div>{excerpt}</div>}
-        {placesItems}
-      </div>
-    );
-  }
+  return (
+    <div className="PlacesListing">
+      {title && <h2>{title}</h2>}
+      {excerpt && <div>{excerpt}</div>}
+      {placesItems}
+    </div>
+  );
 }
 
 export default PlacesListing;

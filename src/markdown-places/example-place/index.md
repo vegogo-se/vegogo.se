@@ -1,6 +1,6 @@
 ---
 title: Example place
-path: my-unique-example-place-url-slug
+slug: my-unique-example-place-url-slug
 address: Götgatan 1
 city: Stockholm
 coordinates:

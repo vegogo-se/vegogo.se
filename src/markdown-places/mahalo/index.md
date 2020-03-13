@@ -1,6 +1,6 @@
 ---
 title: Mahalo
-path: mahalo-mums
+slug: mahalo-mums
 city: Stockholm
 areas:
   - Södermalm

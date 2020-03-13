@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 // import { API_URL } from "../api-config";
 // import closeImg from "../images/icon-close.svg";
 import classnames from "classnames";
@@ -8,12 +8,13 @@ import { Helmet } from "react-helmet";
 import "./PlacesListing.scss";
 // import PlaceImages from "./PlaceImages";
 // import PlaceImagesNew from "./PlaceImagesNew";
-import PlaceImagesStacked from "./PlaceImagesStacked";
+// import PlaceImagesStacked from "./PlaceImagesStacked";
 //import PlaceTypes from "./PlaceTypes";
 // import PlaceDetails from "./PlaceDetails";
-import { getPlaceDetailsFromGoogle } from "../helpers.js";
-import { cleanupHomepage } from "../helpers.js";
+// import { getPlaceDetailsFromGoogle } from "../helpers.js";
+// import { cleanupHomepage } from "../helpers.js";
 import posed from "react-pose";
+import { useAllPlaces } from "../helpers";
 
 const Content = posed.div({
   closed: {
@@ -32,30 +33,34 @@ const Content = posed.div({
  * Place can get what to render from a slug + props with full place object, for example when being used in a listing
  * or from props match when viewing a place permalink.
  */
-class Place extends Component {
-  constructor(props) {
-    super(props);
+function Place(props) {
+  const { slug } = props;
+  const allPlaces = useAllPlaces();
 
-    this.state = {
-      detailsOpen: false,
-      isLoadingOpeningHours: false,
-      isLoadingContactDetails: false,
-      isContactDetailsOpened: false,
-      isOpeningHoursOpened: false,
-      openingHours: [],
-      openNow: undefined,
-      phoneNumber: undefined,
-      website: undefined,
-      websitePresentation: undefined
-    };
+  const place = allPlaces.allFile.edges.find(({ node }) => {
+    return node.childMarkdownRemark.frontmatter.slug === slug;
+  });
 
-    this.handleMoreClick = this.handleMoreClick.bind(this);
-    this.handleOpeningHoursClick = this.handleOpeningHoursClick.bind(this);
-    this.handleContactDetailsClick = this.handleContactDetailsClick.bind(this);
-  }
+  // this.state = {
+  //   detailsOpen: false,
+  //   isLoadingOpeningHours: false,
+  //   isLoadingContactDetails: false,
+  //   isContactDetailsOpened: false,
+  //   isOpeningHoursOpened: false,
+  //   openingHours: [],
+  //   openNow: undefined,
+  //   phoneNumber: undefined,
+  //   website: undefined,
+  //   websitePresentation: undefined
+  // };
+
+  // this.handleMoreClick = this.handleMoreClick.bind(this);
+  // this.handleOpeningHoursClick = this.handleOpeningHoursClick.bind(this);
+  // this.handleContactDetailsClick = this.handleContactDetailsClick.bind(this);
+  //}
 
   // Toogle opening hours.
-  handleOpeningHoursClick(e) {
+  /*   function handleOpeningHoursClick(e) {
     // Hide and bail if already open.
     if (this.state.isOpeningHoursOpened) {
       this.setState({ isOpeningHoursOpened: false });
@@ -70,10 +75,10 @@ class Place extends Component {
         isOpeningHoursOpened: true
       });
     });
-  }
+  } */
 
   // Toggle contact details, i.e. homepage and phone number
-  handleContactDetailsClick(e) {
+  /*   function handleContactDetailsClick(e) {
     // Hide and bail if already open.
     if (this.state.isContactDetailsOpened) {
       this.setState({ isContactDetailsOpened: false });
@@ -88,12 +93,12 @@ class Place extends Component {
         isContactDetailsOpened: true
       });
     });
-  }
+  } */
 
   /**
    * Load details from Google, like opening hours.
    */
-  loadDetails() {
+  /* function loadDetails() {
     return new Promise((resolve, reject) => {
       let { googlePlaceId: placeId } = this.state.place;
 
@@ -114,8 +119,8 @@ class Place extends Component {
         });
     });
   }
-
-  handleMoreClick(e) {
+ */
+  /*   function handleMoreClick(e) {
     // If cmd on mac or ? on windows is pressed then let the browser open the place in new window or tab.
     // } else if ( event.ctrlKey || event.metaKey ) {
     if (e.ctrlKey || e.metaKey) {
@@ -124,39 +129,39 @@ class Place extends Component {
       e.preventDefault();
     }
   }
-
-  componentDidMount() {
-    // If match exists then we are coming here via url.
-    // Other way to get here is just through a component added on another page.
-    // let { match, slug, isSingleView } = this.props;
-    // this.placeSlug = null;
-    // if (slug) {
-    //   this.placeSlug = slug;
-    // } else if (match && match.params.place) {
-    //   this.placeSlug = match.params.place;
-    // }
-    // if (!this.placeSlug) {
-    //   console.log("no place found :(");
-    // }
-    // if (isSingleView) {
-    //   this.setState({
-    //     detailsOpen: true
-    //   });
-    // }
-    // // Check if data needs to be loaded.
-    // if (
-    //   this.props.name &&
-    //   this.props.slug &&
-    //   this.props.state &&
-    //   this.props.location
-    // ) {
-    //   // Seems like the place has some place props, so set state with that.
-    //   this.setState({ place: this.props });
-    // } else {
-    //   // Needed data not found in props, so load from API.
-    //   //this.loadPlaceFromApi();
-    // }
-  }
+ */
+  // componentDidMount() {
+  // If match exists then we are coming here via url.
+  // Other way to get here is just through a component added on another page.
+  // let { match, slug, isSingleView } = this.props;
+  // this.placeSlug = null;
+  // if (slug) {
+  //   this.placeSlug = slug;
+  // } else if (match && match.params.place) {
+  //   this.placeSlug = match.params.place;
+  // }
+  // if (!this.placeSlug) {
+  //   console.log("no place found :(");
+  // }
+  // if (isSingleView) {
+  //   this.setState({
+  //     detailsOpen: true
+  //   });
+  // }
+  // // Check if data needs to be loaded.
+  // if (
+  //   this.props.name &&
+  //   this.props.slug &&
+  //   this.props.state &&
+  //   this.props.location
+  // ) {
+  //   // Seems like the place has some place props, so set state with that.
+  //   this.setState({ place: this.props });
+  // } else {
+  //   // Needed data not found in props, so load from API.
+  //   //this.loadPlaceFromApi();
+  // }
+  //}
 
   // loadPlaceFromApi() {
   //   let placesApiUrl = `${API_URL}/place/slug/${this.placeSlug}`;
@@ -178,153 +183,145 @@ class Place extends Component {
   //     });
   // }
 
-  render() {
-    let {
-      title,
-      path,
-      excerpt,
-      content
-      // html,
-      // phone,
-      // homepage,
-      // foodTypes = []
-    } = this.props;
+  const { title } = place.node.childMarkdownRemark.frontmatter;
 
-    // Distance is in meters and be like 213.79645204214572
-    // so we round it a bit because it's not a really safe number to use.
-    // let { distance: locationDistance } = { ...location };
-    // if (locationDistance) {
-    //   // Round to closest nn meters.
-    //   locationDistance = Math.round(locationDistance / 50) * 50;
-    // }
+  const { excerpt, html } = place.node.childMarkdownRemark;
 
-    let {
-      // openingHours,
-      // openNow,
-      // phoneNumber,
-      // website,
-      // isLoadingOpeningHours,
-      // isLoadingContactDetails,
-      // isContactDetailsOpened,
-      // isOpeningHoursOpened,
-      // websitePresentation,
-      detailsOpen
-    } = this.state;
+  // Distance is in meters and be like 213.79645204214572
+  // so we round it a bit because it's not a really safe number to use.
+  // let { distance: locationDistance } = { ...location };
+  // if (locationDistance) {
+  //   // Round to closest nn meters.
+  //   locationDistance = Math.round(locationDistance / 50) * 50;
+  // }
 
-    let { isSingleView } = this.props;
+  //let {
+  // openingHours,
+  // openNow,
+  // phoneNumber,
+  // website,
+  // isLoadingOpeningHours,
+  // isLoadingContactDetails,
+  // isContactDetailsOpened,
+  // isOpeningHoursOpened,
+  // websitePresentation,
+  //   detailsOpen
+  // } = this.state;
 
-    let placeClassNames = classnames({
-      PlaceItem: true,
-      "PlaceItem--isSingleView": isSingleView,
-      "PlaceItem--isOverview": !isSingleView,
-      "PlaceItem--expanded": detailsOpen
-    });
+  let { isSingleView } = props;
+  let detailsOpen = false;
 
-    /**
-     * Tease is the title and some sneak peek of the contents, like food types.
-     */
-    let contentBriefOut = (
-      <>
-        {excerpt && excerpt && (
-          <div className="PlaceItem-textcontent PlaceItem-textcontent--brief">
-            <div dangerouslySetInnerHTML={{ __html: excerpt }} />
-            {!isSingleView && (
-              <button href="/" className="PlaceItem-more">
-                {"+"}
-              </button>
-            )}
-          </div>
-        )}
-      </>
-    );
+  let placeClassNames = classnames({
+    PlaceItem: true,
+    "PlaceItem--isSingleView": isSingleView,
+    "PlaceItem--isOverview": !isSingleView,
+    "PlaceItem--expanded": detailsOpen
+  });
 
-    let tease = (
-      <div className="PlaceItem-head">
-        <h1 className="PlaceItem-name">{title}</h1>
-        {/* {locationDistance && <p>{locationDistance} meters away</p>} */}
-
-        {/* <PlaceTypes foodTypes={foodTypes} /> */}
-
-        {contentBriefOut}
-      </div>
-    );
-
-    let contentExtendedOut = (
-      <>
-        {content && content.extended && (
-          <div
-            className="PlaceItem-textcontent PlaceItem-textcontent--extended"
-            dangerouslySetInnerHTML={{ __html: content.extended }}
-          />
-        )}
-      </>
-    );
-
-    if (isSingleView) {
-      tease = <div className="PlaceItem-teaser">{tease}</div>;
-    } else {
-      tease = (
-        <a
-          className="PlaceItem-teaser"
-          onClick={this.handleMoreClick}
-          href={path}
-        >
-          {tease}
-        </a>
-      );
-    }
-
-    // let imagesMarkup = <PlaceImages {...this.state.place} />;
-    //let imagesMarkupNew = <PlaceImagesNew {...this.state.place} />;
-    let imagesMarkupStack = <PlaceImagesStacked {...this.state.place} />;
-
-    return (
-      <article key={path} className={placeClassNames}>
-        {isSingleView && (
-          <Helmet>
-            <title>{`${title}`} – Vegogo</title>
-          </Helmet>
-        )}
-
-        {/* {imagesMarkup} */}
-
-        {imagesMarkupStack}
-
-        {/* {imagesMarkupNew} */}
-
-        <div className="PlaceItem-content">
-          {tease}
-
-          {/* Details are shown on details page or when "More" link is clicked. */}
-          <Content
-            className="PlaceItem-details"
-            pose={detailsOpen ? "open" : "closed"}
-          >
-            {contentExtendedOut}
-            {/* <PlaceDetails
-              {...{
-                location,
-                phone,
-                name,
-                homepage,
-                openingHours,
-                openNow,
-                phoneNumber,
-                website,
-                websitePresentation,
-                isLoadingOpeningHours,
-                isLoadingContactDetails,
-                isContactDetailsOpened,
-                isOpeningHoursOpened
-              }}
-              handleOpeningHoursClick={this.handleOpeningHoursClick}
-              handleContactDetailsClick={this.handleContactDetailsClick}
-            /> */}
-          </Content>
+  /**
+   * Tease is the title and some sneak peek of the contents, like food types.
+   */
+  let contentBriefOut = (
+    <>
+      {excerpt && excerpt && (
+        <div className="PlaceItem-textcontent PlaceItem-textcontent--brief">
+          <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+          {!isSingleView && (
+            <button href="/" className="PlaceItem-more">
+              {"+"}
+            </button>
+          )}
         </div>
-      </article>
+      )}
+    </>
+  );
+
+  let tease = (
+    <div className="PlaceItem-head">
+      <h1 className="PlaceItem-name">{title}</h1>
+      {/* {locationDistance && <p>{locationDistance} meters away</p>} */}
+
+      {/* <PlaceTypes foodTypes={foodTypes} /> */}
+
+      {contentBriefOut}
+    </div>
+  );
+
+  let contentExtendedOut = (
+    <>
+      {html && (
+        <div
+          className="PlaceItem-textcontent PlaceItem-textcontent--extended"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      )}
+    </>
+  );
+
+  if (isSingleView) {
+    tease = <div className="PlaceItem-teaser">{tease}</div>;
+  } else {
+    tease = (
+      <a
+        className="PlaceItem-teaser"
+        // onClick={this.handleMoreClick}
+        href={slug}
+      >
+        {tease}
+      </a>
     );
   }
+
+  // let imagesMarkup = <PlaceImages {...this.state.place} />;
+  //let imagesMarkupNew = <PlaceImagesNew {...this.state.place} />;
+  // let imagesMarkupStack = <PlaceImagesStacked {...this.state.place} />;
+
+  return (
+    <article key={slug} className={placeClassNames}>
+      {isSingleView && (
+        <Helmet>
+          <title>{`${title}`} – Vegogo</title>
+        </Helmet>
+      )}
+
+      {/* {imagesMarkup} */}
+
+      {/* {imagesMarkupStack} */}
+
+      {/* {imagesMarkupNew} */}
+
+      <div className="PlaceItem-content">
+        {tease}
+
+        {/* Details are shown on details page or when "More" link is clicked. */}
+        <Content
+          className="PlaceItem-details"
+          pose={detailsOpen ? "open" : "closed"}
+        >
+          {contentExtendedOut}
+          {/* <PlaceDetails
+            {...{
+              location,
+              phone,
+              name,
+              homepage,
+              openingHours,
+              openNow,
+              phoneNumber,
+              website,
+              websitePresentation,
+              isLoadingOpeningHours,
+              isLoadingContactDetails,
+              isContactDetailsOpened,
+              isOpeningHoursOpened
+            }}
+            handleOpeningHoursClick={this.handleOpeningHoursClick}
+            handleContactDetailsClick={this.handleContactDetailsClick}
+          /> */}
+        </Content>
+      </div>
+    </article>
+  );
 }
 
 export default Place;

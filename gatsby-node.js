@@ -36,7 +36,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       ":" + node.childMarkdownRemark.frontmatter.path + ":"
     );
 
-    // SKip nodes with no path, ie. not pages, will be filtered out when I figure our how...
+    // Skip nodes with no path, ie. not pages, will be filtered out when I figure our how...
     if (!node.childMarkdownRemark.frontmatter.path) {
       return;
     }
