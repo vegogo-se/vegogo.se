@@ -13,22 +13,10 @@ import "./PlacesListing.scss";
 // import PlaceDetails from "./PlaceDetails";
 // import { getPlaceDetailsFromGoogle } from "../helpers.js";
 // import { cleanupHomepage } from "../helpers.js";
-import posed from "react-pose";
+// import posed from "react-pose";
 import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
-
-const Content = posed.div({
-  closed: {
-    height: 0,
-    opacity: 0,
-    translateY: -10
-  },
-  open: {
-    height: "auto",
-    opacity: 1,
-    translateY: 0
-  }
-});
+import { Link } from "gatsby";
 
 /**
  * Place can get what to render from a slug + props with full place object, for example when being used in a listing
@@ -291,12 +279,11 @@ function Place(props) {
 
       <div className="PlaceItem-content">
         {tease}
-        <div>
-            Image: <Img fluid={place.images[0].childImageSharp.fluid} />
-          </div>
+        <Link to={slug}>Länk till plats</Link>
+        <Img fluid={place.images[0].childImageSharp.fluid} />
 
         {/* Details are shown on details page or when "More" link is clicked. */}
-        <Content
+        <div
           className="PlaceItem-details"
           pose={detailsOpen ? "open" : "closed"}
         >
@@ -321,7 +308,7 @@ function Place(props) {
             handleOpeningHoursClick={this.handleOpeningHoursClick}
             handleContactDetailsClick={this.handleContactDetailsClick}
           /> */}
-        </Content>
+        </div>
       </div>
     </article>
   );
