@@ -7,7 +7,7 @@ import PlacesListing from "../components/PlacesListing";
 import introTextImage from "../images/vegogo-the-new-guide-to-vegan-eating.svg";
 import ImageWithRatio from "../components/ImageWithRatio";
 // import { useStaticQuery, graphql } from "gatsby";
-import { useAllPlaces } from "../helpers";
+import { useAllPlaces } from "../hooks/useAllPlaces";
 import "./Home.scss";
 
 function Home() {

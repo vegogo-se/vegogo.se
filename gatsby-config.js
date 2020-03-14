@@ -59,6 +59,8 @@ module.exports = {
         // Plugins configs
         plugins: []
       }
-    }
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`
   ]
 };

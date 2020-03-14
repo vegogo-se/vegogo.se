@@ -14,7 +14,7 @@ import "./PlacesListing.scss";
 // import { getPlaceDetailsFromGoogle } from "../helpers.js";
 // import { cleanupHomepage } from "../helpers.js";
 import posed from "react-pose";
-import { useAllPlaces } from "../helpers";
+import { useAllPlaces } from "../hooks/useAllPlaces";
 
 const Content = posed.div({
   closed: {
