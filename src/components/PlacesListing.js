@@ -5,8 +5,6 @@ import Place from "./Place";
 import "./PlacesListing.scss";
 //import { useStaticQuery, graphql } from "gatsby";
 import { useAllPlaces } from "../hooks/useAllPlaces";
-import { useAllPlacesImages } from "../hooks/useAllPlacesImages";
-import { useStaticQuery } from "gatsby";
 
 /**
  * Renders places with passed places.
@@ -15,9 +13,6 @@ function PlacesListing(props) {
   let { title, excerpt, placeSlugs, showDivider = true } = props;
 
   const allPlaces = useAllPlaces();
-  //const allPlacesImages = useAllPlacesImages();
-  
-  console.log("allPlaces", allPlaces);
 
   // Get names of each place from their slugs.
   const selectedPlaces = allPlaces.filter(place => {

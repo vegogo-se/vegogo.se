@@ -62,9 +62,10 @@ export function useAllPlaces() {
 
   // Append correct images to each place.
   flattenedPlaces = flattenedPlaces.map(place => {
-    place.images = allPlacesImages.allFile.edges.filter(image => {
-      return image.node.dir === place.dir;
+    place.images = allPlacesImages.filter(image => {
+      return image.dir === place.dir;
     });
+
     return place;
   });
 

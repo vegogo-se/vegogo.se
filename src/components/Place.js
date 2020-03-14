@@ -15,6 +15,7 @@ import "./PlacesListing.scss";
 // import { cleanupHomepage } from "../helpers.js";
 import posed from "react-pose";
 import { useAllPlaces } from "../hooks/useAllPlaces";
+import Img from "gatsby-image";
 
 const Content = posed.div({
   closed: {
@@ -290,6 +291,9 @@ function Place(props) {
 
       <div className="PlaceItem-content">
         {tease}
+        <div>
+            Image: <Img fluid={place.images[0].childImageSharp.fluid} />
+          </div>
 
         {/* Details are shown on details page or when "More" link is clicked. */}
         <Content
@@ -297,6 +301,7 @@ function Place(props) {
           pose={detailsOpen ? "open" : "closed"}
         >
           {contentExtendedOut}
+
           {/* <PlaceDetails
             {...{
               location,
