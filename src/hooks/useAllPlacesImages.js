@@ -15,6 +15,7 @@ export function useAllPlacesImages() {
           node {
             absolutePath
             dir
+            name
             childImageSharp {
               fluid(maxWidth: 800) {
                 ...GatsbyImageSharpFluid

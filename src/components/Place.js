@@ -280,7 +280,11 @@ function Place(props) {
       <div className="PlaceItem-content">
         {tease}
         <Link to={slug}>Länk till plats</Link>
-        <Img fluid={place.images[0].childImageSharp.fluid} />
+        <Img
+          fluid={place.images[0].childImageSharp.fluid}
+          alt={place.images[0].name}
+          title={place.images[0].name}
+        />
 
         {/* Details are shown on details page or when "More" link is clicked. */}
         <div
