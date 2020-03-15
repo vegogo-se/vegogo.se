@@ -1,20 +1,12 @@
-
-
-
-
-
-
-
-
 const path = require(`path`);
 
-exports.createPages = async ({         actions, graphql, reporter }) => {
-const { createPage } = actions;
-const pageTemplate = path.resolve(`src/templates/pageTemplate.js`);
-const placeTemplate = path.resolve(`src/templates/placeTemplate.js`);
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+  const pageTemplate = path.resolve(`src/templates/pageTemplate.js`);
+  const placeTemplate = path.resolve(`src/templates/placeTemplate.js`);
 
   // Get paths to all text pages, like "About us", "Contact", etc.
-              const result = await graphql(`
+  const result = await graphql(`
     {
       allFile(
         filter: {
