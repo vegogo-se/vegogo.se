@@ -19,9 +19,13 @@ export const pageQuery = graphql`
         path
         title
         pretitle
-        heroImg
-        heroImgWidth
-        heroImgHeight
+        featuredImage {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

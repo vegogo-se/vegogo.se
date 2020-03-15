@@ -1,9 +1,7 @@
 ---
 title: "About Vegogo"
 path: "/page/about"
-heroImg: "https://res.cloudinary.com/vegogo/image/upload/v1537550390/about.jpg"
-heroImgWidth: 612
-heroImgHeight: 669
+featuredImage: about.jpg
 ---
 
 vegogo is the new guide for vegan eating, curated for you with &lt;3.
