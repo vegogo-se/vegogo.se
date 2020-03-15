@@ -1,5 +1,4 @@
 import { useStaticQuery } from "gatsby";
-import { useAllPlacesImages } from "./useAllPlacesImages";
 
 export function useAllPlaces() {
   const allPlaces = useStaticQuery(graphql`
@@ -21,11 +20,20 @@ export function useAllPlaces() {
                 coordinates
                 areas
                 address
+                images {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }      
+                }
               }
               excerpt(format: PLAIN, pruneLength: 100)
               html
             }
             dir
+            absolutePath
+            relativePath
           }
         }
       }
@@ -39,11 +47,12 @@ export function useAllPlaces() {
       slug,
       coordinates,
       areas,
-      address
+      address,
+      images
     } = node.childMarkdownRemark.frontmatter;
 
     const { html, excerpt } = node.childMarkdownRemark;
-    const { dir } = node;
+    const { dir, absolutePath, relativePath } = node;
 
     return {
       title,
@@ -53,21 +62,25 @@ export function useAllPlaces() {
       coordinates,
       areas,
       address,
-      dir
+      dir,
+      absolutePath,
+      relativePath,
+      images
     };
   });
 
   // Get all images for all places.
-  const allPlacesImages = useAllPlacesImages();
+  // const allPlacesImages = useAllPlacesImages();
 
-  // Append correct images to each place.
-  flattenedPlaces = flattenedPlaces.map(place => {
-    place.images = allPlacesImages.filter(image => {
-      return image.dir === place.dir;
-    });
+  // // Append correct images to each place.
+  // flattenedPlaces = flattenedPlaces.map(place => {
+  //   place.frontmatterImages = place.images;
+  //   place.images = allPlacesImages.filter(image => {
+  //     return image.dir === place.dir;
+  //   });
 
-    return place;
-  });
+  //   return place;
+  // });
 
   return flattenedPlaces;
 }

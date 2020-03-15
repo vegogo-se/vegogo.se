@@ -263,6 +263,8 @@ function Place(props) {
   //let imagesMarkupNew = <PlaceImagesNew {...this.state.place} />;
   // let imagesMarkupStack = <PlaceImagesStacked {...this.state.place} />;
 
+  const firstImage = place.images ? place.images[0] : null;
+
   return (
     <article key={slug} className={placeClassNames}>
       {isSingleView && (
@@ -280,11 +282,13 @@ function Place(props) {
       <div className="PlaceItem-content">
         {tease}
         <Link to={slug}>Länk till plats</Link>
-        <Img
-          fluid={place.images[0].childImageSharp.fluid}
-          alt={place.images[0].name}
-          title={place.images[0].name}
-        />
+        {firstImage && (
+          <Img
+            fluid={firstImage.childImageSharp.fluid}
+            alt={firstImage.name}
+            title={firstImage.name}
+          />
+        )}
 
         {/* Details are shown on details page or when "More" link is clicked. */}
         <div

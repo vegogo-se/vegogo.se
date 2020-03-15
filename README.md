@@ -12,6 +12,9 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
 
 ## Todo
 
+- Använda mapp-namn istället för slug?
+- Används index.md till något vettigt?
 - Få in platser och areas.
 - filsystem: city/plats, t.ex. stockholm/mahalo.md
 - Använda https://www.gatsbyjs.org/packages/gatsby-plugin-json-output/?=json för att få ut JSON med alla platser, typ api som vi kan använda för geolocation-saker
+- Använda https://github.com/Creatiwity/gatsby-plugin-favicon för favicon?

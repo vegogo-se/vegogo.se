@@ -9,6 +9,11 @@ address: Hornsgatan 61
 coordinates:
   - 59.317763
   - 18.0522085
+images:
+  - image2.jpg
+  - image1.jpg
+  - image3.jpg
+  - image4.jpg
 ---
 
 My my. At Malaho, on Hornsgatan just round the corner from Rosenlundsgatan, you find food for mouth – and eyes. It’s hard to find any other place that has this color explosion for an – all vegan – menu.

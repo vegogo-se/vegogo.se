@@ -10,6 +10,10 @@ areas:
   - Stockholm
   - Södermalm
   - Sofo
+images:
+  - image1.jpg
+  - Nice image.jpg
+  - Nice interior of Mahalo.jpg
 draft: false # Draft posts will not be published
 ---
 

@@ -12,7 +12,9 @@ import "./Home.scss";
 
 function Home() {
   const allPlaces = useAllPlaces();
+  console.log('allPlaces', allPlaces)
 
+  // Create array with only the slugs of each place.
   const placeSlugs = allPlaces.map(place => {
     return place.slug;
   });
