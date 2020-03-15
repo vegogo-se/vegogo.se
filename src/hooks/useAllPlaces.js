@@ -1,6 +1,33 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-export function useAllPlaces() {
+export const query = graphql`
+  fragment PlaceInformation on File {
+    childMarkdownRemark {
+      frontmatter {
+        slug
+        title
+        coordinates
+        areas
+        address
+        placeID
+        images {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+      excerpt(format: PLAIN, pruneLength: 100)
+      html
+    }
+    dir
+    absolutePath
+    relativePath
+  }
+`;
+
+export const useAllPlaces = () => {
   const allPlaces = useStaticQuery(graphql`
     query Places {
       allFile(
@@ -13,28 +40,7 @@ export function useAllPlaces() {
       ) {
         edges {
           node {
-            childMarkdownRemark {
-              frontmatter {
-                slug
-                title
-                coordinates
-                areas
-                address
-                placeID
-                images {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-              excerpt(format: PLAIN, pruneLength: 100)
-              html
-            }
-            dir
-            absolutePath
-            relativePath
+            ...PlaceInformation
           }
         }
       }
@@ -68,7 +74,7 @@ export function useAllPlaces() {
       dir,
       absolutePath,
       relativePath,
-      images,
+      images
     };
   });
 
@@ -86,4 +92,4 @@ export function useAllPlaces() {
   // });
 
   return flattenedPlaces;
-}
+};

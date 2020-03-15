@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
-import PageContainer from "../components/PageContainer";
-import AreaIntro from "../components/AreaIntro";
-import PlacesListing from "../components/PlacesListing";
+import PageContainer from "./PageContainer";
+import AreaIntro from "./AreaIntro";
+import PlacesListing from "./PlacesListing";
 import introTextImage from "../images/vegogo-the-new-guide-to-vegan-eating.svg";
-import ImageWithRatio from "../components/ImageWithRatio";
+import ImageWithRatio from "./ImageWithRatio";
 // import { useStaticQuery, graphql } from "gatsby";
 import { useAllPlaces } from "../hooks/useAllPlaces";
 import "./Home.scss";

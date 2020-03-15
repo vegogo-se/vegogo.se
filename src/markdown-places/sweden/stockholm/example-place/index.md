@@ -1,6 +1,6 @@
 ---
 title: Example place
-slug: my-unique-example-place-url-slug
+slug: example
 address: Götgatan 1
 city: Stockholm
 placeID: ChIJWULnYuR3X0YRszqoUOmutDk

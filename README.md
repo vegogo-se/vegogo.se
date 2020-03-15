@@ -16,6 +16,8 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
 
 ## Todo
 
+- Skapa sidor för places och areas.
+- Använd Google Place ID för att hämta: adress, öppettider, geolocation
 - Använda mapp-namn istället för slug?
 - Används index.md till något vettigt?
 - Få in platser och areas.

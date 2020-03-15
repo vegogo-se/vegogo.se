@@ -2,6 +2,10 @@
  * Misc helper functions.
  */
 import { useStaticQuery } from "gatsby";
+const fetch = require(`node-fetch`);
+const querystring = require("querystring");
+
+import { GOOGLE_MAPS_API_KEY } from "./api-config";
 
 /**
  * Return formatted homepage.
@@ -48,13 +52,14 @@ export function getAreaPermalink(area) {
  *
  * @return Promise
  */
-export function getPlaceDetailsFromGoogle(
+export async function getPlaceDetailsFromGoogle(
   placeId = "ChIJwXlpyed3X0YRnArSXmAPX-U"
 ) {
-  let dummyElm = document.createElement("div");
-  var service = new window.google.maps.places.PlacesService(dummyElm);
+  const baseUri = "https://maps.googleapis.com/maps/api/place/details/json";
+  const googleMapsAPiKey = "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8";
 
-  var request = {
+  var requestParams = {
+    key: googleMapsAPiKey,
     placeId: placeId,
     fields: [
       "opening_hours",
@@ -64,10 +69,15 @@ export function getPlaceDetailsFromGoogle(
     ]
   };
 
-  return new Promise(resolve => {
-    // https://developers.google.com/maps/documentation/javascript/places
-    service.getDetails(request, res => {
-      resolve(res);
-    });
-  });
+  const requestUri = `${baseUri}?${querystring.stringify(parameters)}`;
+  const result = await fetch(requestUri);
+  const resultData = await result.json();
+  console.log("resultData", resultData);
+
+  // return new Promise(resolve => {
+  //   // https://developers.google.com/maps/documentation/javascript/places
+  //   service.getDetails(request, res => {
+  //     resolve(res);
+  //   });
+  // });
 }
