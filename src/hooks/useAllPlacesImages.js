@@ -1,4 +1,4 @@
-import { useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 export function useAllPlacesImages() {
   // Get all images for all places.

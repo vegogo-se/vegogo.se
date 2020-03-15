@@ -3,6 +3,7 @@ title: Example place
 slug: my-unique-example-place-url-slug
 address: Götgatan 1
 city: Stockholm
+placeID: ChIJWULnYuR3X0YRszqoUOmutDk
 coordinates:
   - 59.317763
   - 18.0522085

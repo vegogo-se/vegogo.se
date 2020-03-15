@@ -1,15 +1,10 @@
 import React from "react";
 import classnames from "classnames";
-import { Helmet } from "react-helmet";
 import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import "./PlacesListing.scss";
 
-/**
- * Place can get what to render from a slug + props with full place object, for example when being used in a listing
- * or from props match when viewing a place permalink.
- */
 function Place(props) {
   const { slug } = props;
   const allPlaces = useAllPlaces();

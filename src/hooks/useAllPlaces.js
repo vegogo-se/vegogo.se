@@ -1,4 +1,4 @@
-import { useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 export function useAllPlaces() {
   const allPlaces = useStaticQuery(graphql`
@@ -20,12 +20,13 @@ export function useAllPlaces() {
                 coordinates
                 areas
                 address
+                placeID
                 images {
                   childImageSharp {
                     fluid {
                       ...GatsbyImageSharpFluid
                     }
-                  }      
+                  }
                 }
               }
               excerpt(format: PLAIN, pruneLength: 100)
@@ -48,7 +49,8 @@ export function useAllPlaces() {
       coordinates,
       areas,
       address,
-      images
+      images,
+      placeID
     } = node.childMarkdownRemark.frontmatter;
 
     const { html, excerpt } = node.childMarkdownRemark;
@@ -62,10 +64,11 @@ export function useAllPlaces() {
       coordinates,
       areas,
       address,
+      placeID,
       dir,
       absolutePath,
       relativePath,
-      images
+      images,
     };
   });
 

@@ -6,6 +6,7 @@ areas:
   - Södermalm
   - Mariatorget
 address: Hornsgatan 61
+placeID: ChIJwXlpyed3X0YRnArSXmAPX-U
 coordinates:
   - 59.317763
   - 18.0522085
