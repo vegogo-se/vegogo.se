@@ -4,15 +4,17 @@ import { Helmet } from "react-helmet";
 import PageContainer from "../components/PageContainer";
 import Place from "../components/Place";
 import Img from "gatsby-image";
+import { getPlacePathFromRelativePath } from "../helpers";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
   pageContext
 }) {
   const { file } = data;
-  const { childMarkdownRemark } = file; // data.markdownRemark holds your post data
-  const { frontmatter, html, excerpt } = childMarkdownRemark;
-  const { slug, title, areas, images } = frontmatter;
+  const { childMarkdownRemark, relativePath } = file; // data.markdownRemark holds your post data
+  const { frontmatter, html } = childMarkdownRemark;
+  const { title, areas, images } = frontmatter;
+  const path = getPlacePathFromRelativePath(relativePath);
 
   return (
     <PageContainer>
@@ -23,24 +25,24 @@ export default function Template({
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <h1>{title}</h1>
       {areas.map(area => {
-        return <p>Area: {area}</p>;
+        return <p key={area}>Area: {area}</p>;
       })}
       {images.map(image => {
         return <Img fluid={image.childImageSharp.fluid} />;
       })}
-      <Place slug={slug} />
+      <Place path={path} />
     </PageContainer>
   );
 }
 
+// Query for a single place with slug $slug.
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query($relativePath: String!) {
     file(
       sourceInstanceName: { eq: "markdown-places" }
       extension: { eq: "md" }
-      childMarkdownRemark: {
-        frontmatter: { draft: { ne: true }, slug: { eq: $slug } }
-      }
+      relativePath: { eq: $relativePath }
+      childMarkdownRemark: { frontmatter: { draft: { ne: true } } }
     ) {
       ...PlaceInformation
     }

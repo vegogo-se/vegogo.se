@@ -1,15 +1,13 @@
 import { useStaticQuery, graphql } from "gatsby";
+import { getPlacePathFromRelativePath } from "../helpers";
 
 export const query = graphql`
   fragment PlaceInformation on File {
     childMarkdownRemark {
       frontmatter {
-        slug
         title
-        coordinates
-        areas
-        address
         placeID
+        areas
         images {
           childImageSharp {
             fluid {
@@ -47,14 +45,11 @@ export const useAllPlaces = () => {
     }
   `);
 
-  // Flatten result.
+  // Flatten result and add more data like permalink.
   let flattenedPlaces = allPlaces.allFile.edges.map(({ node }) => {
     const {
       title,
-      slug,
-      coordinates,
       areas,
-      address,
       images,
       placeID
     } = node.childMarkdownRemark.frontmatter;
@@ -64,17 +59,15 @@ export const useAllPlaces = () => {
 
     return {
       title,
-      slug,
       excerpt,
       html,
-      coordinates,
       areas,
-      address,
       placeID,
       dir,
       absolutePath,
       relativePath,
-      images
+      images,
+      path: getPlacePathFromRelativePath(relativePath)
     };
   });
 

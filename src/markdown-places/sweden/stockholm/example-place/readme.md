@@ -1,12 +1,6 @@
 ---
 title: Example place
-slug: example
-address: Götgatan 1
-city: Stockholm
 placeID: ChIJWULnYuR3X0YRszqoUOmutDk
-coordinates:
-  - 59.317763
-  - 18.0522085
 areas:
   - Stockholm
   - Södermalm

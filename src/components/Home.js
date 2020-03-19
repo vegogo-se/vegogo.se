@@ -12,11 +12,11 @@ import "./Home.scss";
 
 function Home() {
   const allPlaces = useAllPlaces();
-  console.log('allPlaces', allPlaces)
+  // console.log('allPlaces', allPlaces)
 
   // Create array with only the slugs of each place.
-  const placeSlugs = allPlaces.map(place => {
-    return place.slug;
+  const placePaths = allPlaces.map(place => {
+    return place.path;
   });
 
   return (
@@ -40,7 +40,7 @@ function Home() {
       <AreaIntro slug="stockholm" />
 
       <PlacesListing
-        placeSlugs={placeSlugs}
+        placePaths={placePaths}
         title="Platser"
         excerpt="Bra ställen kommer här"
       />

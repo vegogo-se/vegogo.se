@@ -1,11 +1,11 @@
 /**
  * Misc helper functions.
  */
-import { useStaticQuery } from "gatsby";
+// import { useStaticQuery } from "gatsby";
 const fetch = require(`node-fetch`);
 const querystring = require("querystring");
 
-import { GOOGLE_MAPS_API_KEY } from "./api-config";
+// import { GOOGLE_MAPS_API_KEY } from "./api-config";
 
 /**
  * Return formatted homepage.
@@ -38,10 +38,6 @@ export function cleanupHomepage(homepage) {
   };
 }
 
-export function getPlacePermalink(place) {
-  return `/place/${place.slug}`;
-}
-
 export function getAreaPermalink(area) {
   console.log("getAreaPermalink for area", area);
   return `/area/${area.slug}`;
@@ -69,7 +65,7 @@ export async function getPlaceDetailsFromGoogle(
     ]
   };
 
-  const requestUri = `${baseUri}?${querystring.stringify(parameters)}`;
+  const requestUri = `${baseUri}?${querystring.stringify(requestParams)}`;
   const result = await fetch(requestUri);
   const resultData = await result.json();
   console.log("resultData", resultData);
@@ -80,4 +76,18 @@ export async function getPlaceDetailsFromGoogle(
   //     resolve(res);
   //   });
   // });
+}
+
+// relativePath:
+// 'sweden/stockholm/example-place/index.md',
+// <country>/<city>/<place>
+export function getPlacePathFromRelativePath(relativePath) {
+  // Keep whole path but last part with filename.
+  return (
+    "/" +
+    relativePath
+      .split("/")
+      .splice(0, 3)
+      .join("/")
+  );
 }

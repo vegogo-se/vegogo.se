@@ -1,15 +1,9 @@
 ---
 title: Mahalo
-slug: mahalo-mums
-city: Stockholm
 areas:
   - Södermalm
   - Mariatorget
-address: Hornsgatan 61
 placeID: ChIJwXlpyed3X0YRnArSXmAPX-U
-coordinates:
-  - 59.317763
-  - 18.0522085
 images:
   - image2.jpg
   - image1.jpg

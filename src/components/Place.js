@@ -3,17 +3,18 @@ import classnames from "classnames";
 import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
+import { getPlacePathFromRelativePath } from "../helpers";
 import "./PlacesListing.scss";
 
 function Place(props) {
-  const { slug } = props;
+  const { path } = props;
   const allPlaces = useAllPlaces();
 
   const place = allPlaces.find(place => {
-    return place.slug === slug;
+    return place.path === path;
   });
 
-  const { title, excerpt } = place;
+  const { title, excerpt, relativePath } = place;
 
   let placeClassNames = classnames({
     PlaceItem: true
@@ -40,11 +41,12 @@ function Place(props) {
   );
 
   const firstImage = place.images ? place.images[0] : null;
+  const permalink = getPlacePathFromRelativePath(relativePath);
 
   return (
-    <article key={slug} className={placeClassNames}>
+    <article key={path} className={placeClassNames}>
       <div className="PlaceItem-content">
-        <Link to={slug}>
+        <Link to={permalink}>
           {tease}
           {firstImage && (
             <Img

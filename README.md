@@ -42,8 +42,6 @@ Examples:
 
 ## Todo
 
-- Skapa korrekt URL för platser.
-  Skapa funktion som returnerar korrekt URL baserad på `slug` + `country/city` (från dirname).
 - Skapa sidor för areas.
 - Använd Google Place ID för att hämta: adress, öppettider, geolocation
 - Använda mapp-namn istället för slug?

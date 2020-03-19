@@ -10,13 +10,13 @@ import { useAllPlaces } from "../hooks/useAllPlaces";
  * Renders places with passed places.
  */
 function PlacesListing(props) {
-  let { title, excerpt, placeSlugs, showDivider = true } = props;
+  let { title, excerpt, placePaths, showDivider = true } = props;
 
   const allPlaces = useAllPlaces();
 
-  // Get names of each place from their slugs.
+  // Get names of each place from their paths.
   const selectedPlaces = allPlaces.filter(place => {
-    return placeSlugs.includes(place.slug);
+    return placePaths.includes(place.path);
   });
 
   let placesItems;
@@ -26,7 +26,7 @@ function PlacesListing(props) {
     let prevPlaceFirstChar;
 
     placesItems = selectedPlaces.map(place => {
-      let { slug, title } = place;
+      let { path, title } = place;
       let charDivider;
       let placeFirstChar = title.charAt(0);
 
@@ -39,13 +39,13 @@ function PlacesListing(props) {
         prevPlaceFirstChar = placeFirstChar;
       }
 
-      let fragmentKey = `${placeFirstChar}/${slug}`;
+      let fragmentKey = `${placeFirstChar}/${path}`;
 
       return (
         <React.Fragment key={fragmentKey}>
           {showDivider && charDivider}
-          <li key={slug} className="PlacesListing-placeItem">
-            <Place slug={slug} />
+          <li key={path} className="PlacesListing-placeItem">
+            <Place path={path} />
           </li>
         </React.Fragment>
       );

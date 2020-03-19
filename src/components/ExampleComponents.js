@@ -33,10 +33,6 @@ function ExampleComponent(props) {
 */
 
 class ExampleComponents extends Component {
-  componentDidMount() {
-    // console.log("componentDidMount", this);
-  }
-
   render() {
     let { places } = this.props;
 
