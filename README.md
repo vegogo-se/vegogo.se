@@ -42,9 +42,9 @@ Examples:
 
 ## Todo
 
-- Skapa sidor för areas.
+- Lägg till function usePlace(<path>') för att hämta en enskild plats
 - Använd Google Place ID för att hämta: adress, öppettider, geolocation
-- Använda mapp-namn istället för slug?
+- Skapa sidor för areas.
 - Används index.md till något vettigt?
 - Få in platser och areas.
 - filsystem: city/plats, t.ex. stockholm/mahalo.md
