@@ -28,7 +28,12 @@ export default function Template({
         return <p key={area}>Area: {area}</p>;
       })}
       {images.map(image => {
-        return <Img fluid={image.childImageSharp.fluid} />;
+        return (
+          <Img
+            key={image.childImageSharp.fluid.src}
+            fluid={image.childImageSharp.fluid}
+          />
+        );
       })}
       <Place path={path} />
     </PageContainer>
