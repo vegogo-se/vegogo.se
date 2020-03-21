@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby";
-import { getPlacePathFromRelativePath } from "../helpers";
+import { getPlaceURIFromRelativePath } from "../helpers";
 
 export const query = graphql`
   fragment PlaceInformation on File {
@@ -67,22 +67,9 @@ export const useAllPlaces = () => {
       absolutePath,
       relativePath,
       images,
-      path: getPlacePathFromRelativePath(relativePath)
+      path: getPlaceURIFromRelativePath(relativePath)
     };
   });
-
-  // Get all images for all places.
-  // const allPlacesImages = useAllPlacesImages();
-
-  // // Append correct images to each place.
-  // flattenedPlaces = flattenedPlaces.map(place => {
-  //   place.frontmatterImages = place.images;
-  //   place.images = allPlacesImages.filter(image => {
-  //     return image.dir === place.dir;
-  //   });
-
-  //   return place;
-  // });
 
   return flattenedPlaces;
 };

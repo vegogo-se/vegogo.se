@@ -1,18 +1,20 @@
 import React from "react";
 import classnames from "classnames";
-import { useAllPlaces } from "../hooks/useAllPlaces";
+// import { useAllPlaces } from "../hooks/useAllPlaces";
+import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
-import { getPlacePathFromRelativePath } from "../helpers";
+import { getPlaceURIFromRelativePath } from "../helpers";
 import "./PlacesListing.scss";
 
 function Place(props) {
   const { path } = props;
-  const allPlaces = useAllPlaces();
+  // const allPlaces = useAllPlaces();
+  const place = usePlace(path);
 
-  const place = allPlaces.find(place => {
-    return place.path === path;
-  });
+  // const place = allPlaces.find(place => {
+  //   return place.path === path;
+  // });
 
   const { title, excerpt, relativePath } = place;
 
@@ -41,7 +43,7 @@ function Place(props) {
   );
 
   const firstImage = place.images ? place.images[0] : null;
-  const permalink = getPlacePathFromRelativePath(relativePath);
+  const permalink = getPlaceURIFromRelativePath(relativePath);
 
   return (
     <article key={path} className={placeClassNames}>

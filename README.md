@@ -42,7 +42,6 @@ Examples:
 
 ## Todo
 
-- Lägg till function usePlace(<path>') för att hämta en enskild plats
 - Använd Google Place ID för att hämta: adress, öppettider, geolocation
 - Skapa sidor för areas.
 - Används index.md till något vettigt?

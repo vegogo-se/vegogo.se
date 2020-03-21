@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import PageContainer from "../components/PageContainer";
 import Place from "../components/Place";
 import Img from "gatsby-image";
-import { getPlacePathFromRelativePath } from "../helpers";
+import { getPlaceURIFromRelativePath } from "../helpers";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -14,7 +14,7 @@ export default function Template({
   const { childMarkdownRemark, relativePath } = file; // data.markdownRemark holds your post data
   const { frontmatter, html } = childMarkdownRemark;
   const { title, areas, images } = frontmatter;
-  const path = getPlacePathFromRelativePath(relativePath);
+  const path = getPlaceURIFromRelativePath(relativePath);
 
   return (
     <PageContainer>

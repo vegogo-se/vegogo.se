@@ -79,9 +79,10 @@ export async function getPlaceDetailsFromGoogle(
 }
 
 // relativePath:
+// relativePath:
 // 'sweden/stockholm/example-place/index.md',
 // <country>/<city>/<place>
-export function getPlacePathFromRelativePath(relativePath) {
+export function getPlaceURIFromRelativePath(relativePath) {
   // Keep whole path but last part with filename.
   return (
     "/" +

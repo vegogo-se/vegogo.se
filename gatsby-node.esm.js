@@ -4,7 +4,7 @@
  */
 
 const path = require(`path`);
-const { getPlacePathFromRelativePath } = require("./src/helpers");
+const { getPlaceURIFromRelativePath } = require("./src/helpers");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -80,7 +80,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const { relativePath } = node;
 
     createPage({
-      path: getPlacePathFromRelativePath(node.relativePath),
+      path: getPlaceURIFromRelativePath(node.relativePath),
       component: placeTemplate,
       context: {
         relativePath
