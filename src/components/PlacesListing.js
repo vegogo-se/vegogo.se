@@ -1,51 +1,28 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import Place from "./Place";
-//import Loading from "./Loading";
-import "./PlacesListing.scss";
-//import { useStaticQuery, graphql } from "gatsby";
+import { PlaceOverview } from "./PlaceOverview";
 import { useAllPlaces } from "../hooks/useAllPlaces";
+import { getPlacesMatchingPlacePaths } from "../helpers";
+import "./PlacesListing.scss";
 
 /**
- * Renders places with passed places.
+ * Renders places with places with paths passed as placePaths.
  */
 function PlacesListing(props) {
-  let { title, excerpt, placePaths, showDivider = true } = props;
+  let { title, excerpt, placePaths } = props;
 
   const allPlaces = useAllPlaces();
-
-  // Get names of each place from their paths.
-  const selectedPlaces = allPlaces.filter(place => {
-    return placePaths.includes(place.path);
-  });
+  const selectedPlaces = getPlacesMatchingPlacePaths(allPlaces, placePaths);
 
   let placesItems;
 
-  // Create alphanum char listing.
   if (selectedPlaces) {
-    let prevPlaceFirstChar;
-
     placesItems = selectedPlaces.map(place => {
-      let { path, title } = place;
-      let charDivider;
-      let placeFirstChar = title.charAt(0);
-
-      if (!prevPlaceFirstChar || prevPlaceFirstChar !== placeFirstChar) {
-        charDivider = (
-          <li className="PlacesListing-charDivider" key={placeFirstChar}>
-            {placeFirstChar}
-          </li>
-        );
-        prevPlaceFirstChar = placeFirstChar;
-      }
-
-      let fragmentKey = `${placeFirstChar}/${path}`;
+      let { path } = place;
 
       return (
-        <React.Fragment key={fragmentKey}>
-          {showDivider && charDivider}
+        <React.Fragment key={path}>
           <li key={path} className="PlacesListing-placeItem">
-            <Place path={path} />
+            <PlaceOverview path={path} />
           </li>
         </React.Fragment>
       );
@@ -53,25 +30,6 @@ function PlacesListing(props) {
 
     placesItems = <ul className="PlacesListing-placeItems">{placesItems}</ul>;
   }
-
-  /*
-    let navbar = (
-      <div className="PlacesListing-NavBar">
-        <ul className="PlacesListing-NavBar-items">
-          <li className="PlacesListing-NavBar-item">
-            <Link className="PlacesListing-NavBar-itemLink" to="/">
-              A to Ö
-            </Link>
-          </li>
-          <li className="PlacesListing-NavBar-item">
-            <Link className="PlacesListing-NavBar-itemLink" to="/nearby">
-              Near me
-            </Link>
-          </li>
-        </ul>
-      </div>
-    );
-    */
 
   return (
     <div className="PlacesListing">

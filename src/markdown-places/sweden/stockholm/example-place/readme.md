@@ -1,6 +1,6 @@
 ---
 title: Example place
-placeID: ChIJWULnYuR3X0YRszqoUOmutDk
+placeID: ChIJiZC1rzV3X0YR__vRwJ-lcV0
 areas:
   - Stockholm
   - Södermalm

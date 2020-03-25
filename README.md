@@ -12,7 +12,8 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
   - `markdown-pages`,
   - `markdown-places, samt
   - `markdown-areas`.
-- Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats: https://developers.google.com/places/place-id.
+- Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats: 
+https://developers.google.com/places/place-id.
 
 ## URL-struktur
 

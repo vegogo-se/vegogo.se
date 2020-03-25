@@ -2,22 +2,16 @@ import React from "react";
 import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import PageContainer from "./PageContainer";
-import AreaIntro from "./AreaIntro";
 import PlacesListing from "./PlacesListing";
 import introTextImage from "../images/vegogo-the-new-guide-to-vegan-eating.svg";
 import ImageWithRatio from "./ImageWithRatio";
-// import { useStaticQuery, graphql } from "gatsby";
 import { useAllPlaces } from "../hooks/useAllPlaces";
+import { getPlacePaths } from "../helpers";
 import "./Home.scss";
 
 function Home() {
   const allPlaces = useAllPlaces();
-  // console.log('allPlaces', allPlaces)
-
-  // Create array with only the slugs of each place.
-  const placePaths = allPlaces.map(place => {
-    return place.path;
-  });
+  const placePaths = getPlacePaths(allPlaces);
 
   return (
     <PageContainer>
@@ -37,12 +31,10 @@ function Home() {
         </Link>
       </p>
 
-      <AreaIntro slug="stockholm" />
-
       <PlacesListing
-        placePaths={placePaths}
         title="Platser"
         excerpt="Bra ställen kommer här"
+        placePaths={placePaths}
       />
     </PageContainer>
   );

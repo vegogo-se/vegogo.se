@@ -1,5 +1,28 @@
 import { useStaticQuery, graphql } from "gatsby";
 import { getPlaceURIFromRelativePath } from "../helpers";
+import googlePlacesInfo from "../../googlePlacesInfo.json";
+
+/**
+ * Return place details for a single place or false if not info found.
+ *
+ * @param string placeID
+ * @return object Google Place info
+ */
+const getGooglePlaceDetailsForPlace = placeID => {
+  if (!placeID) {
+    return false;
+  }
+
+  const googlePlace = googlePlacesInfo.find(googlePlaceInfo => {
+    return googlePlaceInfo.placeID === placeID;
+  });
+
+  if (!googlePlace) {
+    return false;
+  }
+
+  return googlePlace.googlePlaceDetails;
+};
 
 export const query = graphql`
   fragment PlaceInformation on File {
@@ -19,8 +42,6 @@ export const query = graphql`
       excerpt(format: PLAIN, pruneLength: 100)
       html
     }
-    dir
-    absolutePath
     relativePath
   }
 `;
@@ -55,7 +76,9 @@ export const useAllPlaces = () => {
     } = node.childMarkdownRemark.frontmatter;
 
     const { html, excerpt } = node.childMarkdownRemark;
-    const { dir, absolutePath, relativePath } = node;
+    const { relativePath } = node;
+    const path = getPlaceURIFromRelativePath(relativePath);
+    const googlePlaceInfo = getGooglePlaceDetailsForPlace(placeID);
 
     return {
       title,
@@ -63,11 +86,10 @@ export const useAllPlaces = () => {
       html,
       areas,
       placeID,
-      dir,
-      absolutePath,
       relativePath,
       images,
-      path: getPlaceURIFromRelativePath(relativePath)
+      path,
+      googlePlaceInfo
     };
   });
 

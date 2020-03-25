@@ -69,3 +69,6 @@ yarn-error.log
 .yarn-integrity
 
 .now
+
+# Local cache file for Google Places API results.
+googlePlacesInfo.json

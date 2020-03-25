@@ -63,5 +63,14 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`
+    // {
+    //   resolve: "gatsby-source-google-places",
+    //   options: {
+    //     googleMapsAPIKey: "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8",
+    //     q: "yellow flowers",
+    //     // plugins inside plugins
+    //     plugins: [`gatsby-transformer-remark`]
+    //   }
+    // }
   ]
 };

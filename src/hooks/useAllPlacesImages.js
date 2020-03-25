@@ -13,8 +13,7 @@ export function useAllPlacesImages() {
       ) {
         edges {
           node {
-            absolutePath
-            dir
+            relativePath
             name
             childImageSharp {
               fluid(maxWidth: 800) {

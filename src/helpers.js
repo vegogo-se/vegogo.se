@@ -46,29 +46,28 @@ export function getAreaPermalink(area) {
 /**
  * Get opening hours, phone number, and website for a placeId from Google.
  *
- * @return Promise
+ * Docs:
+ * https://developers.google.com/places/web-service/details
+ *
+ * @param string PlaceID
+ * @return Promise Promise with place details when settled.
  */
-export async function getPlaceDetailsFromGoogle(
-  placeId = "ChIJwXlpyed3X0YRnArSXmAPX-U"
-) {
+export async function getPlaceDetailsFromGoogle(placeId) {
   const baseUri = "https://maps.googleapis.com/maps/api/place/details/json";
   const googleMapsAPiKey = "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8";
 
   var requestParams = {
     key: googleMapsAPiKey,
-    placeId: placeId,
-    fields: [
-      "opening_hours",
-      "formatted_phone_number",
-      "international_phone_number",
-      "website"
-    ]
+    placeid: placeId,
+    fields: "opening_hours,website,address_component,geometry,name,url,vicinity"
   };
 
   const requestUri = `${baseUri}?${querystring.stringify(requestParams)}`;
   const result = await fetch(requestUri);
   const resultData = await result.json();
-  console.log("resultData", resultData);
+
+  // console.log("requestUri:", requestUri);
+  // console.log("resultData", resultData);
 
   // return new Promise(resolve => {
   //   // https://developers.google.com/maps/documentation/javascript/places
@@ -76,19 +75,37 @@ export async function getPlaceDetailsFromGoogle(
   //     resolve(res);
   //   });
   // });
+  return resultData;
 }
 
-// relativePath:
-// relativePath:
-// 'sweden/stockholm/example-place/index.md',
-// <country>/<city>/<place>
+/**
+ * Generate URI for a place based on it's relativePath
+ * relativePath:
+ * 'sweden/stockholm/example-place/index.md',
+ * <country>/<city>/<place>
+ *
+ * @param string relativePath Path like 'sweden/stockholm/example-place/index.md'
+ * @return string Place URI like /sweden/stockholm/example-place/
+ */
 export function getPlaceURIFromRelativePath(relativePath) {
   // Keep whole path but last part with filename.
-  return (
-    "/" +
-    relativePath
-      .split("/")
-      .splice(0, 3)
-      .join("/")
-  );
+  return "/" + relativePath.split("/").splice(0, 3).join("/");
+}
+
+// Create array with only the slugs of each place.
+export function getPlacePaths(places) {
+  const placePaths = places.map(place => {
+    return place.path;
+  });
+
+  return placePaths;
+}
+
+// Get names of each place from their paths.
+export function getPlacesMatchingPlacePaths(allPlaces, placePaths) {
+  const selectedPlaces = allPlaces.filter(place => {
+    return placePaths.includes(place.path);
+  });
+
+  return selectedPlaces;
 }

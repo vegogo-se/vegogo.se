@@ -2,8 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Helmet } from "react-helmet";
 import PageContainer from "../components/PageContainer";
-import Place from "../components/Place";
-import Img from "gatsby-image";
+import { PlaceSingle } from "../components/PlaceSingle";
 import { getPlaceURIFromRelativePath } from "../helpers";
 
 export default function Template({
@@ -12,8 +11,8 @@ export default function Template({
 }) {
   const { file } = data;
   const { childMarkdownRemark, relativePath } = file; // data.markdownRemark holds your post data
-  const { frontmatter, html } = childMarkdownRemark;
-  const { title, areas, images } = frontmatter;
+  const { frontmatter } = childMarkdownRemark;
+  const { title } = frontmatter;
   const path = getPlaceURIFromRelativePath(relativePath);
 
   return (
@@ -22,20 +21,7 @@ export default function Template({
         <title>{title}</title>
       </Helmet>
 
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-      <h1>{title}</h1>
-      {areas.map(area => {
-        return <p key={area}>Area: {area}</p>;
-      })}
-      {images.map(image => {
-        return (
-          <Img
-            key={image.childImageSharp.fluid.src}
-            fluid={image.childImageSharp.fluid}
-          />
-        );
-      })}
-      <Place path={path} />
+      <PlaceSingle path={path} />
     </PageContainer>
   );
 }

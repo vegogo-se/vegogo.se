@@ -4,7 +4,41 @@
  */
 
 const path = require(`path`);
-const { getPlaceURIFromRelativePath } = require("./src/helpers");
+var fs = require("fs");
+
+const {
+  getPlaceURIFromRelativePath,
+  getPlaceDetailsFromGoogle
+} = require("./src/helpers");
+
+// Add google place info for all places.
+// Store in JSON-file so we can import in later on.
+async function updateGooglePlacesLocalJSONFile(allPlacesData) {
+  let googlePlacesInfo = [];
+
+  // Use for-in-loop so we can use await.
+  for (const idx in allPlacesData.allFile.edges) {
+    const { node } = allPlacesData.allFile.edges[idx];
+    const { title, placeID } = node.childMarkdownRemark.frontmatter;
+    const googleplaceDetails = await getPlaceDetailsFromGoogle(placeID);
+
+    if (googleplaceDetails.status !== "OK") {
+      reporter.panicOnBuild(
+        `Error while getting information for place from Google.`
+      );
+    }
+
+    googlePlacesInfo.push({
+      placeID: placeID,
+      title: title,
+      dateUpdated: new Date().toJSON(),
+      googlePlaceDetails: googleplaceDetails.result
+    });
+  }
+
+  const targetFile = `${__dirname}/googlePlacesInfo.json`;
+  fs.writeFileSync(targetFile, JSON.stringify(googlePlacesInfo, null, 2));
+}
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -39,6 +73,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
+  // Create text pages.
   result.data.allFile.edges.forEach(({ node }) => {
     createPage({
       path: node.childMarkdownRemark.frontmatter.path,
@@ -62,6 +97,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         edges {
           node {
             relativePath
+            childMarkdownRemark {
+              frontmatter {
+                title
+                placeID
+              }
+            }
           }
         }
       }
@@ -74,13 +115,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  // Create pages for all places.
+  updateGooglePlacesLocalJSONFile(resultAllPlaces.data);
+
+  // Create single pages for all places.
   resultAllPlaces.data.allFile.edges.forEach(({ node }) => {
-    // let slug = node.childMarkdownRemark.frontmatter.slug;
     const { relativePath } = node;
 
     createPage({
-      path: getPlaceURIFromRelativePath(node.relativePath),
+      path: getPlaceURIFromRelativePath(relativePath),
       component: placeTemplate,
       context: {
         relativePath
