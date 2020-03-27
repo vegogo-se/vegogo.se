@@ -12,8 +12,8 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
   - `markdown-pages`,
   - `markdown-places, samt
   - `markdown-areas`.
-- Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats: 
-https://developers.google.com/places/place-id.
+- Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats:
+  https://developers.google.com/places/place-id.
 
 ## URL-struktur
 
@@ -43,10 +43,10 @@ Examples:
 
 ## Todo
 
-- Använd Google Place ID för att hämta: adress, öppettider, geolocation
-- Skapa sidor för areas.
-- Används index.md till något vettigt?
+- Lägg in styled jsx och tailwind.
+- Skapa sidor för areas och mattyper.
+- Skapa sidor https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/
 - Få in platser och areas.
-- filsystem: city/plats, t.ex. stockholm/mahalo.md
 - Använda https://www.gatsbyjs.org/packages/gatsby-plugin-json-output/?=json för att få ut JSON med alla platser, typ api som vi kan använda för geolocation-saker
 - Använda https://github.com/Creatiwity/gatsby-plugin-favicon för favicon?
+- https://www.gatsbyjs.org/docs/adding-search-with-js-search/

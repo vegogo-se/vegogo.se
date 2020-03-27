@@ -5,8 +5,6 @@
 const fetch = require(`node-fetch`);
 const querystring = require("querystring");
 
-// import { GOOGLE_MAPS_API_KEY } from "./api-config";
-
 /**
  * Return formatted homepage.
  * @return object

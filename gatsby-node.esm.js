@@ -2,9 +2,8 @@
  * This file exists to be able to run ES6 code.
  * https://github.com/gatsbyjs/gatsby/issues/7810
  */
-
 const path = require(`path`);
-var fs = require("fs");
+const fs = require("fs");
 
 const {
   getPlaceURIFromRelativePath,
