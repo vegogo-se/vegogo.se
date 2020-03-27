@@ -21,6 +21,7 @@
     "gatsby-plugin-react-helmet": "^3.2.0",
     "gatsby-plugin-sass": "^2.2.0",
     "gatsby-plugin-sharp": "^2.5.1",
+    "gatsby-plugin-styled-jsx": "^3.2.1",
     "gatsby-source-filesystem": "^2.2.1",
     "gatsby-transformer-json": "^2.3.0",
     "gatsby-transformer-remark": "^2.7.0",
@@ -32,7 +33,8 @@
     "react-helmet": "^5.2.1",
     "react-pose": "^4.0.10",
     "react-static-google-map": "^0.5.4",
-    "react-swipeable": "^5.5.1"
+    "react-swipeable": "^5.5.1",
+    "styled-jsx": "^3.2.5"
   },
   "devDependencies": {
     "husky": "^4.2.3",

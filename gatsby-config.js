@@ -62,8 +62,7 @@ module.exports = {
     },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-helmet`
-    // {
+    `gatsby-plugin-react-helmet`, // {
     //   resolve: "gatsby-source-google-places",
     //   options: {
     //     googleMapsAPIKey: "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8",
@@ -71,6 +70,10 @@ module.exports = {
     //     // plugins inside plugins
     //     plugins: [`gatsby-transformer-remark`]
     //   }
-    // }
+    // },
+    {
+      resolve: `gatsby-plugin-styled-jsx`,
+      options: {}
+    }
   ]
 };
