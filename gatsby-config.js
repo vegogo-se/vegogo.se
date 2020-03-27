@@ -78,7 +78,7 @@ module.exports = {
         jsxPlugins: ["styled-jsx-plugin-postcss"]
       }
     },
-    "gatsby-plugin-bundle-stats",
+    // "gatsby-plugin-bundle-stats",
     "gatsby-plugin-postcss"
     // "gatsby-plugin-webpack-bundle-analyser-v2"
   ]
