@@ -14,6 +14,8 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
   - `markdown-areas`.
 - Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats:
   https://developers.google.com/places/place-id.
+- [Tailwind CSS](https://tailwindcss.com/docs/) for CSS utilities.
+- [styled-jsx](https://github.com/zeit/styled-jsx) for CSS.
 
 ## URL-struktur
 

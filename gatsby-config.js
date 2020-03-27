@@ -62,7 +62,8 @@ module.exports = {
     },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-helmet`, // {
+    `gatsby-plugin-react-helmet`,
+    // {
     //   resolve: "gatsby-source-google-places",
     //   options: {
     //     googleMapsAPIKey: "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8",
@@ -73,7 +74,12 @@ module.exports = {
     // },
     {
       resolve: `gatsby-plugin-styled-jsx`,
-      options: {}
-    }
+      options: {
+        jsxPlugins: ["styled-jsx-plugin-postcss"]
+      }
+    },
+    "gatsby-plugin-bundle-stats",
+    "gatsby-plugin-postcss"
+    // "gatsby-plugin-webpack-bundle-analyser-v2"
   ]
 };
