@@ -45,7 +45,7 @@ Examples:
 
 ## Todo
 
-- Lägg in styled jsx och tailwind.
+- Lägg in exempelsida /exempel för komponenter + hur man använder TailWind CSS och styled-jsx.
 - Skapa sidor för areas och mattyper.
 - Skapa sidor https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/
 - Få in platser och areas.
