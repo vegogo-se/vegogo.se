@@ -12,13 +12,18 @@ const {
 
 // Add google place info for all places.
 // Store in JSON-file so we can import in later on.
-async function updateGooglePlacesLocalJSONFile(allPlacesData) {
+async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
   let googlePlacesInfo = [];
 
   // Use for-in-loop so we can use await.
   for (const idx in allPlacesData.allFile.edges) {
     const { node } = allPlacesData.allFile.edges[idx];
     const { title, placeID } = node.childMarkdownRemark.frontmatter;
+
+    if (!placeID) {
+      continue;
+    }
+
     const googleplaceDetails = await getPlaceDetailsFromGoogle(placeID);
 
     if (googleplaceDetails.status !== "OK") {
@@ -114,7 +119,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  updateGooglePlacesLocalJSONFile(resultAllPlaces.data);
+  updateGooglePlacesLocalJSONFile(resultAllPlaces.data, reporter);
 
   // Create single pages for all places.
   resultAllPlaces.data.allFile.edges.forEach(({ node }) => {

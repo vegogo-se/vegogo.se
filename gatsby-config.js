@@ -90,6 +90,16 @@ module.exports = {
         // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
         // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
       }
+    },
+    {
+      // Docs: https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: "UA-181460-40",
+        anonymize: true,
+        respectDNT: true
+      }
     }
     // "gatsby-plugin-webpack-bundle-analyser-v2"
   ]

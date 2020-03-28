@@ -25,7 +25,7 @@ function PlacesListing(props) {
       );
     });
 
-    placesItems = <ul className="flex">{placesItems}</ul>;
+    placesItems = <ul className="flex flex-wrap">{placesItems}</ul>;
   }
 
   return (

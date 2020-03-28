@@ -8,7 +8,7 @@ export function useAllPlacesImages() {
       allFile(
         filter: {
           sourceInstanceName: { eq: "markdown-places" }
-          extension: { in: ["jpg", "jpeg", "png"] }
+          extension: { in: ["jpg", "jpeg", "png", "gif"] }
         }
       ) {
         edges {

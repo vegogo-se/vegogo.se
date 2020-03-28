@@ -10,7 +10,7 @@ export function PlaceOverview(props) {
 
   return (
     <article key={path}>
-      <Link to={path}>
+      <Link to={path} className="relative bg-pink">
         <h2>{title}</h2>
         {firstImage && (
           <Img

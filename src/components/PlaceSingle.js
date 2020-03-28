@@ -45,13 +45,14 @@ export function PlaceSingle(props) {
               <br />
               Opening hours:{" "}
             </p>
-            <pre>{JSON.stringify(googlePlaceInfo.opening_hours, null, 2)}</pre>
+            <pre>{JSON.stringify(googlePlaceInfo.opening_hours.weekday_text, null, 2)}</pre>
           </>
         )}
 
-        {areas.map(area => {
-          return <p key={area}>Area: {area}</p>;
-        })}
+        {areas &&
+          areas.map(area => {
+            return <p key={area}>Area: {area}</p>;
+          })}
 
         {images.map(image => {
           return (
