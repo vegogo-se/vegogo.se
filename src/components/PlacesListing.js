@@ -1,8 +1,7 @@
 import React from "react";
-import { PlaceOverview } from "./PlaceOverview";
-import { useAllPlaces } from "../hooks/useAllPlaces";
 import { getPlacesMatchingPlacePaths } from "../helpers";
-import "./PlacesListing.scss";
+import { useAllPlaces } from "../hooks/useAllPlaces";
+import { PlaceOverview } from "./PlaceOverview";
 
 /**
  * Renders places with places with paths passed as placePaths.
@@ -20,23 +19,21 @@ function PlacesListing(props) {
       let { path } = place;
 
       return (
-        <React.Fragment key={path}>
-          <li key={path} className="PlacesListing-placeItem">
-            <PlaceOverview path={path} />
-          </li>
-        </React.Fragment>
+        <li key={path} className="w-1/2">
+          <PlaceOverview path={path} />
+        </li>
       );
     });
 
-    placesItems = <ul className="PlacesListing-placeItems">{placesItems}</ul>;
+    placesItems = <ul className="flex">{placesItems}</ul>;
   }
 
   return (
-    <div className="PlacesListing">
+    <>
       {title && <h2>{title}</h2>}
       {excerpt && <div>{excerpt}</div>}
       {placesItems}
-    </div>
+    </>
   );
 }
 

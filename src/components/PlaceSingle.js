@@ -1,7 +1,6 @@
 import React from "react";
 import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
-import "./PlacesListing.scss";
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);

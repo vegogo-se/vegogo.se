@@ -1,13 +1,10 @@
-import React from "react";
 import { Link } from "gatsby";
+import React from "react";
 import { Helmet } from "react-helmet";
+import { getPlacePaths } from "../helpers";
+import { useAllPlaces } from "../hooks/useAllPlaces";
 import PageContainer from "./PageContainer";
 import PlacesListing from "./PlacesListing";
-import introTextImage from "../images/vegogo-the-new-guide-to-vegan-eating.svg";
-import ImageWithRatio from "./ImageWithRatio";
-import { useAllPlaces } from "../hooks/useAllPlaces";
-import { getPlacePaths } from "../helpers";
-import "./Home.scss";
 
 function Home() {
   const allPlaces = useAllPlaces();
@@ -19,23 +16,15 @@ function Home() {
         <title>Vegogo - the new guide to vegan eating</title>
       </Helmet>
 
-      <p className="Start-intro">
+      <h1 className="font-headline text-center text-6xl py-8 px-1">
         <Link to="/page/about" title="Read more about Vegogo">
-          <ImageWithRatio
-            className="Start-introText"
-            src={introTextImage}
-            alt="The new guide to vegan eating"
-            width="249"
-            height="79"
-          />
+          The new guide to vegan eating
         </Link>
-      </p>
+      </h1>
 
-      <PlacesListing
-        title="Platser"
-        excerpt="Bra ställen kommer här"
-        placePaths={placePaths}
-      />
+      <PlacesListing placePaths={placePaths} />
+
+      <style jsx>{``}</style>
     </PageContainer>
   );
 }

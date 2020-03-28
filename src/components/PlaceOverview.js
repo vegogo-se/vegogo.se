@@ -2,7 +2,6 @@ import React from "react";
 import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
-import "./PlacesListing.scss";
 
 export function PlaceOverview(props) {
   const place = usePlace(props.path);
