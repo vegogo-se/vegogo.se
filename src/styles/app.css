@@ -2,6 +2,8 @@
 @import "../_variables.scss";
 @import "./_fonts.scss";
 
+/* purgecss start ignore */
+
 /**
  * This injects Tailwind's base styles and any base styles registered by
  * plugins.
@@ -13,6 +15,8 @@
   * registered by plugins.
   */
 @tailwind components;
+/* purgecss end ignore */
+
 
 /**
   * This injects Tailwind's utility classes and any utility classes registered
