@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterSignup from "../components/NewsletterSignup";
@@ -7,6 +8,10 @@ class PageContainer extends Component {
   render() {
     return (
       <React.Fragment>
+        <Helmet>
+          <body className="new-class-for-body font-sans font-vegogo font-body body" />
+        </Helmet>
+
         <SiteHeader />
 
         {this.props.children}
