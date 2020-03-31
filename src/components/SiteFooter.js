@@ -7,16 +7,6 @@ import "./SiteFooter.scss";
 
 class SiteFooter extends Component {
   render() {
-    const {
-      debug,
-      screenAvailHeight,
-      screenHeight,
-      windowInnerHeight,
-      bodyOffsetHeight,
-      bodyClientHeight,
-      windowDimensionsHeight
-    } = this.state;
-
     return (
       <footer className="SiteFooter">
         <p>
