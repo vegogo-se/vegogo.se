@@ -1,29 +1,35 @@
 @font-face {
-  font-family: "URWGeometric-Bold";
-  src: url("../fonts/URWGeometric-Bold.woff") format("woff");
-}
-
-@font-face {
-  font-family: "URWGeometric-Regular";
+  font-family: "URWGeometric";
+  font-weight: 400;
   src: url("../fonts/URWGeometric-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: "URWGeometric-SemiBold";
+  font-family: "URWGeometric";
+  font-weight: 600;
   src: url("../fonts/URWGeometric-SemiBold.woff") format("woff");
 }
 
 @font-face {
-  font-family: "URWGeometric-ExtraBold";
+  font-family: "URWGeometric";
+  font-weight: 700;
+  src: url("../fonts/URWGeometric-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "URWGeometric";
+  font-weight: 800;
   src: url("../fonts/URWGeometric-ExtraBold.woff") format("woff");
 }
 
 @font-face {
   font-family: "apercu-mono";
+  font-weight: normal;
   src: url("../fonts/apercu-mono.woff") format("woff");
 }
 
 @font-face {
   font-family: "FrontageCondensed";
+  font-weight: normal;
   src: url("../fonts/FrontageCondensed-3D.woff") format("woff");
 }

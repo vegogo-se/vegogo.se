@@ -2,6 +2,9 @@ import React from "react";
 import { graphql } from "gatsby";
 import TextPage from "../components/TextPage";
 
+/**
+ * Template for a regular text page, i.e. /page/about
+ */
 export default function Template({
   data // this prop will be injected by the GraphQL query below.
 }) {

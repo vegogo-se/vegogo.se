@@ -9,7 +9,7 @@ class PageContainer extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <body className="new-class-for-body font-sans font-vegogo font-body body" />
+          <body className="font-sans font-semibold text-lg" />
         </Helmet>
 
         <SiteHeader />

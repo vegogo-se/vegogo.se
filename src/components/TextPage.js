@@ -2,7 +2,20 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import PageContainer from "./PageContainer";
 import Img from "gatsby-image";
-import "./TextPage.scss";
+
+function TextPageBodyContent({ html }) {
+  return (
+    <div>
+      <div dangerouslySetInnerHTML={{ __html: html }}></div>
+
+      <style jsx>{`
+        div > :global(p) {
+          @apply mt-3 leading-normal;
+        }
+      `}</style>
+    </div>
+  );
+}
 
 const TextPage = props => {
   const { title, pretitle, featuredImage, html } = props;
@@ -12,16 +25,20 @@ const TextPage = props => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <div className={`TextPage TextPage-about`}>
+
+      <div className="text-center max-w-lg m-auto my-10">
         {featuredImage && (
           <Img
+            className="max-w-sm m-auto mb-8"
             fluid={featuredImage.childImageSharp.fluid}
-            className="TextPage-Image TextPage-Image--hero"
           />
         )}
-        {pretitle && <div className="TextPage-preHeadline">{pretitle}</div>}
-        <h1 className="TextPage-Headline">{title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+
+        {pretitle && <div className="text-6xl">{pretitle}</div>}
+
+        <h1 className="text-4xl mb-8 font-bold">{title}</h1>
+
+        <TextPageBodyContent html={html} />
       </div>
     </PageContainer>
   );

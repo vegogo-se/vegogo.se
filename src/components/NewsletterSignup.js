@@ -1,13 +1,12 @@
 import React from "react";
-import "./NewsletterSignup.scss";
 import VegogoButton from "../components/VegogoButton";
 
-class NewsletterSignup extends React.Component {
-  render() {
-    return (
-      <div className="NewsletterSignup">
-        <div className="NewsletterSignup-inner">
-          <p className="NewsletterSignup-introtext">
+export default function () {
+  return (
+    <React.Fragment>
+      <div className="bg-vegogo-green text-center py-10 mt-10">
+        <div className="max-w-lg m-auto">
+          <p className="text-3xl font-bold leading-snug mb-6">
             Love vegan as much as we do? Sign up for our newsletter on what’s to
             come.
           </p>
@@ -22,30 +21,29 @@ class NewsletterSignup extends React.Component {
               target="_blank"
               noValidate
             >
-              <div className="mc-fields-row">
-                <div className="mc-fields-col mc-fields-col--email">
+              <div>
+                <div>
                   <input
                     type="email"
-                    className="signup-field"
                     placeholder="Enter your email"
                     name="EMAIL"
                     id="mce-EMAIL"
+                    className="py-4 px-8 text-center w-3/4"
                   />
                 </div>
-                <div className="mc-fields-col mc-fields-col--submit">
+                <div>
                   <VegogoButton
                     type="submit"
                     name="subscribe"
                     id="mc-embedded-subscribe"
-                    className="signup-button"
                   >
                     Yes, sign me up!
                   </VegogoButton>
                 </div>
               </div>
 
-              <div className="mc-fields-row">
-                <p className="NewsletterSignup-weWillBehave">
+              <div>
+                <p className="mt-4">
                   (No spamming promise! Just news and deals you don’t want to
                   miss!)
                 </p>
@@ -54,8 +52,6 @@ class NewsletterSignup extends React.Component {
           </div>
         </div>
       </div>
-    );
-  }
+    </React.Fragment>
+  );
 }
-
-export default NewsletterSignup;

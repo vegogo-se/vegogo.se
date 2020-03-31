@@ -10,7 +10,7 @@ module.exports = {
         // replace "UA-XXXXXXXXX-X" with your own Tracking ID
         trackingId: "UA-181460-40",
         anonymize: true,
-        respectDNT: true,
+        respectDNT: false,
         head: true
       }
     },

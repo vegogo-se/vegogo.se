@@ -35,6 +35,10 @@
   */
 @tailwind screens;
 
+a {
+  @apply underline text-blue-600;
+}
+
 ::selection {
   @apply bg-green-300;
 }

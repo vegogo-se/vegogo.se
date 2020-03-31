@@ -28,7 +28,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "vegogo-green": "#3AE4D0",
+        "vegogo-green": "#50e3c2",
         "vegogo-pink": "#FFECEC",
         "vegogo-yellow": "#FFECBA"
       }
