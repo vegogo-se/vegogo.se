@@ -30,7 +30,8 @@ module.exports = {
       colors: {
         "vegogo-green": "#50e3c2",
         "vegogo-pink": "#FFECEC",
-        "vegogo-yellow": "#FFECBA"
+        "vegogo-yellow": "#FFECBA",
+        "vegogo-grey": "#d8d8d8"
       }
     }
   },
