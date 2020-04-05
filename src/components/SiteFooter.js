@@ -3,59 +3,66 @@ import { Link } from "gatsby";
 import logoImg from "../images/vegogo-logo.svg";
 import iconInstagram from "../images/icon-instagram.svg";
 import iconFacebook from "../images/icon-facebook.svg";
-import "./SiteFooter.scss";
 
 class SiteFooter extends Component {
   render() {
     return (
-      <footer className="SiteFooter">
-        <p>
-          <img src={logoImg} alt="Vegogo logo" className="SiteFooter-logo" />
-        </p>
+      <React.Fragment>
+        <style jsx>{`
+          p {
+            @apply mt-6;
+          }
+        `}</style>
 
-        <p>
-          The New Guide to Vegan Eating.
-          <br />
-          Curated for you with &lt;3.
-        </p>
+        <footer className="bg-vegogo-grey text-center py-16">
+          <p>
+            <img src={logoImg} alt="Vegogo logo" className="m-auto" />
+          </p>
 
-        <ul className="SiteFooter-socialLinks">
-          <li className="SiteFooter-socialLink">
-            <a href="https://www.instagram.com/go_vegogo/">
-              <img src={iconInstagram} alt="Follow us on Instagram" />
-            </a>
-          </li>
-          <li className="SiteFooter-socialLink">
-            <a href="https://www.facebook.com/pg/Vegogo-666861027033967/">
-              <img src={iconFacebook} alt="Follow us on Facebook" />
-            </a>
-          </li>
-        </ul>
+          <p>
+            The New Guide to Vegan Eating.
+            <br />
+            Curated for you with &lt;3.
+          </p>
 
-        <p>
-          Want to collaborate and become a vegogo partner?
-          <br />
-          <Link to="/page/partner">We would love to hear from you!</Link>
-        </p>
+          <ul className="mt-6">
+            <li className="inline-block mx-6">
+              <a href="https://www.instagram.com/go_vegogo/">
+                <img src={iconInstagram} alt="Follow us on Instagram" />
+              </a>
+            </li>
+            <li className="inline-block mx-6">
+              <a href="https://www.facebook.com/pg/Vegogo-666861027033967/">
+                <img src={iconFacebook} alt="Follow us on Facebook" />
+              </a>
+            </li>
+          </ul>
 
-        <p>
-          contact us at
-          <br />
-          <a href="mailto:hello@vegogo.se">hello@vegogo.se</a>
-        </p>
+          <p>
+            Want to collaborate and become a vegogo partner?
+            <br />
+            <Link to="/page/partner">We would love to hear from you!</Link>
+          </p>
 
-        <p>
-          Illustrations by
-          <br />
-          <a href="http://www.christineroesch.de/">Christine Rösch</a>
-        </p>
+          <p>
+            contact us at
+            <br />
+            <a href="mailto:hello@vegogo.se">hello@vegogo.se</a>
+          </p>
 
-        <p>© vegogo 2018</p>
+          <p>
+            Illustrations by
+            <br />
+            <a href="http://www.christineroesch.de/">Christine Rösch</a>
+          </p>
 
-        <p>
-          <Link to="/components">Components</Link>
-        </p>
-      </footer>
+          <p>© vegogo 2018</p>
+
+          <p>
+            <Link to="/components">Components</Link>
+          </p>
+        </footer>
+      </React.Fragment>
     );
   }
 }
