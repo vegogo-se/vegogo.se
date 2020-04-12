@@ -28,7 +28,7 @@ async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
 
     if (googleplaceDetails.status !== "OK") {
       reporter.panicOnBuild(
-        `Error while getting information for place from Google.`
+        `Error while getting information for place from Google. title: ${title}, placeID: ${placeID}`
       );
     }
 
