@@ -17,7 +17,7 @@ function TextPageBodyContent({ html }) {
   );
 }
 
-const TextPage = props => {
+const TextPage = (props) => {
   const { title, pretitle, featuredImage, html } = props;
 
   return (
@@ -26,19 +26,21 @@ const TextPage = props => {
         <title>{title}</title>
       </Helmet>
 
-      <div className="text-center max-w-lg m-auto my-10">
-        {featuredImage && (
-          <Img
-            className="max-w-sm m-auto mb-8"
-            fluid={featuredImage.childImageSharp.fluid}
-          />
-        )}
+      <div className="flex">
+        <div className="text-center max-w-lg mx-6 my-10">
+          {featuredImage && (
+            <Img
+              className="max-w-sm m-auto mb-8"
+              fluid={featuredImage.childImageSharp.fluid}
+            />
+          )}
 
-        {pretitle && <div className="text-6xl">{pretitle}</div>}
+          {pretitle && <div className="text-6xl">{pretitle}</div>}
 
-        <h1 className="text-4xl mb-8 font-bold">{title}</h1>
+          <h1 className="text-4xl mb-8 font-bold">{title}</h1>
 
-        <TextPageBodyContent html={html} />
+          <TextPageBodyContent html={html} />
+        </div>
       </div>
     </PageContainer>
   );
