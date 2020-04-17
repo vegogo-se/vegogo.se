@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "gatsby";
 import logoImg from "../images/vegogo-logo.svg";
-import iconInstagram from "../images/icon-instagram.svg";
-import iconFacebook from "../images/icon-facebook.svg";
 
 class SiteFooter extends Component {
   render() {
@@ -30,7 +27,7 @@ class SiteFooter extends Component {
 
           <p className="text-3xl pb-12">
             curated for you with
-            <span className="text-red-800 ml-2">❤️</span>
+            <span className="text-red-800 ml-2" role="img" aria-label="Heart">❤️</span>
           </p>
 
           <p>
