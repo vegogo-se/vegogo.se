@@ -14,38 +14,27 @@ class SiteFooter extends Component {
           }
         `}</style>
 
-        <footer className="bg-vegogo-grey text-center py-16">
+        <footer className="bg-vegogo-yellow text-center py-16">
           <p>
-            <img src={logoImg} alt="Vegogo logo" className="m-auto" />
+            <img src={logoImg} alt="Vegogo logo" className="m-auto w-64" />
           </p>
 
-          <p>
-            The New Guide to Vegan Eating.
+          <h1 className="font-headline text-center text-4xl py-16 px-1">
+            The
             <br />
-            Curated for you with &lt;3.
-          </p>
-
-          <ul className="mt-6">
-            <li className="inline-block mx-6">
-              <a href="https://www.instagram.com/go_vegogo/">
-                <img src={iconInstagram} alt="Follow us on Instagram" />
-              </a>
-            </li>
-            <li className="inline-block mx-6">
-              <a href="https://www.facebook.com/pg/Vegogo-666861027033967/">
-                <img src={iconFacebook} alt="Follow us on Facebook" />
-              </a>
-            </li>
-          </ul>
-
-          <p>
-            Want to collaborate and become a vegogo partner?
+            new guide
             <br />
-            <Link to="/page/partner">We would love to hear from you!</Link>
+            to vegan
+            <br /> eating
+          </h1>
+
+          <p className="text-3xl pb-12">
+            curated for you with
+            <span className="text-red-800 ml-2">❤️</span>
           </p>
 
           <p>
-            contact us at
+            Contact us at
             <br />
             <a href="mailto:hello@vegogo.se">hello@vegogo.se</a>
           </p>
@@ -57,10 +46,6 @@ class SiteFooter extends Component {
           </p>
 
           <p>© vegogo 2018</p>
-
-          <p>
-            <Link to="/components">Components</Link>
-          </p>
         </footer>
       </React.Fragment>
     );
