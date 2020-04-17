@@ -12,7 +12,6 @@ images:
   - mahalo7.jpg
   - mahalo8.jpg
   - mahalo9.jpg
-  - mahalo10.jpg
 ---
 My my. At Malaho, on Hornsgatan just round the corner from Rosenlundsgatan, you find food for mouth – and eyes. It’s hard to find any other place that has this color explosion for an – all vegan – menu.
 

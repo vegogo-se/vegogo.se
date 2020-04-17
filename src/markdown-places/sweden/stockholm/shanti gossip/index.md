@@ -5,14 +5,7 @@ areas:
   - Mariatorget
 placeID: ChIJH4MLffd3X0YRiWbmrMZjmH4
 images:
-  - shanti gossip 1.jpg
   - shanti gossip 2.jpg
-  - shanti gossip 3.jpg
-  - shanti gossip 4.jpg
-  - shanti gossip 5.jpg
-  - shanti gossip 6.jpg
-  - shanti gossip 7.jpg
-  - shanti gossip 8.jpg
   - shanti gossip 9.jpg
   - shanti gossip 10.jpg
   - shanti gossip 11.jpg

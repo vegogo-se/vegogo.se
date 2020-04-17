@@ -3,14 +3,10 @@ title: Ling long
 placeId: ChIJK2uKYlmdX0YRQAE4NCOr9GI
 images:
   - Ling Long 1.jpg
-  - Ling Long 2.jpg
   - Ling Long 3.jpg
   - Ling Long 4.jpg
   - Ling Long 5.jpg
   - Ling Long 6.jpg
-  - Ling Long 7.jpg
-  - Ling Long 8.jpg
-  - Ling Long 9.jpg
 ---
 
 An asian fusion cuisine again – why can't get enough of you?
