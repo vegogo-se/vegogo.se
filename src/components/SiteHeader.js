@@ -4,58 +4,81 @@ import logoImg from "../images/vegogo-logo.svg";
 import "./SiteHeader.scss";
 import Navigation from "./Navigation";
 import locationImg from "../images/baseline-my_location-24px.svg";
+import iconNav from "../images/icon-nav.svg";
+import iconSearch from "../images/icon-search.svg";
+import iconLocation from "../images/icon-location.svg";
+import logoVegogoSthlm from "../images/logo-vegogo-sthlm.svg";
 
-class SiteHeader extends Component {
-  constructor(props) {
-    super(props);
+const SiteHeader = (props) => {
+  return (
+    <div>
+      <div className="flex items-start p-6">
+        <div className="flex-none w-24">
+          <img src={iconNav} alt="" className="w-10 h-10" />
+        </div>
+        <div className="flex-auto flex">
+          <img src={logoVegogoSthlm} alt="" className="mx-auto h-12" />
+        </div>
+        <div className="flex-none w-24 flex items-end content-end justify-end">
+          <img src={iconSearch} alt="" className="w-10 h-10" />
+          <img src={iconLocation} alt="" className="w-10 h-10" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-    this.state = {
-      navOpen: false
-    };
+// class SiteHeader extends Component {
+//   constructor(props) {
+//     super(props);
 
-    this.handleNavToggleClick = this.handleNavToggleClick.bind(this);
-  }
+//     this.state = {
+//       navOpen: false
+//     };
 
-  handleNavToggleClick(e) {
-    this.setState({ navOpen: !this.state.navOpen });
-  }
+//     this.handleNavToggleClick = this.handleNavToggleClick.bind(this);
+//   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <header className="SiteHeader">
-          <h1 className="SiteHeader-title">
-            <Link to="/" className="SiteHeader-titleLink">
-              <img src={logoImg} alt="Vegogo" className="SiteHeader-logo" />
-            </Link>
-          </h1>
+//   handleNavToggleClick(e) {
+//     this.setState({ navOpen: !this.state.navOpen });
+//   }
 
-          {/* <p className="SiteHeader-tagline">The new guide* to vegan eating *curated for you with &lt;3</p> */}
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <header className="SiteHeader">
+//           <h1 className="SiteHeader-title">
+//             <Link to="/" className="SiteHeader-titleLink">
+//               <img src={logoImg} alt="Vegogo" className="SiteHeader-logo" />
+//             </Link>
+//           </h1>
 
-          <div>
-            <Link
-              className="SiteHeader-nearMeLink"
-              to="/nearby"
-              title="Show great vegan places near you"
-            >
-              <img src={locationImg} alt="Location icon" />
-            </Link>
+//           {/* <p className="SiteHeader-tagline">The new guide* to vegan eating *curated for you with &lt;3</p> */}
 
-            <button
-              onClick={this.handleNavToggleClick}
-              className="SiteHeader-navToggler"
-            >
-              {!this.state.navOpen && "Menu"}
-            </button>
-          </div>
-        </header>
+//           <div>
+//             <Link
+//               className="SiteHeader-nearMeLink"
+//               to="/nearby"
+//               title="Show great vegan places near you"
+//             >
+//               <img src={locationImg} alt="Location icon" />
+//             </Link>
 
-        {this.state.navOpen && (
-          <Navigation handleNavClose={this.handleNavToggleClick} />
-        )}
-      </React.Fragment>
-    );
-  }
-}
+//             <button
+//               onClick={this.handleNavToggleClick}
+//               className="SiteHeader-navToggler"
+//             >
+//               {!this.state.navOpen && "Menu"}
+//             </button>
+//           </div>
+//         </header>
+
+//         {this.state.navOpen && (
+//           <Navigation handleNavClose={this.handleNavToggleClick} />
+//         )}
+//       </React.Fragment>
+//     );
+//   }
+// }
 
 export default SiteHeader;

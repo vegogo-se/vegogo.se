@@ -11,7 +11,7 @@ export function PlaceOverview(props) {
   return (
     <article
       key={path}
-      className="relative block bg-pink-200 text-center"
+      className="relative block text-center"
       style={{ paddingBottom: "144%" }}
     >
       <Link to={path} className="block">

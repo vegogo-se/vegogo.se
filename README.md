@@ -46,7 +46,8 @@ Examples:
 
 ## Todo
 
-- Pågår: Gör sidfot i TailWind.
+- Pågår: Gör sidhuvud i tailwind
+- startsida: 2 col, namn = vit bakgrund bara över ordet.
 - Lägg in de plats-texter som finns
 - Lägg in exempelsida /exempel för komponenter + hur man använder TailWind CSS och styled-jsx.
 - Skapa sidor för areas och mattyper.
