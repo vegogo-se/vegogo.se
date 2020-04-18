@@ -16,7 +16,7 @@ export function cleanupHomepage(homepage) {
   if (!homepage) {
     return {
       homepagePresentation,
-      homepageWithProtocol
+      homepageWithProtocol,
     };
   }
   // Remove any http or https. And some other cleaning to make URL presentable.
@@ -32,7 +32,7 @@ export function cleanupHomepage(homepage) {
 
   return {
     homepagePresentation,
-    homepageWithProtocol
+    homepageWithProtocol,
   };
 }
 
@@ -57,12 +57,15 @@ export async function getPlaceDetailsFromGoogle(placeId) {
   var requestParams = {
     key: googleMapsAPiKey,
     placeid: placeId,
-    fields: "opening_hours,website,address_component,geometry,name,url,vicinity"
+    fields:
+      "opening_hours,website,address_component,geometry,name,url,vicinity",
   };
 
   const requestUri = `${baseUri}?${querystring.stringify(requestParams)}`;
+  console.log(`Fetch start requestUri ${requestUri}`);
   const result = await fetch(requestUri);
   const resultData = await result.json();
+  console.log(`Fetch done requestUri ${requestUri}`);
 
   // console.log("requestUri:", requestUri);
   // console.log("resultData", resultData);
@@ -92,7 +95,7 @@ export function getPlaceURIFromRelativePath(relativePath) {
 
 // Create array with only the slugs of each place.
 export function getPlacePaths(places) {
-  const placePaths = places.map(place => {
+  const placePaths = places.map((place) => {
     return place.path;
   });
 
@@ -101,7 +104,7 @@ export function getPlacePaths(places) {
 
 // Get names of each place from their paths.
 export function getPlacesMatchingPlacePaths(allPlaces, placePaths) {
-  const selectedPlaces = allPlaces.filter(place => {
+  const selectedPlaces = allPlaces.filter((place) => {
     return placePaths.includes(place.path);
   });
 

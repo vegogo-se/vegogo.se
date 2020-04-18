@@ -7,20 +7,24 @@ const fs = require("fs");
 
 const {
   getPlaceURIFromRelativePath,
-  getPlaceDetailsFromGoogle
+  getPlaceDetailsFromGoogle,
 } = require("./src/helpers");
 
 // Add google place info for all places.
 // Store in JSON-file so we can import in later on.
 async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
   let googlePlacesInfo = [];
-
+  console.log("updateGooglePlacesLocalJSONFile start");
   // Use for-in-loop so we can use await.
   for (const idx in allPlacesData.allFile.edges) {
     const { node } = allPlacesData.allFile.edges[idx];
     const { title, placeID } = node.childMarkdownRemark.frontmatter;
+    console.log(
+      `updateGooglePlacesLocalJSONFile in loop, title: ${title}, placeID: ${placeID}`
+    );
 
     if (!placeID) {
+      console.log("Skipping place");
       continue;
     }
 
@@ -36,7 +40,7 @@ async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
       placeID: placeID,
       title: title,
       dateUpdated: new Date().toJSON(),
-      googlePlaceDetails: googleplaceDetails.result
+      googlePlaceDetails: googleplaceDetails.result,
     });
   }
 
@@ -82,7 +86,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     createPage({
       path: node.childMarkdownRemark.frontmatter.path,
       component: pageTemplate,
-      context: {} // additional data can be passed via context
+      context: {}, // additional data can be passed via context
     });
   });
 
@@ -119,18 +123,19 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  updateGooglePlacesLocalJSONFile(resultAllPlaces.data, reporter);
+  // Create JSON file with Google Places information.
+  // await updateGooglePlacesLocalJSONFile(resultAllPlaces.data, reporter);
 
   // Create single pages for all places.
   resultAllPlaces.data.allFile.edges.forEach(({ node }) => {
     const { relativePath } = node;
-
+    console.log(`Create page ${relativePath}`);
     createPage({
       path: getPlaceURIFromRelativePath(relativePath),
       component: placeTemplate,
       context: {
-        relativePath
-      } // additional data can be passed via context
+        relativePath,
+      }, // additional data can be passed via context
     });
   });
 };

@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     fontFamily: {
       display: ["League Gothic", "sans-serif"],
-      body: ["Arial", "sans-serif"]
+      body: ["Arial", "sans-serif"],
     },
     fontFamily: {
       sans: [
@@ -14,7 +14,7 @@ module.exports = {
         "Roboto",
         '"Helvetica Neue"',
         "Arial",
-        "Noto Sans"
+        "Noto Sans",
       ],
       serif: [
         "apercu-mono",
@@ -22,19 +22,19 @@ module.exports = {
         "Cambria",
         "Times New Roman",
         "Times",
-        "serif"
+        "serif",
       ],
-      headline: ["FrontageCondensed", "arial", "sans-serif"]
+      headline: ["FrontageCondensed", "arial", "sans-serif"],
     },
     extend: {
       colors: {
         "vegogo-green": "#50e3c2",
         "vegogo-pink": "#FFECEC",
         "vegogo-yellow": "#FFECBA",
-        "vegogo-grey": "#d8d8d8"
-      }
-    }
+        "vegogo-grey": "#d8d8d8",
+      },
+    },
   },
   variants: {},
-  plugins: []
+  plugins: [],
 };
