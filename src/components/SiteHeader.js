@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
+import { Navigation } from "./Navigation";
 import iconNav from "../images/icon-nav.svg";
 import iconSearch from "../images/icon-search.svg";
 import iconLocation from "../images/icon-location.svg";
@@ -9,44 +10,47 @@ const iconHeight = "h-6";
 
 const SiteHeader = (props) => {
   return (
-    <header className="sticky top-0 bg-white z-30 SiteHeader">
-      <style jsx>{`
-        .SiteHeader {
-          background: rgba(255, 255, 255, 0.9);
-        }
-        .SiteHeader__iconBox {
-          width: 3.25rem;
-        }
-      `}</style>
+    <React.Fragment>
+      <header className="sticky top-0 bg-white z-30 SiteHeader">
+        <style jsx>{`
+          .SiteHeader {
+            background: rgba(255, 255, 255, 0.9);
+          }
+          .SiteHeader__iconBox {
+            width: 3.25rem;
+          }
+        `}</style>
 
-      <div className="flex items-start px-6 py-4">
-        <div className="flex-none SiteHeader__iconBox">
-          <button>
-            <img src={iconNav} alt="" className={`${iconHeight}`} />
-            <span className="sr-only">Menu</span>
-          </button>
-        </div>
-        <div className="flex-auto flex">
-          <Link to="/" className="mx-auto h-14 ">
-            <img src={logoVegogoSthlm} alt="" className="logo" />
-          </Link>
-        </div>
-        <div className="flex-none SiteHeader__iconBox flex items-end content-end justify-between w-10">
-          <div>
-            <Link to="/search">
-              <img src={iconSearch} alt="" className={`${iconHeight}`} />
-              <span className="sr-only">Search places</span>
+        <div className="flex items-start px-6 py-4">
+          <div className="flex-none SiteHeader__iconBox">
+            <button>
+              <img src={iconNav} alt="" className={`${iconHeight}`} />
+              <span className="sr-only">Menu</span>
+            </button>
+          </div>
+          <div className="flex-auto flex">
+            <Link to="/" className="mx-auto h-14 ">
+              <img src={logoVegogoSthlm} alt="" className="logo" />
             </Link>
           </div>
-          <div>
-            <Link to="/nearby">
-              <img src={iconLocation} alt="" className={`${iconHeight}`} />
-              <span className="sr-only">View places nearby</span>
-            </Link>
+          <div className="flex-none SiteHeader__iconBox flex items-end content-end justify-between w-10">
+            <div>
+              <Link to="/search">
+                <img src={iconSearch} alt="" className={`${iconHeight}`} />
+                <span className="sr-only">Search places</span>
+              </Link>
+            </div>
+            <div>
+              <Link to="/nearby">
+                <img src={iconLocation} alt="" className={`${iconHeight}`} />
+                <span className="sr-only">View places nearby</span>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <Navigation />
+    </React.Fragment>
   );
 };
 

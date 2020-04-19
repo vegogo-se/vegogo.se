@@ -1,43 +1,43 @@
 import React from "react";
 import closeImg from "../images/icon-close.svg";
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
 let stockholmSubAreas = [
   {
     name: "City",
-    to: "/stockholm/city"
+    to: "/stockholm/city",
   },
 
   {
     name: "Kungsholmen",
-    to: "/stockholm/kungsholmen"
+    to: "/stockholm/kungsholmen",
   },
 
   {
     name: "Old Town",
-    to: "/stockholm/gamla-stan"
+    to: "/stockholm/gamla-stan",
   },
 
   {
     name: "Södermalm",
-    to: "/stockholm/sodermalm"
+    to: "/stockholm/sodermalm",
   },
 
   {
     name: "Vasastan",
-    to: "/stockholm/vasastan"
+    to: "/stockholm/vasastan",
   },
 
   {
     name: "Östermalm",
-    to: "/stockholm/ostermalm "
-  }
+    to: "/stockholm/ostermalm ",
+  },
 ];
 
 // Opened navigation.
-let Navigation = function(props) {
+export function Navigation(props) {
   return (
-    <nav className="SiteNav">
+    <nav className="SiteNav bg-vegogo-green absolute inset-0 z-40 hidden">
       <button
         onClick={props.handleNavClose}
         className="SiteHeader-navToggler SiteHeader-navToggler--close"
@@ -65,7 +65,7 @@ let Navigation = function(props) {
             Stockholm
           </Link>
           <ul className="SiteNav-navItems-subPlaces">
-            {stockholmSubAreas.map(subArea => {
+            {stockholmSubAreas.map((subArea) => {
               return (
                 <li key={subArea.to}>
                   <Link onClick={props.handleNavClose} to={subArea.to}>
@@ -108,6 +108,4 @@ let Navigation = function(props) {
       </ul>
     </nav>
   );
-};
-
-export default Navigation;
+}
