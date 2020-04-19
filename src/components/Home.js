@@ -18,7 +18,11 @@ function Home() {
 
       <h1 className="font-headline text-center text-6xl py-8 px-1">
         <Link to="/page/about" title="Read more about Vegogo">
-          The new guide to vegan eating
+          The
+          <br />
+          new guide
+          <br /> to vegan
+          <br /> eating
         </Link>
       </h1>
 

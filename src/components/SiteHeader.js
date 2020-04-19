@@ -1,30 +1,52 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
-import logoImg from "../images/vegogo-logo.svg";
-import "./SiteHeader.scss";
-import Navigation from "./Navigation";
-import locationImg from "../images/baseline-my_location-24px.svg";
 import iconNav from "../images/icon-nav.svg";
 import iconSearch from "../images/icon-search.svg";
 import iconLocation from "../images/icon-location.svg";
 import logoVegogoSthlm from "../images/logo-vegogo-sthlm.svg";
 
+const iconHeight = "h-6";
+
 const SiteHeader = (props) => {
   return (
-    <div>
-      <div className="flex items-start p-6">
-        <div className="flex-none w-24">
-          <img src={iconNav} alt="" className="w-10 h-10" />
+    <header className="sticky top-0 bg-white z-30 SiteHeader">
+      <style jsx>{`
+        .SiteHeader {
+          background: rgba(255, 255, 255, 0.9);
+        }
+        .SiteHeader__iconBox {
+          width: 3.25rem;
+        }
+      `}</style>
+
+      <div className="flex items-start px-6 py-4">
+        <div className="flex-none SiteHeader__iconBox">
+          <button>
+            <img src={iconNav} alt="" className={`${iconHeight}`} />
+            <span className="sr-only">Menu</span>
+          </button>
         </div>
         <div className="flex-auto flex">
-          <img src={logoVegogoSthlm} alt="" className="mx-auto h-12" />
+          <Link to="/" className="mx-auto h-14 ">
+            <img src={logoVegogoSthlm} alt="" className="logo" />
+          </Link>
         </div>
-        <div className="flex-none w-24 flex items-end content-end justify-end">
-          <img src={iconSearch} alt="" className="w-10 h-10" />
-          <img src={iconLocation} alt="" className="w-10 h-10" />
+        <div className="flex-none SiteHeader__iconBox flex items-end content-end justify-between w-10">
+          <div>
+            <Link to="/search">
+              <img src={iconSearch} alt="" className={`${iconHeight}`} />
+              <span className="sr-only">Search places</span>
+            </Link>
+          </div>
+          <div>
+            <Link to="/nearby">
+              <img src={iconLocation} alt="" className={`${iconHeight}`} />
+              <span className="sr-only">View places nearby</span>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
