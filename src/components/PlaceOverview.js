@@ -15,8 +15,10 @@ export function PlaceOverview(props) {
       style={{ paddingBottom: "144%" }}
     >
       <Link to={path} className="block">
-        <div className="absolute inset-x-0 pt-24 z-20">
-          <h2 className="bg-white mx-4 py-1 px-4 text-2xl">{title}</h2>
+        <div className="absolute inset-x-0 pt-20 z-20 mx-4 overflow-hidden">
+          <h2 className="bg-white inline-block py-1 px-4 text-2xl break-word">
+            {title}
+          </h2>
         </div>
         {firstImage && (
           <Img
