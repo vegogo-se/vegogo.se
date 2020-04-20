@@ -40,7 +40,11 @@ export function PlaceSingle(props) {
 
           return (
             <div
-              style={{ paddingBottom: "144%", scrollSnapAlign: "center" }}
+              style={{
+                paddingBottom: "144%",
+                scrollSnapAlign: "center",
+                scrollSnapStop: "always",
+              }}
               className="relative w-11/12 flex-grow flex-shrink-0 overflow-hidden bg-pink-100 border-pink-400 border-0"
             >
               <Img
