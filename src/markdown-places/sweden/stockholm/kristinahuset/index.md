@@ -2,18 +2,18 @@
 title: Café Kristinahuset
 placeId: ChIJYa6mQ6B5X0YRABwzFp6PU8A
 images:
-  - kristinagården-1.jpg
-  - kristinagården-2.jpg
-  - kristinagården-3.jpg
-  - kristinagården-4.jpg
-  - kristinagården-5.jpg
-  - kristinagården-6.jpg
-  - kristinagården-7.jpg
-  - kristinagården-8.jpg
-  - kristinagården-9.jpg
-  - kristinagården-10.jpg
-  - kristinagården-11.jpg
-  - kristinagården-12.jpg
+  - kristinahuset-1.jpg
+  - kristinahuset-2.jpg
+  - kristinahuset-3.jpg
+  - kristinahuset-4.jpg
+  - kristinahuset-5.jpg
+  - kristinahuset-6.jpg
+  - kristinahuset-7.jpg
+  - kristinahuset-8.jpg
+  - kristinahuset-9.jpg
+  - kristinahuset-10.jpg
+  - kristinahuset-11.jpg
+  - kristinahuset-12.jpg
 ---
 
 Officia amet deserunt laborum ullamco incididunt do tempor irure nostrud occaecat eiusmod. Sint eiusmod ullamco nulla aliquip ipsum aute aute est ipsum occaecat qui nulla. Cupidatat dolor pariatur culpa et. 
