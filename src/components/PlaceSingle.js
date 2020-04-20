@@ -12,7 +12,7 @@ export function PlaceSingle(props) {
   let contentBriefOut = (
     <>
       {excerpt && excerpt && (
-        <div className="PlaceItem-textcontent PlaceItem-textcontent--brief">
+        <div className="">
           <div dangerouslySetInnerHTML={{ __html: excerpt }} />
         </div>
       )}
@@ -20,61 +20,76 @@ export function PlaceSingle(props) {
   );
 
   let tease = (
-    <div className="PlaceItem-head">
-      <h1 className="PlaceItem-name">{title}</h1>
+    <div className="">
+      <h1 className="text-5xl leading-tight">{title}</h1>
       {contentBriefOut}
     </div>
   );
 
   return (
     <article key={path}>
-      <div className="PlaceItem-content">
-        {tease}
-
-        {googlePlaceInfo && (
-          <>
-            <p>
-              Location: {googlePlaceInfo.geometry.location.lat},
-              {googlePlaceInfo.geometry.location.lng}
-              <br />
-              Vicinity: {googlePlaceInfo.vicinity}
-              <br />
-              Website: {googlePlaceInfo.website}
-              <br />
-              Google Maps URL: {googlePlaceInfo.url}
-              <br />
-              Opening hours:{" "}
-            </p>
-            <pre>
-              {googlePlaceInfo.opening_hours &&
-                JSON.stringify(
-                  googlePlaceInfo.opening_hours.weekday_text,
-                  null,
-                  2
-                )}
-            </pre>
-          </>
-        )}
-
-        {areas &&
-          areas.map((area) => {
-            return <p key={area}>Area: {area}</p>;
-          })}
-
+      {/* Output images. */}
+      <div
+        className="relative block flex overflow-scroll"
+        style={{ scrollSnapType: "x mandatory" }}
+      >
         {images.map((image) => {
           if (!image) {
             return null;
           }
 
           return (
-            <Img
-              key={image.childImageSharp.fluid.src}
-              fluid={image.childImageSharp.fluid}
-              alt={image.name}
-              title={image.name}
-            />
+            <div
+              style={{ paddingBottom: "144%", scrollSnapAlign: "center" }}
+              className="relative w-11/12 flex-grow flex-shrink-0 overflow-hidden bg-pink-100 border-pink-400 border-0"
+            >
+              <Img
+                key={image.childImageSharp.fluid.src}
+                fluid={image.childImageSharp.fluid}
+                alt={image.name}
+                title={image.name}
+                style={{ position: "absolute" }}
+                className="absolute inset-0 z-10"
+              />
+            </div>
           );
         })}
+      </div>
+
+      <div>
+        <div className="p-4">
+          {tease}
+
+          {googlePlaceInfo && (
+            <>
+              <p>
+                Location: {googlePlaceInfo.geometry.location.lat},
+                {googlePlaceInfo.geometry.location.lng}
+                <br />
+                Vicinity: {googlePlaceInfo.vicinity}
+                <br />
+                Website: {googlePlaceInfo.website}
+                <br />
+                Google Maps URL: {googlePlaceInfo.url}
+                <br />
+                Opening hours:{" "}
+              </p>
+              <pre>
+                {googlePlaceInfo.opening_hours &&
+                  JSON.stringify(
+                    googlePlaceInfo.opening_hours.weekday_text,
+                    null,
+                    2
+                  )}
+              </pre>
+            </>
+          )}
+
+          {areas &&
+            areas.map((area) => {
+              return <p key={area}>Area: {area}</p>;
+            })}
+        </div>
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
