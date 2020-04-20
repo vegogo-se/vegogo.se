@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Navigation } from "./Navigation";
 import iconNav from "../images/icon-nav.svg";
@@ -9,6 +9,12 @@ import logoVegogoSthlm from "../images/logo-vegogo-sthlm.svg";
 const iconHeight = "h-6";
 
 const SiteHeader = (props) => {
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
+  const handleNavClose = () => {
+    setNavIsOpen(false);
+  };
+
   return (
     <React.Fragment>
       <header className="sticky top-0 bg-white z-30 SiteHeader">
@@ -23,9 +29,13 @@ const SiteHeader = (props) => {
 
         <div className="flex items-start px-6 py-4">
           <div className="flex-none SiteHeader__iconBox">
-            <button>
+            <button
+              onClick={() => {
+                setNavIsOpen(!navIsOpen);
+              }}
+            >
               <img src={iconNav} alt="" className={`${iconHeight}`} />
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">Show Menu</span>
             </button>
           </div>
           <div className="flex-auto flex">
@@ -49,7 +59,7 @@ const SiteHeader = (props) => {
           </div>
         </div>
       </header>
-      <Navigation />
+      <Navigation navIsOpen={navIsOpen} handleNavClose={handleNavClose} />
     </React.Fragment>
   );
 };

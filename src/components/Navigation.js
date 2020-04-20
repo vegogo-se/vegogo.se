@@ -36,8 +36,14 @@ let stockholmSubAreas = [
 
 // Opened navigation.
 export function Navigation(props) {
+  const { navIsOpen } = props;
+
+  const navClass = navIsOpen ? "block" : "hidden";
+
   return (
-    <nav className="SiteNav bg-vegogo-green absolute inset-0 z-40 hidden">
+    <nav
+      className={`SiteNav bg-vegogo-green absolute inset-0 z-40 p-6 ${navClass}`}
+    >
       <button
         onClick={props.handleNavClose}
         className="SiteHeader-navToggler SiteHeader-navToggler--close"
@@ -47,21 +53,30 @@ export function Navigation(props) {
           src={closeImg}
           alt="✕"
         />
+        <span className="sr-only">Close Menu</span>
       </button>
 
       <ul className="SiteNav-navItems SiteNav-navItems--places">
         <li>
-          <Link onClick={props.handleNavClose} to="/">
+          <Link className="text-4xl" onClick={props.handleNavClose} to="/">
             A to Ö
           </Link>
         </li>
         <li>
-          <Link onClick={props.handleNavClose} to="/nearby">
+          <Link
+            className="text-4xl"
+            onClick={props.handleNavClose}
+            to="/nearby"
+          >
             Near me
           </Link>
         </li>
-        <li>
-          <Link onClick={props.handleNavClose} to="/stockholm">
+        <li className="">
+          <Link
+            onClick={props.handleNavClose}
+            to="/stockholm"
+            className="text-4xl"
+          >
             Stockholm
           </Link>
           <ul className="SiteNav-navItems-subPlaces">
@@ -79,29 +94,54 @@ export function Navigation(props) {
       </ul>
 
       <ul className="SiteNav-navItems SiteNav-navItems--site">
-        <li>
-          <Link exact onClick={props.handleNavClose} to="/page/about">
+        <li className="pt-10">
+          <Link
+            className="text-4xl"
+            exact
+            onClick={props.handleNavClose}
+            to="/page/about"
+          >
             About
           </Link>
         </li>
         <li>
-          <Link exact onClick={props.handleNavClose} to="/page/contact">
+          <Link
+            className="text-4xl"
+            exact
+            onClick={props.handleNavClose}
+            to="/page/contact"
+          >
             Contact
           </Link>
         </li>
         <li>
-          <Link exact onClick={props.handleNavClose} to="/page/partner">
+          <Link
+            className="text-4xl"
+            exact
+            onClick={props.handleNavClose}
+            to="/page/partner"
+          >
             Partner
           </Link>
         </li>
         <li>
-          <Link exact onClick={props.handleNavClose} to="/page/newsletter">
+          <Link
+            className="text-4xl"
+            exact
+            onClick={props.handleNavClose}
+            to="/page/newsletter"
+          >
             Newsletter
           </Link>
         </li>
 
         <li>
-          <Link exact onClick={props.handleNavClose} to="/">
+          <Link
+            className="text-4xl"
+            exact
+            onClick={props.handleNavClose}
+            to="/"
+          >
             Home
           </Link>
         </li>
