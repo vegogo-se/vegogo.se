@@ -26,7 +26,7 @@ const TextPage = (props) => {
         <title>{title}</title>
       </Helmet>
 
-      <div className="flex">
+      <div className="flex justify-center">
         <div className="text-center max-w-lg mx-6 my-10">
           {featuredImage && (
             <Img
