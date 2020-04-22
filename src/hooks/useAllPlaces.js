@@ -8,12 +8,12 @@ import googlePlacesInfo from "../../googlePlacesInfo.json";
  * @param string placeID
  * @return object Google Place info
  */
-const getGooglePlaceDetailsForPlace = placeID => {
+const getGooglePlaceDetailsForPlace = (placeID) => {
   if (!placeID) {
     return false;
   }
 
-  const googlePlace = googlePlacesInfo.find(googlePlaceInfo => {
+  const googlePlace = googlePlacesInfo.find((googlePlaceInfo) => {
     return googlePlaceInfo.placeID === placeID;
   });
 
@@ -29,6 +29,7 @@ export const query = graphql`
     childMarkdownRemark {
       frontmatter {
         title
+        tagline
         placeID
         areas
         images {
@@ -70,9 +71,10 @@ export const useAllPlaces = () => {
   let flattenedPlaces = allPlaces.allFile.edges.map(({ node }) => {
     const {
       title,
+      tagline,
       areas,
       images,
-      placeID
+      placeID,
     } = node.childMarkdownRemark.frontmatter;
 
     const { html, excerpt } = node.childMarkdownRemark;
@@ -82,6 +84,7 @@ export const useAllPlaces = () => {
 
     return {
       title,
+      tagline,
       excerpt,
       html,
       areas,
@@ -89,7 +92,7 @@ export const useAllPlaces = () => {
       relativePath,
       images,
       path,
-      googlePlaceInfo
+      googlePlaceInfo,
     };
   });
 

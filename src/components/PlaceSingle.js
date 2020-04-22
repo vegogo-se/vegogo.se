@@ -4,25 +4,18 @@ import Img from "gatsby-image";
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
-  const { title, excerpt, html, path, googlePlaceInfo, areas, images } = place;
-
-  /**
-   * Tease is the title and some sneak peek of the contents, like food types.
-   */
-  let contentBriefOut = (
-    <>
-      {excerpt && excerpt && (
-        <div className="">
-          <div dangerouslySetInnerHTML={{ __html: excerpt }} />
-        </div>
-      )}
-    </>
-  );
+  const { title, tagline, html, path, googlePlaceInfo, areas, images } = place;
 
   let tease = (
     <div className="">
-      <h1 className="text-5xl leading-tight">{title}</h1>
-      {contentBriefOut}
+      {title && (
+        <h1 className="leading-tight pb-4 mb-8 border-b border-black">
+          {title}
+        </h1>
+      )}
+      {tagline && <h2 className="text-5xl leading-tight">{tagline}</h2>}
+
+      {/* {contentBriefOut} */}
     </div>
   );
 
@@ -41,11 +34,11 @@ export function PlaceSingle(props) {
           return (
             <div
               style={{
-                paddingBottom: "144%",
+                paddingBottom: "120%",
                 scrollSnapAlign: "center",
                 // scrollSnapStop: "always",
               }}
-              className="relative w-11/12 flex-grow flex-shrink-0 overflow-hidden bg-pink-100 border-pink-400 border-0"
+              className="relative w-10/12 flex-grow flex-shrink-0 overflow-hidden bg-pink-100 border-pink-400 border-0"
             >
               <Img
                 key={image.childImageSharp.fluid.src}
@@ -61,20 +54,46 @@ export function PlaceSingle(props) {
       </div>
 
       <div>
-        <div className="p-4">
+        <div className="p-6">
           {tease}
 
+          <div
+            className="mt-4 mb-10 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+
           {googlePlaceInfo && (
-            <>
+            <div className="border-t border-black pt-4">
               <p>
-                Location: {googlePlaceInfo.geometry.location.lat},
+                {/* maps key: 
+                AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8 */}
+                {/* Location: {googlePlaceInfo.geometry.location.lat},
                 {googlePlaceInfo.geometry.location.lng}
-                <br />
-                Vicinity: {googlePlaceInfo.vicinity}
-                <br />
-                Website: {googlePlaceInfo.website}
-                <br />
-                Google Maps URL: {googlePlaceInfo.url}
+                <br /> */}
+                {googlePlaceInfo.geometry.location.lat && (
+                  <iframe
+                    width="600"
+                    height="450"
+                    frameborder="0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&amp;q=Space+Needle,Seattle+WA"
+                    allowfullscreen
+                  ></iframe>
+                )}
+                {googlePlaceInfo.vicinity && <p>{googlePlaceInfo.vicinity}</p>}
+                {googlePlaceInfo.website && (
+                  <p>
+                    <a
+                      href={googlePlaceInfo.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {googlePlaceInfo.website}
+                    </a>
+                  </p>
+                )}
+                {googlePlaceInfo.url && (
+                  <p>Google Maps URL: {googlePlaceInfo.url}</p>
+                )}
                 <br />
                 Opening hours:{" "}
               </p>
@@ -86,16 +105,14 @@ export function PlaceSingle(props) {
                     2
                   )}
               </pre>
-            </>
+            </div>
           )}
 
-          {areas &&
+          {/* {areas &&
             areas.map((area) => {
               return <p key={area}>Area: {area}</p>;
-            })}
+            })} */}
         </div>
-
-        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </article>
   );

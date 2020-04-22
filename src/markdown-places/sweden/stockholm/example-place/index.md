@@ -1,5 +1,6 @@
 ---
 title: Example place
+tagline: Raw and really good copy here
 placeID: ChIJiZC1rzV3X0YR__vRwJ-lcV0
 areas:
   - Stockholm
