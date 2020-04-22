@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
-  const { title, tagline, html, path, googlePlaceInfo, areas, images } = place;
+  const { title, tagline, html, path, googlePlaceInfo, images } = place;
 
   let tease = (
     <div className="">
@@ -77,6 +77,7 @@ export function PlaceSingle(props) {
                     frameborder="0"
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&amp;q=Space+Needle,Seattle+WA"
                     allowfullscreen
+                    title="Place on map"
                   ></iframe>
                 )}
                 {googlePlaceInfo.vicinity && <p>{googlePlaceInfo.vicinity}</p>}
