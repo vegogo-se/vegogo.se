@@ -4,7 +4,15 @@ import Img from "gatsby-image";
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
-  const { title, tagline, html, path, googlePlaceInfo, images } = place;
+  const {
+    title,
+    tagline,
+    placeID,
+    html,
+    path,
+    googlePlaceInfo,
+    images,
+  } = place;
 
   let tease = (
     <div className="">
@@ -72,10 +80,11 @@ export function PlaceSingle(props) {
                 <br /> */}
                 {googlePlaceInfo.geometry.location.lat && (
                   <iframe
+                    className="w-full"
                     width="600"
                     height="450"
                     frameborder="0"
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&amp;&center=${googlePlaceInfo.geometry.location.lat},${googlePlaceInfo.geometry.location.lng}`}
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&q=place_id:${placeID}`}
                     allowfullscreen
                     title="Place on map"
                   ></iframe>
