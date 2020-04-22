@@ -75,7 +75,7 @@ export function PlaceSingle(props) {
                     width="600"
                     height="450"
                     frameborder="0"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&amp;q=Space+Needle,Seattle+WA"
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&amp;&center=${googlePlaceInfo.geometry.location.lat},${googlePlaceInfo.geometry.location.lng}`}
                     allowfullscreen
                     title="Place on map"
                   ></iframe>
