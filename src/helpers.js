@@ -52,7 +52,8 @@ export function getAreaPermalink(area) {
  */
 export async function getPlaceDetailsFromGoogle(placeId) {
   const baseUri = "https://maps.googleapis.com/maps/api/place/details/json";
-  const googleMapsAPiKey = "AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8";
+  // Key locked by IP because referer does not work.
+  const googleMapsAPiKey = "AIzaSyArzTadmFlWv6x_03WFYPL9kZ-RaUsFnRs";
 
   var requestParams = {
     key: googleMapsAPiKey,
@@ -62,10 +63,8 @@ export async function getPlaceDetailsFromGoogle(placeId) {
   };
 
   const requestUri = `${baseUri}?${querystring.stringify(requestParams)}`;
-  console.log(`Fetch start requestUri ${requestUri}`);
   const result = await fetch(requestUri);
   const resultData = await result.json();
-  console.log(`Fetch done requestUri ${requestUri}`);
 
   // console.log("requestUri:", requestUri);
   // console.log("resultData", resultData);

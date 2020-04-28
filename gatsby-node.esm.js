@@ -32,7 +32,9 @@ async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
 
     if (googleplaceDetails.status !== "OK") {
       reporter.panicOnBuild(
-        `Error while getting information for place from Google. title: ${title}, placeID: ${placeID}`
+        `Error while getting information for place from Google. title: ${title}, placeID: ${placeID}, ${JSON.stringify(
+          googleplaceDetails
+        )}`
       );
     }
 
@@ -124,7 +126,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   // Create JSON file with Google Places information.
-  // await updateGooglePlacesLocalJSONFile(resultAllPlaces.data, reporter);
+  await updateGooglePlacesLocalJSONFile(resultAllPlaces.data, reporter);
 
   // Create single pages for all places.
   resultAllPlaces.data.allFile.edges.forEach(({ node }) => {
