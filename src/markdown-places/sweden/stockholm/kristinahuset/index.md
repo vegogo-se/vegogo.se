@@ -1,6 +1,6 @@
 ---
 title: Café Kristinahuset
-placeId: ChIJYa6mQ6B5X0YRABwzFp6PU8A
+placeID: ChIJYa6mQ6B5X0YRABwzFp6PU8A
 images:
   - kristinahuset-1.jpg
   - kristinahuset-2.jpg

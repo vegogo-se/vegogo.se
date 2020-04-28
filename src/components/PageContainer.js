@@ -14,7 +14,7 @@ class PageContainer extends Component {
 
         <SiteHeader />
 
-        {this.props.children}
+        <main>{this.props.children}</main>
 
         <NewsletterSignup />
         <SiteFooter />

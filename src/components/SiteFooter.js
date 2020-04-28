@@ -27,7 +27,9 @@ class SiteFooter extends Component {
 
           <p className="text-3xl pb-12">
             curated for you with
-            <span className="text-red-800 ml-2" role="img" aria-label="Heart">❤️</span>
+            <span className="text-red-800 ml-2" role="img" aria-label="Heart">
+              ❤️
+            </span>
           </p>
 
           <p>

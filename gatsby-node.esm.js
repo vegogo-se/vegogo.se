@@ -24,7 +24,7 @@ async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
     );
 
     if (!placeID) {
-      console.log("Skipping place");
+      // console.log("Skipping place");
       continue;
     }
 
