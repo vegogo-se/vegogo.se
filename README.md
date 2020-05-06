@@ -50,6 +50,7 @@ Examples:
   - animerad burger
 - gör "nära mig"-sidan
   - alla platser som json, lat+lng+slug+title+ev nåt mer i en fil, alla i en annan? eller allt i en, inte så mkt data vi har hur som helst.
+- lägg in google places api-nyckel som secret i zeit now.
 - Lägg in exempelsida /exempel för komponenter + hur man använder TailWind CSS och styled-jsx.
 - Skapa sidor för areas och mattyper.
 - Skapa sidor https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/

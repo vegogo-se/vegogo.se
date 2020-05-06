@@ -1,6 +1,7 @@
 import React from "react";
 import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
+import { highlightWords } from "../functions";
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
@@ -13,6 +14,8 @@ export function PlaceSingle(props) {
     googlePlaceInfo,
     images,
   } = place;
+
+  const htmlHighlighted = highlightWords(html);
 
   let tease;
   if (title && tagline) {
@@ -55,6 +58,7 @@ export function PlaceSingle(props) {
                 // scrollSnapStop: "always",
               }}
               className="relative w-10/12 flex-grow flex-shrink-0 overflow-hidden bg-pink-100 border-pink-400 border-0"
+              key={path + image.childImageSharp.fluid.src}
             >
               <Img
                 key={image.childImageSharp.fluid.src}
@@ -78,12 +82,21 @@ export function PlaceSingle(props) {
               div > :global(p) {
                 @apply mt-6 leading-relaxed;
               }
+
+              div > :global(p mark) {
+                padding: 6px 0px 0px 0px;
+              }
             `}</style>
 
             <div
               className="mt-4 mb-12 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: html }}
+              dangerouslySetInnerHTML={{ __html: htmlHighlighted }}
             />
+
+            {/* <div
+              className="mt-4 mb-12 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: html }}
+            /> */}
           </>
 
           {/* If place has info like adress, map, opening hours. */}
@@ -109,9 +122,9 @@ export function PlaceSingle(props) {
                     className="w-full mt-6"
                     width="600"
                     height="250"
-                    frameborder="0"
+                    frameBorder="0"
                     src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&q=place_id:${placeID}`}
-                    allowfullscreen
+                    allowFullScreen
                     title="Place on map"
                   ></iframe>
                 )}

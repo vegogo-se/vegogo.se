@@ -42,7 +42,7 @@ export function Navigation(props) {
 
   return (
     <nav
-      className={`SiteNav bg-vegogo-green fixed inset-0 z-40 p-6 ${navClass}`}
+      className={`SiteNav bg-vegogo-green absolute inset-0 z-40 p-6 ${navClass}`}
     >
       <button
         onClick={props.handleNavClose}
@@ -97,7 +97,6 @@ export function Navigation(props) {
         <li className="pt-10">
           <Link
             className="text-4xl"
-            exact
             onClick={props.handleNavClose}
             to="/page/about"
           >
@@ -107,7 +106,6 @@ export function Navigation(props) {
         <li>
           <Link
             className="text-4xl"
-            exact
             onClick={props.handleNavClose}
             to="/page/contact"
           >
@@ -117,7 +115,6 @@ export function Navigation(props) {
         <li>
           <Link
             className="text-4xl"
-            exact
             onClick={props.handleNavClose}
             to="/page/partner"
           >
@@ -127,7 +124,6 @@ export function Navigation(props) {
         <li>
           <Link
             className="text-4xl"
-            exact
             onClick={props.handleNavClose}
             to="/page/newsletter"
           >
@@ -136,12 +132,7 @@ export function Navigation(props) {
         </li>
 
         <li>
-          <Link
-            className="text-4xl"
-            exact
-            onClick={props.handleNavClose}
-            to="/"
-          >
+          <Link className="text-4xl" onClick={props.handleNavClose} to="/">
             Home
           </Link>
         </li>
