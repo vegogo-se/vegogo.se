@@ -48,6 +48,9 @@ Examples:
 
 - Pågår: Gör sidhuvud i tailwind
   - animerad burger
+  - kunna scrolla meny på mindre skärmar
+- place overview: 4 places i bredd på bredare skärmar
+- place: snyggare öppettider
 - gör "nära mig"-sidan
   - alla platser som json, lat+lng+slug+title+ev nåt mer i en fil, alla i en annan? eller allt i en, inte så mkt data vi har hur som helst.
 - lägg in google places api-nyckel som secret i zeit now.
