@@ -43,11 +43,13 @@ export function highlightWords(html) {
   ];
 
   words.forEach((wordOptions) => {
-    // const regexp = new RegExp(wordOptions.word, "gi")
-    // const replace = 'ap'
+    // Use split + join to search and replace text.
+    // Solution from https://stackoverflow.com/a/500144
     html = html
       .split(` ${wordOptions.word} `)
-      .join(` <mark class='mark ${wordOptions.class}'>${wordOptions.word}</mark> `);
+      .join(
+        ` <mark class='mark ${wordOptions.class}'>${wordOptions.word}</mark> `
+      );
     return html;
   });
 
