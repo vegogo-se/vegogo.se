@@ -11,7 +11,7 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
 - GraphQL för att hämta data.
 - Platser som markdown-dokument i
   - `markdown-pages`,
-  - `markdown-places, samt
+  - `markdown-places`, samt
   - `markdown-areas`.
 - Google Place ID används för att hitta adress, geolocation, öppettider för en plats. Använd denna sida för att hitta Place ID för en plats:
   https://developers.google.com/places/place-id.
