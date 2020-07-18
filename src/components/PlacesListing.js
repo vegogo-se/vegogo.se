@@ -19,7 +19,7 @@ function PlacesListing(props) {
       let { path } = place;
 
       return (
-        <li key={path} className="w-1/2">
+        <li key={path} className="w-1/2 lg:w-1/4">
           <PlaceOverview path={path} />
         </li>
       );
