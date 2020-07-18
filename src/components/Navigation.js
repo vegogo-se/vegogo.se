@@ -42,7 +42,7 @@ export function Navigation(props) {
 
   return (
     <nav
-      className={`SiteNav bg-vegogo-green absolute inset-0 z-40 p-6 ${navClass}`}
+      className={`SiteNav bg-vegogo-green fixed overflow-auto inset-0 z-40 p-6 ${navClass}`}
     >
       <button
         onClick={props.handleNavClose}
