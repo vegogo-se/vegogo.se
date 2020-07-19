@@ -5,6 +5,8 @@ The new guide ⚡️Curated and inspirational ⚡️The best vegan places to eat
 The guide will launch soon at [Vegogo.se](https://vegogo.se).
 Development URL is currently https://vegogo.eskapism.se/.
 
+![Deploy to vegogo.eskapism.se](https://github.com/vegogo-se/vegogo.se/workflows/Deploy%20to%20vegogo.eskapism.se/badge.svg)
+
 ## Tekniker och allmän översikt
 
 - Design in Figma: https://www.figma.com/file/RWg83dFW9fejBJV4S4GLc5mP/Vegogo-2019?node-id=127%3A304
