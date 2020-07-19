@@ -6,6 +6,7 @@ The guide will launch soon at [Vegogo.se](https://vegogo.se).
 
 ## Tekniker och allmän översikt
 
+- Design in Figma: https://www.figma.com/file/RWg83dFW9fejBJV4S4GLc5mP/Vegogo-2019?node-id=127%3A304
 - Node version 10. Kör `nvm use` i mappen för att byta till rätt version. Gatsby verkar låsa sig vid build om t.ex. Node 12 används.
 - Gatsby JS för att bygga.
 - GraphQL för att hämta data.
