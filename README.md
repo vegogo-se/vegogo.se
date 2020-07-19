@@ -46,9 +46,11 @@ Examples:
 
 ## Todo
 
+- Sätt upp deploy till Dokku
+  https://medium.com/@mixpeal/deploying-gatsbyjs-app-to-dokku-4a7cc81840a9
 - Pågår: Gör sidhuvud i tailwind
   - animerad burger
-  - kunna scrolla meny på mindre skärmar
+  - [/] kunna scrolla meny på mindre skärmar
 - place: snyggare öppettider
 - gör "nära mig"-sidan
   - alla platser som json, lat+lng+slug+title+ev nåt mer i en fil, alla i en annan? eller allt i en, inte så mkt data vi har hur som helst.
