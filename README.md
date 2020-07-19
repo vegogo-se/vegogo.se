@@ -47,7 +47,6 @@ Examples:
 ## Todo
 
 - Sätt upp deploy till Dokku
-  https://medium.com/@mixpeal/deploying-gatsbyjs-app-to-dokku-4a7cc81840a9
 - Pågår: Gör sidhuvud i tailwind
   - animerad burger
   - [/] kunna scrolla meny på mindre skärmar
