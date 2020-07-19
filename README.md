@@ -46,18 +46,9 @@ Examples:
 
 ## Todo
 
-- Sätt upp deploy till Dokku
 - Pågår: Gör sidhuvud i tailwind
   - animerad burger
-  - [/] kunna scrolla meny på mindre skärmar
-- place: snyggare öppettider
-- gör "nära mig"-sidan
-  - alla platser som json, lat+lng+slug+title+ev nåt mer i en fil, alla i en annan? eller allt i en, inte så mkt data vi har hur som helst.
-- lägg in google places api-nyckel som secret i zeit now.
-- Lägg in exempelsida /exempel för komponenter + hur man använder TailWind CSS och styled-jsx.
-- Skapa sidor för areas och mattyper.
 - Skapa sidor https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/
-- Få in platser och areas.
 - Använda https://www.gatsbyjs.org/packages/gatsby-plugin-json-output/?=json för att få ut JSON med alla platser, typ api som vi kan använda för geolocation-saker
 - Använda https://github.com/Creatiwity/gatsby-plugin-favicon för favicon?
 - https://www.gatsbyjs.org/docs/adding-search-with-js-search/
