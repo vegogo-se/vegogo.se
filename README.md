@@ -3,6 +3,9 @@
 The new guide ⚡️Curated and inspirational ⚡️The best vegan places to eat ⚡️Near you.
 
 The guide will launch soon at [Vegogo.se](https://vegogo.se).
+Development URL is currently https://vegogo.eskapism.se/.
+
+![Deploy to vegogo.eskapism.se](https://github.com/vegogo-se/vegogo.se/workflows/Deploy%20to%20vegogo.eskapism.se/badge.svg)
 
 ## Tekniker och allmän översikt
 
