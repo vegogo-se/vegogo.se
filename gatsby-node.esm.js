@@ -54,6 +54,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
   const pageTemplate = path.resolve(`src/templates/pageTemplate.js`);
   const placeTemplate = path.resolve(`src/templates/placeTemplate.js`);
+  const areaTemplate = path.resolve(`src/templates/areaTemplate.js`);
 
   // Get paths to all text pages, like "About us", "Contact", etc.
   const result = await graphql(`
@@ -140,4 +141,54 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       }, // additional data can be passed via context
     });
   });
+
+  /**
+   * Get areas and create pages for each area.
+   */
+  const resultAllAreas = await graphql(`
+    query Places {
+      allFile(
+        filter: {
+          sourceInstanceName: { eq: "markdown-areas" }
+          extension: { eq: "md" }
+          childMarkdownRemark: { frontmatter: { draft: { ne: true } } }
+        }
+      ) {
+        edges {
+          node {
+            relativePath
+            childMarkdownRemark {
+              frontmatter {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  // Create single pages for all places.
+  resultAllAreas.data.allFile.edges.forEach(({ node }) => {
+    const { relativePath } = node;
+    const path = getPlaceURIFromRelativePath(relativePath);
+    // sweden/stockholm/index.md
+    // sweden/stockholm/sofo/index.md
+    // sweden/stockholm/södermalm/index.md
+    // sweden/stockholm/gamla stan/index.md
+    console.log(`Create page for area ${relativePath} with path ${path}`);
+    createPage({
+      path,
+      component: areaTemplate,
+      context: {
+        relativePath,
+      },
+    });
+  });
+
+  console.log(
+    "resultAllAreas",
+    resultAllAreas,
+    JSON.stringify(resultAllAreas, null, "\t")
+  );
 };
