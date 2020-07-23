@@ -31,18 +31,14 @@ export function PlaceSingle(props) {
     );
   } else if (title) {
     // Only place title so make it large.
-    tease = (
-      <h1 className="text-5xl leading-tight leading-tight mt-2 mb-8">
-        {title}
-      </h1>
-    );
+    tease = <h1 className="text-5xl leading-tight mt-2 mb-8">{title}</h1>;
   }
 
   return (
     <article key={path}>
       {/* Output images. */}
       <div
-        className="relative block flex overflow-scroll"
+        className="relative flex overflow-scroll"
         style={{ scrollSnapType: "x mandatory" }}
       >
         {images.map((image) => {
