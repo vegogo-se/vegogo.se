@@ -42,6 +42,7 @@ URL:s are created using the following pattern:
 
 Examples:
 
+- `/sweden/stockholm/`
 - `/sweden/stockholm/södermalm`
 - `/sweden/stockholm/sofo`
 
