@@ -75,3 +75,6 @@ googlePlacesInfo.json
 
 # VSCode config
 .vscode
+
+# Local log
+readme.log.md
