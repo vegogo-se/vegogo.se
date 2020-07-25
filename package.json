@@ -10,7 +10,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "test": "jest",
     "dev": "gatsby develop",
     "heroku-postbuild": "GATSBY_CPU_COUNT=1 gatsby build"
   },
@@ -46,10 +46,15 @@
     "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "devDependencies": {
+    "babel-jest": "^26.1.0",
+    "babel-preset-gatsby": "^0.5.4",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.10",
     "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "react-test-renderer": "^16.13.1",
     "tailwindcss": "^1.5.2"
   },
   "repository": {

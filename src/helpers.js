@@ -85,11 +85,20 @@ export async function getPlaceDetailsFromGoogle(placeId) {
  * <country>/<city>/<place>
  *
  * @param string relativePath Path like 'sweden/stockholm/example-place/index.md'
+ *               or '"/sweden/stockholm/index.md"'
  * @return string Place URI like /sweden/stockholm/example-place/
  */
 export function getPlaceURIFromRelativePath(relativePath) {
-  // Keep whole path but last part with filename.
-  return "/" + relativePath.split("/").splice(0, 3).join("/");
+  // Remove any first slash /.
+  relativePath = relativePath.replace(/^\//, "");
+
+  // Remove any last /index.md
+  relativePath = relativePath.replace(/\/index.md$/, "");
+
+  // Add slash first.
+  relativePath = `/${relativePath}`;
+
+  return relativePath;
 }
 
 // Create array with only the slugs of each place.
