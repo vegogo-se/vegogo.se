@@ -3,35 +3,40 @@ import closeImg from "../images/icon-close.svg";
 import { Link } from "gatsby";
 
 let stockholmSubAreas = [
-  {
-    name: "City",
-    to: "/stockholm/city",
-  },
+  // {
+  //   name: "City",
+  //   to: "/sweden/stockholm/city",
+  // },
 
-  {
-    name: "Kungsholmen",
-    to: "/stockholm/kungsholmen",
-  },
+  // {
+  //   name: "Kungsholmen",
+  //   to: "/sweden/stockholm/kungsholmen",
+  // },
 
   {
     name: "Old Town",
-    to: "/stockholm/gamla-stan",
+    to: "/sweden/stockholm/gamla-stan",
   },
 
   {
     name: "Södermalm",
-    to: "/stockholm/sodermalm",
+    to: "/sweden/stockholm/sodermalm",
   },
 
   {
-    name: "Vasastan",
-    to: "/stockholm/vasastan",
+    name: "SOFO",
+    to: "/sweden/stockholm/sofo",
   },
 
-  {
-    name: "Östermalm",
-    to: "/stockholm/ostermalm ",
-  },
+  // {
+  //   name: "Vasastan",
+  //   to: "/sweden/stockholm/vasastan",
+  // },
+
+  // {
+  //   name: "Östermalm",
+  //   to: "/sweden/stockholm/ostermalm ",
+  // },
 ];
 
 // Opened navigation.
@@ -74,7 +79,7 @@ export function Navigation(props) {
         <li className="">
           <Link
             onClick={props.handleNavClose}
-            to="/stockholm"
+            to="/sweden/stockholm"
             className="text-4xl"
           >
             Stockholm

@@ -10,8 +10,8 @@ describe("Place and area file paths", () => {
       "sweden/stockholm/mahalo/index.md": "/sweden/stockholm/mahalo",
       "sweden/stockholm/index.md": "/sweden/stockholm",
       "sweden/stockholm/sofo/index.md": "/sweden/stockholm/sofo",
-      "sweden/stockholm/södermalm/index.md": "/sweden/stockholm/södermalm",
-      "sweden/stockholm/gamla stan/index.md": "/sweden/stockholm/gamla stan",
+      "sweden/stockholm/södermalm/index.md": "/sweden/stockholm/sodermalm",
+      "sweden/stockholm/gamla stan/index.md": "/sweden/stockholm/gamla-stan",
     };
 
     for (const [path, url] of Object.entries(pathsToUrls)) {

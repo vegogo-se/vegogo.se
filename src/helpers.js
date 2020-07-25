@@ -4,6 +4,7 @@
 // import { useStaticQuery } from "gatsby";
 const fetch = require(`node-fetch`);
 const querystring = require("querystring");
+const slugify = require("slugify");
 
 /**
  * Return formatted homepage.
@@ -97,6 +98,12 @@ export function getPlaceURIFromRelativePath(relativePath) {
 
   // Add slash first.
   relativePath = `/${relativePath}`;
+
+  // Spaces to dashes " " -> "-" and "åäö" -> "aao" etc.
+  relativePath = slugify(relativePath, {
+    // Allow "/" so we don't have to do more work on the URLs..
+    remove: /[^\w\s$*_+~.()'"!\-:@/]/g,
+  });
 
   return relativePath;
 }

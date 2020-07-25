@@ -42,6 +42,7 @@
     "react-pose": "^4.0.10",
     "react-static-google-map": "^0.5.5",
     "react-swipeable": "^5.5.1",
+    "slugify": "^1.4.4",
     "styled-jsx": "^3.3.0",
     "styled-jsx-plugin-postcss": "^2.0.1"
   },
