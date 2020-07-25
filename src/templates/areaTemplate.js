@@ -35,15 +35,16 @@ export default function Template({
                 fluid={image.childImageSharp.fluid}
                 alt={image.name}
                 title={image.name}
-                xstyle={{ position: "absolute" }}
-                xclassName="absolute inset-0 z-10"
+                className="w-2/3 mx-auto"
               />
             </div>
           );
         })}
 
-      <h1>{title}</h1>
-      {/* <PlaceSingle path={path} /> */}
+      <h1 className="text-center text-4xl">{title}</h1>
+
+      <p>Places for area comes here</p>
+      <p>Path: {path}</p>
     </PageContainer>
   );
 }
