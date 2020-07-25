@@ -14,7 +14,7 @@ class PageContainer extends Component {
 
         <SiteHeader />
 
-        <main>{this.props.children}</main>
+        <main className="max-w-screen-lg mx-auto">{this.props.children}</main>
 
         <NewsletterSignup />
         <SiteFooter />
