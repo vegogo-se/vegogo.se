@@ -8,6 +8,7 @@ describe("Place and area file paths", () => {
       "sweden/stockholm/example-place/index.md":
         "/sweden/stockholm/example-place",
       "sweden/stockholm/mahalo/index.md": "/sweden/stockholm/mahalo",
+      "sweden/stockholm/Mahalo/index.md": "/sweden/stockholm/mahalo",
       "sweden/stockholm/index.md": "/sweden/stockholm",
       "sweden/stockholm/sofo/index.md": "/sweden/stockholm/sofo",
       "sweden/stockholm/södermalm/index.md": "/sweden/stockholm/sodermalm",

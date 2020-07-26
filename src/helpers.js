@@ -105,6 +105,9 @@ export function getPlaceURIFromRelativePath(relativePath) {
     remove: /[^\w\s$*_+~.()'"!\-:@/]/g,
   });
 
+  // Make lowercase.
+  relativePath = relativePath.toLowerCase();
+
   return relativePath;
 }
 
