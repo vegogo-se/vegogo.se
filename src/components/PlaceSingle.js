@@ -119,7 +119,7 @@ export function PlaceSingle(props) {
                     width="600"
                     height="250"
                     frameBorder="0"
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8&q=place_id:${placeID}`}
+                    src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GATSBY_GOOGLE_MAPS_PUBLIC_API_KEY}&q=place_id:${placeID}`}
                     allowFullScreen
                     title="Place on map"
                   ></iframe>

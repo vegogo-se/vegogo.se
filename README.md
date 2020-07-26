@@ -7,6 +7,13 @@ Development URL is currently https://vegogo.eskapism.se/.
 
 ![Deploy to vegogo.eskapism.se](https://github.com/vegogo-se/vegogo.se/workflows/Deploy%20to%20vegogo.eskapism.se/badge.svg)
 
+## Start developing
+
+- Create `.env.development` in root and add `GATSBY_GOOGLE_MAPS_PUBLIC_API_KEY=AIzaSyCYCr0ilOmynS4WcS-OSOPTcdDWfDpSMw8`
+- `npm install`
+- `npm start` to start local development
+- Push to `main` at GitHub to deploy to https://vegogo.eskapism.se/.
+
 ## Tekniker och allmän översikt
 
 - Design in Figma: https://www.figma.com/file/RWg83dFW9fejBJV4S4GLc5mP/Vegogo-2019?node-id=127%3A304
