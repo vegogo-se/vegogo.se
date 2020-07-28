@@ -132,9 +132,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // Create single pages for all places.
   resultAllPlaces.data.allFile.edges.forEach(({ node }) => {
     const { relativePath } = node;
-    console.log(`Create page ${relativePath}`);
+    const path = getPlaceURIFromRelativePath(relativePath);
+    console.log(`Create page ${relativePath} with path ${path}`);
     createPage({
-      path: getPlaceURIFromRelativePath(relativePath),
+      path,
       component: placeTemplate,
       context: {
         relativePath,
@@ -186,9 +187,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 
-  console.log(
-    "resultAllAreas",
-    resultAllAreas,
-    JSON.stringify(resultAllAreas, null, "\t")
-  );
+  // console.log(
+  //   "resultAllAreas",
+  //   resultAllAreas,
+  //   JSON.stringify(resultAllAreas, null, "\t")
+  // );
 };
