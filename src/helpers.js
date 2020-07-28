@@ -111,7 +111,12 @@ export function getPlaceURIFromRelativePath(relativePath) {
   return relativePath;
 }
 
-// Create array with only the slugs of each place.
+/**
+ * Create array with only the slugs of each place.
+ *
+ * Example return:
+ * ["/sweden/stockholm/babylon", "/sweden/stockholm/bliss-cafe", … ]
+ */
 export function getPlacePaths(places) {
   const placePaths = places.map((place) => {
     return place.path;
@@ -127,4 +132,27 @@ export function getPlacesMatchingPlacePaths(allPlaces, placePaths) {
   });
 
   return selectedPlaces;
+}
+
+/**
+ * Get information from the path of an area or place.
+ * Place URL "/sweden/stockholm/mahalo" will return
+ * {
+ *   country: sweden
+ *   city: stockholm
+ *   placeOrArea: mahalo
+ * }
+ */
+export function getInfoFromPath(path) {
+  // Remove any first slash.
+  path = path.replace(/^\//, "");
+
+  // Split on slash, "/".
+  const pathParts = path.split("/");
+
+  return {
+    country: pathParts[0],
+    city: pathParts[1],
+    placeOrArea: pathParts[2],
+  };
 }

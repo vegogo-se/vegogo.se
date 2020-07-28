@@ -1,6 +1,9 @@
 // import React from "react";
 // import renderer from "react-test-renderer";
-const { getPlaceURIFromRelativePath } = require("../src/helpers");
+const {
+  getPlaceURIFromRelativePath,
+  getInfoFromPath,
+} = require("../src/helpers");
 
 describe("Place and area file paths", () => {
   it("transforms to URL paths", () => {
@@ -18,9 +21,26 @@ describe("Place and area file paths", () => {
     for (const [path, url] of Object.entries(pathsToUrls)) {
       expect(getPlaceURIFromRelativePath(path)).toBe(url);
     }
+  });
+});
 
-    expect(
-      getPlaceURIFromRelativePath("sweden/stockholm/example-place/index.md")
-    ).toBe("/sweden/stockholm/example-place");
+describe("Place and area info from URL", () => {
+  it("transforms to URL paths", () => {
+    let pathsToObjects = {
+      "/sweden/stockholm/example-place": {
+        country: "sweden",
+        city: "stockholm",
+        placeOrArea: "example-place",
+      },
+      "/sweden/stockholm/sodermalm": {
+        country: "sweden",
+        city: "stockholm",
+        placeOrArea: "sodermalm",
+      },
+    };
+
+    for (const [path, obj] of Object.entries(pathsToObjects)) {
+      expect(getInfoFromPath(path)).toMatchObject(obj);
+    }
   });
 });
