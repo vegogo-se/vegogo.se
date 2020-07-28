@@ -4,7 +4,46 @@ import { Helmet } from "react-helmet";
 import Img from "gatsby-image";
 import PageContainer from "../components/PageContainer";
 // import { PlaceSingle } from "../components/PlaceSingle";
-import { getPlaceURIFromRelativePath } from "../helpers";
+import { getPlaceURIFromRelativePath, getInfoFromPath } from "../helpers";
+import PlacesListing from "../components/PlacesListing";
+
+function AreaPlacesListing(props) {
+  const { path } = props;
+  const pathInfo = getInfoFromPath(path);
+
+  const placePaths = ["/sweden/stockholm/babylon", "/sweden/stockholm/mahalo"];
+
+  /* 
+  Path examples:
+  /sweden/stockholm
+  /sweden/stockholm/sodermalm
+  country + city + area
+  so find places with that country
+  
+  1. hämta ut alla platser som matchar land + stad + ev. area
+  2. skapa array med alla sökvägar till ställena, t.ex. ["/sweden/stockholm/babylon"]
+  3. <PlacesListing placePaths={placePaths} />
+  */
+
+  return (
+    <div>
+      <p>
+        This is <code>AreaPlaces</code>.
+      </p>
+      <p>Places for area comes here</p>
+      <p>
+        Path: <code>{path}</code>
+      </p>
+      <p>
+        placePaths: <code>{JSON.stringify(placePaths)}</code>
+      </p>
+      <p>
+        pathInfo: <code>{JSON.stringify(pathInfo)}</code>
+      </p>
+      {/* <PlacesListing placePaths={placePaths} /> */}
+    </div>
+  );
+}
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -43,8 +82,7 @@ export default function Template({
 
       <h1 className="text-center text-4xl">{title}</h1>
 
-      <p>Places for area comes here</p>
-      <p>Path: {path}</p>
+      <AreaPlacesListing path={path} />
     </PageContainer>
   );
 }
