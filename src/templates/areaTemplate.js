@@ -9,12 +9,12 @@ import PlacesListing from "../components/PlacesListing";
 import { useAllPlaces } from "../hooks/useAllPlaces";
 const slugify = require("slugify");
 
+/**
+ * List places for an area.
+ */
 function AreaPlacesListing(props) {
   const { path } = props;
   const areaPathInfo = getInfoFromPath(path);
-
-  // Test values. Remove later.
-  const placePaths = ["/sweden/stockholm/babylon", "/sweden/stockholm/mahalo"];
 
   // Find the places matching country + city + place
   const allPlaces = useAllPlaces();
@@ -35,16 +35,9 @@ function AreaPlacesListing(props) {
     // If areaPathInfo.placeOrArea exists then area shown is an area of a city, so show only places for that area.
     // If areaPathInfo.placeOrArea does not exist it's only a city, so show all places for that city.
     if (areaPathInfo.placeOrArea) {
-      console.group("One place");
-      // console.log("place", place.areas, place.path, place.pathInfo);
-      // console.log("place.pathInfo", place.pathInfo);
-      // console.log("areaPathInfo", areaPathInfo);
-      console.log("areaPathInfo.placeOrArea", areaPathInfo.placeOrArea);
       // Make areas slugified to test.
       const slugifiedAreas =
         place.areas && place.areas.map((val) => slugify(val, { lower: true }));
-      console.log("slugifiedAreas", slugifiedAreas);
-      console.log("place.areas", place.areas);
       if (slugifiedAreas && slugifiedAreas.includes(areaPathInfo.placeOrArea)) {
         // Keep
       } else {
@@ -58,9 +51,6 @@ function AreaPlacesListing(props) {
 
   const areaPlacesPaths = areaPlaces.map((place) => place.path);
 
-  console.log("areaPlaces", areaPlaces);
-  console.log("areaPlacesPaths", areaPlacesPaths);
-
   /* 
   Path examples:
   /sweden/stockholm
@@ -73,11 +63,7 @@ function AreaPlacesListing(props) {
   3. <PlacesListing placePaths={placePaths} />
   */
 
-  return (
-    <div>
-      <PlacesListing placePaths={areaPlacesPaths} />
-    </div>
-  );
+  return <PlacesListing placePaths={areaPlacesPaths} />;
 }
 
 export default function Template({
@@ -86,9 +72,10 @@ export default function Template({
 }) {
   const { file } = data;
   const { childMarkdownRemark, relativePath } = file; // data.markdownRemark holds your post data
-  const { frontmatter } = childMarkdownRemark;
+  const { frontmatter, html } = childMarkdownRemark;
   const { title, images } = frontmatter;
   const path = getPlaceURIFromRelativePath(relativePath);
+  console.log("childMarkdownRemark", childMarkdownRemark);
 
   return (
     <PageContainer>
@@ -116,6 +103,11 @@ export default function Template({
         })}
 
       <h1 className="text-center text-4xl">{title}</h1>
+
+      <div
+        className="mt-4 mb-16 text-center"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
 
       <AreaPlacesListing path={path} />
     </PageContainer>
