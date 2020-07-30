@@ -56,7 +56,10 @@ function AreaPlacesListing(props) {
     return keepPlace;
   });
 
+  const areaPlacesPaths = areaPlaces.map((place) => place.path);
+
   console.log("areaPlaces", areaPlaces);
+  console.log("areaPlacesPaths", areaPlacesPaths);
 
   /* 
   Path examples:
@@ -72,20 +75,7 @@ function AreaPlacesListing(props) {
 
   return (
     <div>
-      <p>
-        This is <code>AreaPlaces</code>.
-      </p>
-      <p>Places for area comes here</p>
-      <p>
-        Path: <code>{path}</code>
-      </p>
-      <p>
-        placePaths: <code>{JSON.stringify(placePaths)}</code>
-      </p>
-      <p>
-        areaPathInfo: <code>{JSON.stringify(areaPathInfo)}</code>
-      </p>
-      {/* <PlacesListing placePaths={placePaths} /> */}
+      <PlacesListing placePaths={areaPlacesPaths} />
     </div>
   );
 }
