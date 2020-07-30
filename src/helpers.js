@@ -103,6 +103,7 @@ export function getPlaceURIFromRelativePath(relativePath) {
   relativePath = slugify(relativePath, {
     // Allow "/" so we don't have to do more work on the URLs..
     remove: /[^\w\s$*_+~.()'"!\-:@/]/g,
+    lower: true,
   });
 
   // Make lowercase.

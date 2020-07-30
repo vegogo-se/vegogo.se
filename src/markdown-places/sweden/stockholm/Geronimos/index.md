@@ -1,5 +1,7 @@
 ---
 title: Geronimos
+areas:
+  - Gamla Stan
 placeID: ChIJZRsrFOJ3X0YRyHOypg19wDI
 images:
   - Geronimos 1.jpg

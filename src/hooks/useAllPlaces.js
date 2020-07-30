@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby";
-import { getPlaceURIFromRelativePath } from "../helpers";
+import { getPlaceURIFromRelativePath, getInfoFromPath } from "../helpers";
 import googlePlacesInfo from "../../googlePlacesInfo.json";
 
 /**
@@ -47,6 +47,11 @@ export const query = graphql`
   }
 `;
 
+/**
+ * Return all places.
+ *
+ * @return array Array with places.
+ */
 export const useAllPlaces = () => {
   const allPlaces = useStaticQuery(graphql`
     query Places {
@@ -80,6 +85,7 @@ export const useAllPlaces = () => {
     const { html, excerpt } = node.childMarkdownRemark;
     const { relativePath } = node;
     const path = getPlaceURIFromRelativePath(relativePath);
+    const pathInfo = getInfoFromPath(path);
     const googlePlaceInfo = getGooglePlaceDetailsForPlace(placeID);
 
     return {
@@ -92,6 +98,7 @@ export const useAllPlaces = () => {
       relativePath,
       images,
       path,
+      pathInfo,
       googlePlaceInfo,
     };
   });

@@ -6,12 +6,57 @@ import PageContainer from "../components/PageContainer";
 // import { PlaceSingle } from "../components/PlaceSingle";
 import { getPlaceURIFromRelativePath, getInfoFromPath } from "../helpers";
 import PlacesListing from "../components/PlacesListing";
+import { useAllPlaces } from "../hooks/useAllPlaces";
+const slugify = require("slugify");
 
 function AreaPlacesListing(props) {
   const { path } = props;
-  const pathInfo = getInfoFromPath(path);
+  const areaPathInfo = getInfoFromPath(path);
 
+  // Test values. Remove later.
   const placePaths = ["/sweden/stockholm/babylon", "/sweden/stockholm/mahalo"];
+
+  // Find the places matching country + city + place
+  const allPlaces = useAllPlaces();
+  const areaPlaces = allPlaces.filter((place) => {
+    // Keep only matching places.
+    let keepPlace = true;
+
+    // Don't keep place if city of place is not same city as area.
+    if (areaPathInfo.city !== place.pathInfo.city) {
+      keepPlace = false;
+    }
+
+    // Don't keep place if country of place is not same country as area contry.
+    if (areaPathInfo.country !== place.pathInfo.country) {
+      keepPlace = false;
+    }
+
+    // If areaPathInfo.placeOrArea exists then area shown is an area of a city, so show only places for that area.
+    // If areaPathInfo.placeOrArea does not exist it's only a city, so show all places for that city.
+    if (areaPathInfo.placeOrArea) {
+      console.group("One place");
+      // console.log("place", place.areas, place.path, place.pathInfo);
+      // console.log("place.pathInfo", place.pathInfo);
+      // console.log("areaPathInfo", areaPathInfo);
+      console.log("areaPathInfo.placeOrArea", areaPathInfo.placeOrArea);
+      // Make areas slugified to test.
+      const slugifiedAreas =
+        place.areas && place.areas.map((val) => slugify(val, { lower: true }));
+      console.log("slugifiedAreas", slugifiedAreas);
+      console.log("place.areas", place.areas);
+      if (slugifiedAreas && slugifiedAreas.includes(areaPathInfo.placeOrArea)) {
+        // Keep
+      } else {
+        keepPlace = false;
+      }
+      console.groupEnd();
+    }
+
+    return keepPlace;
+  });
+
+  console.log("areaPlaces", areaPlaces);
 
   /* 
   Path examples:
@@ -38,7 +83,7 @@ function AreaPlacesListing(props) {
         placePaths: <code>{JSON.stringify(placePaths)}</code>
       </p>
       <p>
-        pathInfo: <code>{JSON.stringify(pathInfo)}</code>
+        areaPathInfo: <code>{JSON.stringify(areaPathInfo)}</code>
       </p>
       {/* <PlacesListing placePaths={placePaths} /> */}
     </div>
