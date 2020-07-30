@@ -16,7 +16,7 @@ function Home() {
         <title>Vegogo - the new guide to vegan eating</title>
       </Helmet>
 
-      <h1 className="font-headline text-center text-6xl py-8 px-1">
+      <h1 className="font-headline font-normal text-center text-6xl py-8 px-1">
         <Link to="/page/about" title="Read more about Vegogo">
           The
           <br />
