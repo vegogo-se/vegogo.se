@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
@@ -57,6 +57,7 @@ function isPlaceOpenedNow(googlePlaceInfo) {
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
+  const [showOpenHours, setShowOpenHours] = useState(false);
   const {
     title,
     tagline,
@@ -137,7 +138,7 @@ export function PlaceSingle(props) {
               }
             `}</style>
 
-            <div
+            <button
               className="mt-4 mb-12 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: htmlHighlighted }}
             />
@@ -185,10 +186,21 @@ export function PlaceSingle(props) {
                   </p>
                 )}
 
-                <div className="text-sm">
-                  Opening hours:{" "}
-                  {isOpenedNow === "OPENED" && <p>Seems to be open now!</p>}
-                  <pre>
+                <div className="text-sm mt-6">
+                  <button
+                    className="flex w-full text-left"
+                    onClick={() => {
+                      setShowOpenHours(!showOpenHours);
+                    }}
+                  >
+                    <div className="flex-1">
+                      {isOpenedNow === "OPENED" && <p>Open now</p>}
+                      {isOpenedNow === "CLOSED" && <p>Opening hours</p>}
+                    </div>
+                    <span className="flex-none">+</span>
+                  </button>
+
+                  <pre className={`${showOpenHours ? "block" : "hidden"}`}>
                     {googlePlaceInfo.opening_hours &&
                       JSON.stringify(
                         googlePlaceInfo.opening_hours.weekday_text,
