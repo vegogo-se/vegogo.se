@@ -186,7 +186,8 @@ export function PlaceSingle(props) {
                 )}
 
                 <div className="text-sm">
-                  Opening hours: {isOpenedNow && <p>Seems to be open now!</p>}
+                  Opening hours:{" "}
+                  {isOpenedNow === "OPENED" && <p>Seems to be open now!</p>}
                   <pre>
                     {googlePlaceInfo.opening_hours &&
                       JSON.stringify(
