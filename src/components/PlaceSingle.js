@@ -12,6 +12,16 @@ import { highlightWords } from "../functions";
 function isPlaceOpenedNow(googlePlaceInfo) {
   // Current day of week, 0 = sunday, 1 = monday.
   let isOpenedNow = "CLOSED";
+
+  // Bail if no data to work with.
+  if (
+    !googlePlaceInfo ||
+    !googlePlaceInfo.opening_hours ||
+    !googlePlaceInfo.opening_hours.periods
+  ) {
+    return isOpenedNow;
+  }
+
   const currentDate = new Date();
   const currentWeekDayNum = currentDate.getDay();
   const currentHoursMinutes = `${currentDate.getHours()}${currentDate.getMinutes()}`;
