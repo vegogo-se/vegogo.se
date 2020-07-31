@@ -1,5 +1,5 @@
 ---
-title: Mahalo
+title: Omnipollos Hatt
 areas:
   - Södermalm
   - Mariatorget
