@@ -63,7 +63,9 @@ export async function getPlaceDetailsFromGoogle(placeId) {
       "opening_hours,website,address_component,geometry,name,url,vicinity",
   };
 
-  const requestUri = `${baseUri}?${querystring.stringify(requestParams)}`;
+  const requestUri = `${baseUri}?${querystring.stringify(
+    requestParams
+  )}&language=en-GB`;
   const result = await fetch(requestUri);
   const resultData = await result.json();
 
