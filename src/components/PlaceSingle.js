@@ -33,8 +33,8 @@ function isPlaceOpenedNow(googlePlaceInfo) {
   const todayOpeningHoursPeriods = googlePlaceInfo.opening_hours.periods.filter(
     (vals) => {
       return (
-        vals.open.day === currentWeekDayNum ||
-        vals.close.day === currentWeekDayNum
+        vals?.open?.day === currentWeekDayNum ||
+        vals?.close?.day === currentWeekDayNum
       );
     }
   );
@@ -210,14 +210,17 @@ export function PlaceSingle(props) {
                     <span className="flex-none">+</span>
                   </button>
 
-                  <pre className={`${showOpenHours ? "block" : "hidden"}`}>
-                    {googlePlaceInfo.opening_hours &&
-                      JSON.stringify(
-                        googlePlaceInfo.opening_hours.weekday_text,
-                        null,
-                        2
-                      )}
-                  </pre>
+                  <div className={`${showOpenHours ? "block" : "hidden"}`}>
+                    {googlePlaceInfo.opening_hours.weekday_text && (
+                      <ul>
+                        {googlePlaceInfo.opening_hours.weekday_text.map(
+                          (val) => {
+                            return <li>{val}</li>;
+                          }
+                        )}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
             </>
