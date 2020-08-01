@@ -148,7 +148,7 @@ export function PlaceSingle(props) {
               }
             `}</style>
 
-            <button
+            <div
               className="mt-4 mb-12 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: htmlHighlighted }}
             />
@@ -199,7 +199,7 @@ export function PlaceSingle(props) {
                 {googlePlaceInfo?.opening_hours && (
                   <div className="text-sm mt-6">
                     <button
-                      className="flex w-full text-left"
+                      className="flex w-full text-left font-semibold"
                       onClick={() => {
                         setShowOpenHours(!showOpenHours);
                       }}
@@ -211,12 +211,24 @@ export function PlaceSingle(props) {
                       <span className="flex-none">+</span>
                     </button>
 
-                    <div className={`${showOpenHours ? "block" : "hidden"}`}>
+                    <div
+                      className={`${showOpenHours ? "block mt-2" : "hidden"}`}
+                    >
                       {googlePlaceInfo?.opening_hours?.weekday_text && (
                         <ul>
                           {googlePlaceInfo?.opening_hours?.weekday_text.map(
-                            (val) => {
-                              return <li>{val}</li>;
+                            (val, idx) => {
+                              const classNames =
+                                idx ===
+                                (new Date().getDay() - 1 ||
+                                  (new Date().getDay() === 0 && idx === 7))
+                                  ? "xfont-bold"
+                                  : "text-gray-600";
+                              return (
+                                <li key={val} className={classNames}>
+                                  {val}
+                                </li>
+                              );
                             }
                           )}
                         </ul>
