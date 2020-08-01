@@ -75,7 +75,6 @@ export default function Template({
   const { frontmatter, html } = childMarkdownRemark;
   const { title, images } = frontmatter;
   const path = getPlaceURIFromRelativePath(relativePath);
-  console.log("childMarkdownRemark", childMarkdownRemark);
 
   return (
     <PageContainer>
