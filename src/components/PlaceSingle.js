@@ -196,32 +196,34 @@ export function PlaceSingle(props) {
                   </p>
                 )}
 
-                <div className="text-sm mt-6">
-                  <button
-                    className="flex w-full text-left"
-                    onClick={() => {
-                      setShowOpenHours(!showOpenHours);
-                    }}
-                  >
-                    <div className="flex-1">
-                      {isOpenedNow === "OPENED" && <p>Open now</p>}
-                      {isOpenedNow === "CLOSED" && <p>Opening hours</p>}
-                    </div>
-                    <span className="flex-none">+</span>
-                  </button>
+                {googlePlaceInfo?.opening_hours && (
+                  <div className="text-sm mt-6">
+                    <button
+                      className="flex w-full text-left"
+                      onClick={() => {
+                        setShowOpenHours(!showOpenHours);
+                      }}
+                    >
+                      <div className="flex-1">
+                        {isOpenedNow === "OPENED" && <p>Open now</p>}
+                        {isOpenedNow === "CLOSED" && <p>Opening hours</p>}
+                      </div>
+                      <span className="flex-none">+</span>
+                    </button>
 
-                  <div className={`${showOpenHours ? "block" : "hidden"}`}>
-                    {googlePlaceInfo.opening_hours.weekday_text && (
-                      <ul>
-                        {googlePlaceInfo.opening_hours.weekday_text.map(
-                          (val) => {
-                            return <li>{val}</li>;
-                          }
-                        )}
-                      </ul>
-                    )}
+                    <div className={`${showOpenHours ? "block" : "hidden"}`}>
+                      {googlePlaceInfo?.opening_hours?.weekday_text && (
+                        <ul>
+                          {googlePlaceInfo?.opening_hours?.weekday_text.map(
+                            (val) => {
+                              return <li>{val}</li>;
+                            }
+                          )}
+                        </ul>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </>
           )}
