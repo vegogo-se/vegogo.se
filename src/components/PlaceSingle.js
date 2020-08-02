@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
@@ -68,6 +68,7 @@ function isPlaceOpenedNow(googlePlaceInfo) {
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
   const [showOpenHours, setShowOpenHours] = useState(false);
+  const [effectDateNow, setEffectDateNow] = useState();
   const {
     title,
     tagline,
@@ -80,6 +81,17 @@ export function PlaceSingle(props) {
 
   const htmlHighlighted = highlightWords(html);
   const isOpenedNow = isPlaceOpenedNow(googlePlaceInfo);
+
+  const openedTexts = {
+    OPENED: <p>Open now</p>,
+    CLOSED: <p>Opening hours</p>,
+  };
+  const isOpenedNowText = openedTexts[isOpenedNow];
+  const dateNow = new Date().toJSON();
+
+  useEffect(() => {
+    setEffectDateNow(new Date().toJSON());
+  }, []);
 
   let tease;
   if (title && tagline) {
@@ -204,12 +216,20 @@ export function PlaceSingle(props) {
                         setShowOpenHours(!showOpenHours);
                       }}
                     >
-                      <div className="flex-1">
-                        {isOpenedNow === "OPENED" && <p>Open now</p>}
-                        {isOpenedNow === "CLOSED" && <p>Opening hours</p>}
-                      </div>
+                      <div className="flex-1">{isOpenedNowText}</div>
                       <span className="flex-none">+</span>
                     </button>
+
+                    <div>
+                      dateNow:
+                      <br />
+                      {dateNow}
+                    </div>
+                    <div>
+                      setEffectDateNow:
+                      <br />
+                      {effectDateNow}
+                    </div>
 
                     <div
                       className={`${showOpenHours ? "block mt-2" : "hidden"}`}
@@ -219,10 +239,9 @@ export function PlaceSingle(props) {
                           {googlePlaceInfo?.opening_hours?.weekday_text.map(
                             (val, idx) => {
                               const classNames =
-                                idx ===
-                                (new Date().getDay() - 1 ||
-                                  (new Date().getDay() === 0 && idx === 7))
-                                  ? "xfont-bold"
+                                idx === new Date().getDay() - 1 ||
+                                (new Date().getDay() === 0 && idx === 6)
+                                  ? "font-bold"
                                   : "text-gray-600";
                               return (
                                 <li key={val} className={classNames}>
