@@ -3,6 +3,11 @@ import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
 
+/**
+ * Return opening hours output.
+ *
+ * @param object attributes
+ */
 function PlaceOpeningHours({ googlePlaceInfo }) {
   const isOpenedNow = isPlaceOpenedNow(googlePlaceInfo);
   const openedTexts = {
