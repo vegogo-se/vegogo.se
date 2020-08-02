@@ -3,6 +3,71 @@ import { usePlace } from "../hooks/usePlace";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
 
+function PlaceOpeningHours({ googlePlaceInfo }) {
+  const isOpenedNow = isPlaceOpenedNow(googlePlaceInfo);
+  const openedTexts = {
+    OPENED: <p>Open now</p>,
+    CLOSED: <p>Opening hours</p>,
+  };
+  const isOpenedNowText = openedTexts[isOpenedNow];
+  const dateNow = new Date().toJSON();
+  const [effectDateNow, setEffectDateNow] = useState();
+  const [showOpenHours, setShowOpenHours] = useState(false);
+
+  useEffect(() => {
+    setEffectDateNow(new Date().toJSON());
+  }, []);
+
+  // Bail if no opening_hours.
+  if (!googlePlaceInfo?.opening_hours) {
+    return null;
+  }
+
+  return (
+    <div className="text-sm mt-6">
+      <button
+        className="flex w-full text-left font-semibold"
+        onClick={() => {
+          setShowOpenHours(!showOpenHours);
+        }}
+      >
+        <div className="flex-1">{isOpenedNowText}</div>
+        <span className="flex-none">+</span>
+      </button>
+
+      <div>
+        dateNow:
+        <br />
+        {dateNow}
+      </div>
+      <div>
+        setEffectDateNow:
+        <br />
+        {effectDateNow}
+      </div>
+
+      <div className={`${showOpenHours ? "block mt-2" : "hidden"}`}>
+        {googlePlaceInfo?.opening_hours?.weekday_text && (
+          <ul>
+            {googlePlaceInfo?.opening_hours?.weekday_text.map((val, idx) => {
+              const classNames =
+                idx === new Date().getDay() - 1 ||
+                (new Date().getDay() === 0 && idx === 6)
+                  ? "font-bold"
+                  : "text-gray-600";
+              return (
+                <li key={val} className={classNames}>
+                  {val}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /**
  * Checks if a place is opened right now.
  *
@@ -47,8 +112,8 @@ function isPlaceOpenedNow(googlePlaceInfo) {
     ) {
       // Check if end day and time is today and not passed.
       if (
-        period.close.day === currentWeekDayNum &&
-        period.close.time >= currentHoursMinutes
+        period?.close?.day === currentWeekDayNum &&
+        period?.close?.time >= currentHoursMinutes
       ) {
         isOpenedNow = "OPENED";
       }
@@ -57,7 +122,7 @@ function isPlaceOpenedNow(googlePlaceInfo) {
       // matter what the close time is because it's in the future anyway.
       // Check monday if current day is sunday.
       const nextDayNum = currentWeekDayNum > 6 ? 0 : currentWeekDayNum + 1;
-      if (period.close.day === nextDayNum && period.close.time) {
+      if (period?.close?.day === nextDayNum && period?.close?.time) {
         isOpenedNow = "OPENED";
       }
     }
@@ -67,8 +132,7 @@ function isPlaceOpenedNow(googlePlaceInfo) {
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
-  const [showOpenHours, setShowOpenHours] = useState(false);
-  const [effectDateNow, setEffectDateNow] = useState();
+
   const {
     title,
     tagline,
@@ -80,18 +144,6 @@ export function PlaceSingle(props) {
   } = place;
 
   const htmlHighlighted = highlightWords(html);
-  const isOpenedNow = isPlaceOpenedNow(googlePlaceInfo);
-
-  const openedTexts = {
-    OPENED: <p>Open now</p>,
-    CLOSED: <p>Opening hours</p>,
-  };
-  const isOpenedNowText = openedTexts[isOpenedNow];
-  const dateNow = new Date().toJSON();
-
-  useEffect(() => {
-    setEffectDateNow(new Date().toJSON());
-  }, []);
 
   let tease;
   if (title && tagline) {
@@ -208,53 +260,7 @@ export function PlaceSingle(props) {
                   </p>
                 )}
 
-                {googlePlaceInfo?.opening_hours && (
-                  <div className="text-sm mt-6">
-                    <button
-                      className="flex w-full text-left font-semibold"
-                      onClick={() => {
-                        setShowOpenHours(!showOpenHours);
-                      }}
-                    >
-                      <div className="flex-1">{isOpenedNowText}</div>
-                      <span className="flex-none">+</span>
-                    </button>
-
-                    <div>
-                      dateNow:
-                      <br />
-                      {dateNow}
-                    </div>
-                    <div>
-                      setEffectDateNow:
-                      <br />
-                      {effectDateNow}
-                    </div>
-
-                    <div
-                      className={`${showOpenHours ? "block mt-2" : "hidden"}`}
-                    >
-                      {googlePlaceInfo?.opening_hours?.weekday_text && (
-                        <ul>
-                          {googlePlaceInfo?.opening_hours?.weekday_text.map(
-                            (val, idx) => {
-                              const classNames =
-                                idx === new Date().getDay() - 1 ||
-                                (new Date().getDay() === 0 && idx === 6)
-                                  ? "font-bold"
-                                  : "text-gray-600";
-                              return (
-                                <li key={val} className={classNames}>
-                                  {val}
-                                </li>
-                              );
-                            }
-                          )}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                )}
+                <PlaceOpeningHours googlePlaceInfo={googlePlaceInfo} />
               </div>
             </>
           )}
