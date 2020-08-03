@@ -1,9 +1,10 @@
 // import React from "react";
 // import renderer from "react-test-renderer";
-const {
+import {
   getPlaceURIFromRelativePath,
   getInfoFromPath,
-} = require("../src/helpers");
+  getNearestPlacesFromLocation,
+} from "../src/helpers";
 
 describe("Place and area file paths", () => {
   it("transforms to URL paths", () => {
@@ -44,3 +45,15 @@ describe("Place and area info from URL", () => {
     }
   });
 });
+
+// describe("Get nearest places from location", () => {
+//   it("Find the nearest places from lat and lng values", () => {
+//     // expect("yo").toBe("yos");
+//     // Found places near Södermalm.
+//     const foundPlaces = getNearestPlacesFromLocation({
+//       lat: 59.315,
+//       lng: 18.073056,
+//     });
+//     console.log("foundPlaces", foundPlaces);
+//   });
+// });

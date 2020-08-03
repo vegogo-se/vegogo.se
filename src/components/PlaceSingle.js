@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { usePlace } from "../hooks/usePlace";
+import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
+import { getNearestPlacesFromLocation } from "../helpers";
 
 /**
  * Return opening hours output.
@@ -137,6 +139,7 @@ function isPlaceOpenedNow(googlePlaceInfo) {
 
 export function PlaceSingle(props) {
   const place = usePlace(props.path);
+  const allPlaces = useAllPlaces();
 
   const {
     title,
@@ -166,6 +169,14 @@ export function PlaceSingle(props) {
     // Only place title so make it large.
     tease = <h1 className="text-5xl leading-tight mt-2 mb-8">{title}</h1>;
   }
+
+  // Near Södermalm.
+  const nearestPlaces = getNearestPlacesFromLocation({
+    allPlaces: allPlaces,
+    lat: 59.315,
+    lng: 18.073056,
+  });
+  console.log("nearestPlaces", nearestPlaces);
 
   return (
     <article key={path}>

@@ -2,6 +2,7 @@
  * Misc helper functions.
  */
 // import { useStaticQuery } from "gatsby";
+import orderByDistance from "geolib/es/orderByDistance";
 const fetch = require(`node-fetch`);
 const querystring = require("querystring");
 const slugify = require("slugify");
@@ -53,7 +54,9 @@ export function getAreaPermalink(area) {
  */
 export async function getPlaceDetailsFromGoogle(placeId) {
   const baseUri = "https://maps.googleapis.com/maps/api/place/details/json";
+
   // Key locked by IP because referer does not work.
+  // TODO: move this key to .env?
   const googleMapsAPiKey = "AIzaSyArzTadmFlWv6x_03WFYPL9kZ-RaUsFnRs";
 
   var requestParams = {
@@ -69,15 +72,6 @@ export async function getPlaceDetailsFromGoogle(placeId) {
   const result = await fetch(requestUri);
   const resultData = await result.json();
 
-  // console.log("requestUri:", requestUri);
-  // console.log("resultData", resultData);
-
-  // return new Promise(resolve => {
-  //   // https://developers.google.com/maps/documentation/javascript/places
-  //   service.getDetails(request, res => {
-  //     resolve(res);
-  //   });
-  // });
   return resultData;
 }
 
@@ -158,4 +152,34 @@ export function getInfoFromPath(path) {
     city: pathParts[1],
     placeOrArea: pathParts[2],
   };
+}
+
+export function getNearestPlacesFromLocation(options) {
+  const { lat = 59.323611, lng = 18.074444, allPlaces = [] } = options;
+  console.log(`Finding places near lat ${lat}, lng ${lng}`);
+
+  // Make data format that fits the orderByDistance function.
+  let allPlacesFormatted = allPlaces.filter((place) => {
+    return (
+      place?.googlePlaceInfo?.geometry?.location?.lat &&
+      place?.googlePlaceInfo?.geometry?.location?.lng
+    );
+  });
+
+  allPlacesFormatted = allPlacesFormatted.map((place) => {
+    place.latitude = place.googlePlaceInfo.geometry.location.lat;
+    place.longitude = place.googlePlaceInfo.geometry.location.lng;
+    return place;
+  });
+
+  // https://www.npmjs.com/package/geolib#orderbydistancepoint-arrayofpoints
+  const placesByDistance = orderByDistance(
+    {
+      latitude: lat,
+      longitude: lng,
+    },
+    allPlacesFormatted
+  );
+
+  return placesByDistance;
 }
