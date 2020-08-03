@@ -12,7 +12,7 @@
     "serve": "gatsby serve",
     "test": "jest",
     "dev": "gatsby develop",
-    "heroku-postbuild": "GATSBY_CPU_COUNT=1 gatsby build"
+    "heroku-postbuild": "gatsby build"
   },
   "engines": {
     "node": "10.x"
