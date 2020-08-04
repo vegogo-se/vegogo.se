@@ -155,18 +155,18 @@ export function getInfoFromPath(path) {
 }
 
 export function getNearestPlacesFromLocation(options) {
-  const { lat = 59.323611, lng = 18.074444, allPlaces = [] } = options;
+  const { lat = 59.323611, lng = 18.074444, places = [] } = options;
   console.log(`Finding places near lat ${lat}, lng ${lng}`);
 
   // Make data format that fits the orderByDistance function.
-  let allPlacesFormatted = allPlaces.filter((place) => {
+  let placesFormatted = places.filter((place) => {
     return (
       place?.googlePlaceInfo?.geometry?.location?.lat &&
       place?.googlePlaceInfo?.geometry?.location?.lng
     );
   });
 
-  allPlacesFormatted = allPlacesFormatted.map((place) => {
+  placesFormatted = placesFormatted.map((place) => {
     place.latitude = place.googlePlaceInfo.geometry.location.lat;
     place.longitude = place.googlePlaceInfo.geometry.location.lng;
     return place;
@@ -178,7 +178,7 @@ export function getNearestPlacesFromLocation(options) {
       latitude: lat,
       longitude: lng,
     },
-    allPlacesFormatted
+    placesFormatted
   );
 
   return placesByDistance;

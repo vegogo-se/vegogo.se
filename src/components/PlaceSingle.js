@@ -6,6 +6,40 @@ import { highlightWords } from "../functions";
 import { getNearestPlacesFromLocation } from "../helpers";
 
 /**
+ * Show places nearby another place.
+ *
+ * @param Place
+ */
+function PlacesNearby(props) {
+  const { place, places } = props;
+  const { googlePlaceInfo } = place;
+
+  // Remove the place we are getting places nearby for.
+  const placesWithoutPlace = places.filter(
+    (placesPlace) => placesPlace.path !== place.path
+  );
+
+  const nearestPlaces = getNearestPlacesFromLocation({
+    places: placesWithoutPlace,
+    lat: googlePlaceInfo?.geometry?.location?.lat,
+    lng: googlePlaceInfo?.geometry?.location?.lng,
+  });
+
+  console.log("nearestPlaces", nearestPlaces);
+
+  const placesOutput = nearestPlaces.map((place) => {
+    return <p>{place.path}</p>;
+  });
+
+  return (
+    <div>
+      places nearby:
+      {placesOutput}
+    </div>
+  );
+}
+
+/**
  * Return opening hours output.
  *
  * @param object attributes
@@ -18,12 +52,7 @@ function PlaceOpeningHours({ googlePlaceInfo }) {
   };
   const isOpenedNowText = openedTexts[isOpenedNow];
   const dateNow = new Date().toJSON();
-  const [effectDateNow, setEffectDateNow] = useState();
   const [showOpenHours, setShowOpenHours] = useState(false);
-
-  useEffect(() => {
-    setEffectDateNow(new Date().toJSON());
-  }, []);
 
   // Bail if no opening_hours.
   if (!googlePlaceInfo?.opening_hours) {
@@ -41,17 +70,6 @@ function PlaceOpeningHours({ googlePlaceInfo }) {
         <div className="flex-1">{isOpenedNowText}</div>
         <span className="flex-none">+</span>
       </button>
-
-      <div>
-        dateNow:
-        <br />
-        {dateNow}
-      </div>
-      <div>
-        setEffectDateNow:
-        <br />
-        {effectDateNow}
-      </div>
 
       <div className={`${showOpenHours ? "block mt-2" : "hidden"}`}>
         {googlePlaceInfo?.opening_hours?.weekday_text && (
@@ -170,14 +188,6 @@ export function PlaceSingle(props) {
     tease = <h1 className="text-5xl leading-tight mt-2 mb-8">{title}</h1>;
   }
 
-  // Near Södermalm.
-  const nearestPlaces = getNearestPlacesFromLocation({
-    allPlaces: allPlaces,
-    lat: 59.315,
-    lng: 18.073056,
-  });
-  console.log("nearestPlaces", nearestPlaces);
-
   return (
     <article key={path}>
       {/* Output images. */}
@@ -278,6 +288,8 @@ export function PlaceSingle(props) {
 
                 <PlaceOpeningHours googlePlaceInfo={googlePlaceInfo} />
               </div>
+
+              <PlacesNearby place={place} places={allPlaces} />
             </>
           )}
         </div>
