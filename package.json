@@ -15,7 +15,7 @@
     "heroku-postbuild": "gatsby build"
   },
   "engines": {
-    "node": "10.x"
+    "node": "11.x"
   },
   "dependencies": {
     "classnames": "^2.2.6",
