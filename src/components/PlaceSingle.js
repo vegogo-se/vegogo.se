@@ -25,7 +25,7 @@ function PlacesNearby(props) {
     lng: googlePlaceInfo?.geometry?.location?.lng,
   });
 
-  console.log("nearestPlaces", nearestPlaces);
+  // console.log("nearestPlaces", nearestPlaces);
 
   const placesOutput = nearestPlaces.map((place) => {
     return <p>{place.path}</p>;
