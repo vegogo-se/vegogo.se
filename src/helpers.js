@@ -160,10 +160,7 @@ export function getNearestPlacesFromLocation(options) {
 
   // Make data format that fits the orderByDistance function.
   let placesFormatted = places.filter((place) => {
-    return (
-      place?.googlePlaceInfo?.geometry?.location?.lat &&
-      place?.googlePlaceInfo?.geometry?.location?.lng
-    );
+    return place && place.googlePlaceInfo && place.googlePlaceInfo.geometry;
   });
 
   placesFormatted = placesFormatted.map((place) => {
