@@ -28,7 +28,11 @@ function PlacesNearby(props) {
   // console.log("nearestPlaces", nearestPlaces);
 
   const placesOutput = nearestPlaces.map((place) => {
-    return <p>{place.path}</p>;
+    return (
+      <p>
+        {place.title}, {place.path}
+      </p>
+    );
   });
 
   return (
