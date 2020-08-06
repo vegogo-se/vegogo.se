@@ -4,11 +4,12 @@ import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
 import { highlightWords } from "../functions";
 import { getNearestPlacesFromLocation } from "../helpers";
+import PlacesListing from "./PlacesListing";
 
 /**
  * Show places nearby another place.
  *
- * @param Place
+ * @param Props place, places
  */
 function PlacesNearby(props) {
   const { place, places } = props;
@@ -19,28 +20,16 @@ function PlacesNearby(props) {
     (placesPlace) => placesPlace.path !== place.path
   );
 
+  // Sort places by distance.
   const nearestPlaces = getNearestPlacesFromLocation({
     places: placesWithoutPlace,
     lat: googlePlaceInfo?.geometry?.location?.lat,
     lng: googlePlaceInfo?.geometry?.location?.lng,
   });
 
-  // console.log("nearestPlaces", nearestPlaces);
+  const placePaths = nearestPlaces.map((place) => place.path);
 
-  const placesOutput = nearestPlaces.map((place) => {
-    return (
-      <p>
-        {place.title}, {place.path}
-      </p>
-    );
-  });
-
-  return (
-    <div>
-      places nearby:
-      {placesOutput}
-    </div>
-  );
+  return <PlacesListing placePaths={placePaths} title="More near by" />;
 }
 
 /**
