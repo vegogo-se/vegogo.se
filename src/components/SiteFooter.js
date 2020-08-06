@@ -16,7 +16,7 @@ class SiteFooter extends Component {
             <img src={logoImg} alt="Vegogo logo" className="m-auto w-64" />
           </p>
 
-          <h1 className="font-headline text-center text-4xl py-16 px-1">
+          <h1 className="font-headline font-normal text-center text-4xl py-16 px-1">
             The
             <br />
             new guide
