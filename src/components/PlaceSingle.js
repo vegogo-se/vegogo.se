@@ -44,7 +44,6 @@ function PlaceOpeningHours({ googlePlaceInfo }) {
     CLOSED: <p>Opening hours</p>,
   };
   const isOpenedNowText = openedTexts[isOpenedNow];
-  const dateNow = new Date().toJSON();
   const [showOpenHours, setShowOpenHours] = useState(false);
 
   // Bail if no opening_hours.
