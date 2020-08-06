@@ -21,11 +21,14 @@ function PlacesNearby(props) {
   );
 
   // Sort places by distance.
-  const nearestPlaces = getNearestPlacesFromLocation({
+  let nearestPlaces = getNearestPlacesFromLocation({
     places: placesWithoutPlace,
     lat: googlePlaceInfo?.geometry?.location?.lat,
     lng: googlePlaceInfo?.geometry?.location?.lng,
   });
+
+  // Show only the first n.
+  nearestPlaces = nearestPlaces.slice(0, 6);
 
   const placePaths = nearestPlaces.map((place) => place.path);
 
