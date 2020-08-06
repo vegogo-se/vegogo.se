@@ -34,8 +34,12 @@ function PlacesListing(props) {
 
   return (
     <>
-      {title && <h2>{title}</h2>}
-      {excerpt && <div>{excerpt}</div>}
+      {title && (
+        <h2 className="font-headline font-normal text-center text-5xl py-16 px-1">
+          {title}
+        </h2>
+      )}
+      {excerpt && <div className="text-center mb-16">{excerpt}</div>}
       {placesItems}
     </>
   );

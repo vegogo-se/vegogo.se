@@ -29,7 +29,13 @@ function PlacesNearby(props) {
 
   const placePaths = nearestPlaces.map((place) => place.path);
 
-  return <PlacesListing placePaths={placePaths} title="More near by" />;
+  return (
+    <PlacesListing
+      placePaths={placePaths}
+      title="More near by"
+      excerpt={`Here are some more nice vegan places close to ${place.title}.`}
+    />
+  );
 }
 
 /**

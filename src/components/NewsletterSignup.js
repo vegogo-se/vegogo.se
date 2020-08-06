@@ -4,8 +4,8 @@ import VegogoButton from "../components/VegogoButton";
 export default function () {
   return (
     <React.Fragment>
-      <div className="flex bg-vegogo-green text-center">
-        <div className="mx-auto max-w-lg py-10 mt-10 mx-6">
+      <div className="flex justify-center bg-vegogo-green text-center">
+        <div className="mx-autox max-w-lg py-10 mt-10 mx-6">
           <p className="text-3xl font-bold leading-snug mb-6">
             Love vegan as much as we do? Sign up for our newsletter on what’s to
             come.
