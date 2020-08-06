@@ -156,7 +156,7 @@ export function getInfoFromPath(path) {
 
 export function getNearestPlacesFromLocation(options) {
   const { lat = 59.323611, lng = 18.074444, places = [] } = options;
-  console.log(`Finding places near lat ${lat}, lng ${lng}`);
+  // console.log(`Finding places near lat ${lat}, lng ${lng}`);
 
   // Make data format that fits the orderByDistance function.
   let placesFormatted = places.filter((place) => {
