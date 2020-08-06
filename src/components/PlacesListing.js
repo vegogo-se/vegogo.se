@@ -5,9 +5,13 @@ import { PlaceOverview } from "./PlaceOverview";
 
 /**
  * Renders places with places with paths passed as placePaths.
+ *
+ * @param props.placePaths Array with paths of places to show in the listing
+ * @param props.title string Title to show large above the listing
+ * @param props.excerpt string Introtext
  */
 function PlacesListing(props) {
-  let { title, excerpt, placePaths } = props;
+  let { placePaths, title, excerpt } = props;
 
   const allPlaces = useAllPlaces();
   const selectedPlaces = getPlacesMatchingPlacePaths(allPlaces, placePaths);
@@ -15,7 +19,7 @@ function PlacesListing(props) {
   let placesItems;
 
   if (selectedPlaces) {
-    placesItems = selectedPlaces.map(place => {
+    placesItems = selectedPlaces.map((place) => {
       let { path } = place;
 
       return (
