@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { usePlace } from "../hooks/usePlace";
-import { useAllPlaces } from "../hooks/useAllPlaces";
 import Img from "gatsby-image";
+import React, { useState } from "react";
 import { highlightWords } from "../functions";
 import { getNearestPlacesFromLocation } from "../helpers";
+import { useAllPlaces } from "../hooks/useAllPlaces";
+import { usePlace } from "../hooks/usePlace";
 import PlacesListing from "./PlacesListing";
 
 /**
