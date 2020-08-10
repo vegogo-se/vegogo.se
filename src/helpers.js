@@ -211,8 +211,8 @@ export function isPlaceOpenedNow(googlePlaceInfo) {
   const todayOpeningHoursPeriods = googlePlaceInfo.opening_hours.periods.filter(
     (vals) => {
       return (
-        vals?.open?.day === currentWeekDayNum ||
-        vals?.close?.day === currentWeekDayNum
+        (vals && vals.open && vals.open.day === currentWeekDayNum) ||
+        (vals && vals.close && vals.close.day === currentWeekDayNum)
       );
     }
   );
@@ -225,8 +225,12 @@ export function isPlaceOpenedNow(googlePlaceInfo) {
     ) {
       // Check if end day and time is today and not passed.
       if (
-        period?.close?.day === currentWeekDayNum &&
-        period?.close?.time >= currentHoursMinutes
+        period &&
+        period.close &&
+        period.close.day === currentWeekDayNum &&
+        period &&
+        period.close &&
+        period.close.time >= currentHoursMinutes
       ) {
         isOpenedNow = "OPENED";
       }
@@ -235,7 +239,14 @@ export function isPlaceOpenedNow(googlePlaceInfo) {
       // matter what the close time is because it's in the future anyway.
       // Check monday if current day is sunday.
       const nextDayNum = currentWeekDayNum > 6 ? 0 : currentWeekDayNum + 1;
-      if (period?.close?.day === nextDayNum && period?.close?.time) {
+      if (
+        period &&
+        period.close &&
+        period.close.day === nextDayNum &&
+        period &&
+        period.close &&
+        period.close.time
+      ) {
         isOpenedNow = "OPENED";
       }
     }

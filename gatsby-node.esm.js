@@ -53,6 +53,9 @@ async function updateGooglePlacesLocalJSONFile(allPlacesData, reporter) {
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
   const pageTemplate = path.resolve(`src/templates/pageTemplate.js`);
+  const pageNearbyTemplate = path.resolve(
+    `src/templates/pageNearbyTemplate.js`
+  );
   const placeTemplate = path.resolve(`src/templates/placeTemplate.js`);
   const areaTemplate = path.resolve(`src/templates/areaTemplate.js`);
 
@@ -89,8 +92,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     createPage({
       path: node.childMarkdownRemark.frontmatter.path,
       component: pageTemplate,
-      context: {}, // additional data can be passed via context
+      context: {},
     });
+  });
+
+  // Create nearby page.
+  createPage({
+    path: "/nearby/",
+    component: pageNearbyTemplate,
+    context: {},
   });
 
   /**
@@ -139,7 +149,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: placeTemplate,
       context: {
         relativePath,
-      }, // additional data can be passed via context
+      },
     });
   });
 
