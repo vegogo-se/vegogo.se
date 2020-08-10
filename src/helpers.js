@@ -180,3 +180,66 @@ export function getNearestPlacesFromLocation(options) {
 
   return placesByDistance;
 }
+
+/**
+ * Checks if a place is opened right now.
+ *
+ * @param Array googlePlaceInfo
+ * @return string OPENED or CLOSED (string to make it work for possible future values of "CLOSING_SOON" or similar.)
+ */
+export function isPlaceOpenedNow(googlePlaceInfo) {
+  // Current day of week, 0 = sunday, 1 = monday.
+  let isOpenedNow = "CLOSED";
+
+  // Bail if no data to work with.
+  if (
+    !googlePlaceInfo ||
+    !googlePlaceInfo.opening_hours ||
+    !googlePlaceInfo.opening_hours.periods
+  ) {
+    return isOpenedNow;
+  }
+
+  const currentDate = new Date();
+  const currentWeekDayNum = currentDate.getDay();
+  const currentHoursMinutes = `${currentDate.getHours()}${currentDate.getMinutes()}`;
+  // periods[] is an array of opening periods covering seven days, starting from Sunday, in chronological order.
+  // Can be multiple entries for a single day, see this example: https://stackoverflow.com/questions/48461740/using-functional-programming-to-parse-opening-hours-from-google-places-api
+  // https://developers.google.com/places/web-service/details#PlaceDetailsResults
+
+  // Keep periods that contains the current day is open or close date.
+  const todayOpeningHoursPeriods = googlePlaceInfo.opening_hours.periods.filter(
+    (vals) => {
+      return (
+        vals?.open?.day === currentWeekDayNum ||
+        vals?.close?.day === currentWeekDayNum
+      );
+    }
+  );
+
+  todayOpeningHoursPeriods.forEach((period) => {
+    // Start day is today and start time is passed.
+    if (
+      period.open.day === currentWeekDayNum &&
+      period.open.time <= currentHoursMinutes
+    ) {
+      // Check if end day and time is today and not passed.
+      if (
+        period?.close?.day === currentWeekDayNum &&
+        period?.close?.time >= currentHoursMinutes
+      ) {
+        isOpenedNow = "OPENED";
+      }
+
+      // Check if end day is one day after today and that time exists. It does not
+      // matter what the close time is because it's in the future anyway.
+      // Check monday if current day is sunday.
+      const nextDayNum = currentWeekDayNum > 6 ? 0 : currentWeekDayNum + 1;
+      if (period?.close?.day === nextDayNum && period?.close?.time) {
+        isOpenedNow = "OPENED";
+      }
+    }
+  });
+
+  return isOpenedNow;
+}
