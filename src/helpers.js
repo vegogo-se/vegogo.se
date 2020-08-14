@@ -122,11 +122,38 @@ export function getPlacePaths(places) {
   return placePaths;
 }
 
-// Get names of each place from their paths.
+/**
+ * Sort array of objects based on another array.
+ * Function from https://gist.github.com/ecarter/1423674
+ */
+function mapOrder(array, order, key) {
+  array.sort(function (a, b) {
+    var A = a[key],
+      B = b[key];
+
+    if (order.indexOf(A) > order.indexOf(B)) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+
+  return array;
+}
+
+/**
+ * Get places that matches the places in placePaths
+ *
+ * @param {*} allPlaces
+ * @param {*} placePaths Array with paths to places to keep.
+ */
 export function getPlacesMatchingPlacePaths(allPlaces, placePaths) {
-  const selectedPlaces = allPlaces.filter((place) => {
+  let selectedPlaces = allPlaces.filter((place) => {
     return placePaths.includes(place.path);
   });
+
+  // Set correct order of items.
+  selectedPlaces = mapOrder(selectedPlaces, placePaths, "path");
 
   return selectedPlaces;
 }
