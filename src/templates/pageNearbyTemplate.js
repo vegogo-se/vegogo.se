@@ -102,16 +102,13 @@ export default function Template({ data }) {
             {isLocatingError && (
               <p>Äsch då, det gick inte att hämta din position...</p>
             )}
-
-            {gotLocation && (
-              <PlacesListing
-                placePaths={nearbyPlacesPaths}
-                title="Places near you"
-              />
-            )}
           </div>
         </div>
       </div>
+
+      {gotLocation && (
+        <PlacesListing placePaths={nearbyPlacesPaths} title="Places near you" />
+      )}
     </PageContainer>
   );
 }
