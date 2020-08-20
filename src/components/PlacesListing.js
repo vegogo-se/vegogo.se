@@ -29,7 +29,7 @@ function PlacesListing(props) {
       );
     });
 
-    placesItems = <ul className="flex flex-wrap">{placesItems}</ul>;
+    placesItems = <ul className="flex flex-wrap justify-center">{placesItems}</ul>;
   }
 
   return (
