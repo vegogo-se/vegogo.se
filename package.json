@@ -33,7 +33,7 @@
     "gatsby-plugin-styled-jsx": "^3.3.11",
     "gatsby-source-filesystem": "^2.3.27",
     "gatsby-transformer-json": "^2.4.11",
-    "gatsby-transformer-remark": "^2.8.32",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.5.14",
     "geolib": "^3.3.1",
     "node-sass": "^4.14.1",
